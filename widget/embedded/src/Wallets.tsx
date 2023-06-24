@@ -92,7 +92,8 @@ export function WidgetWallets(
       <Provider
         allBlockChains={blockchains}
         providers={providers}
-        onUpdateState={onUpdateState}>
+        onUpdateState={onUpdateState}
+        autoConnect>
         {props.children}
       </Provider>
     </WidgetContext.Provider>

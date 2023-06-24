@@ -97,6 +97,10 @@ export type CanSwitchNetwork = (options: {
   provider: any;
 }) => boolean;
 
+export type CanRestoreConnection = (options: {
+  instance: any;
+}) => Promise<boolean>;
+
 export interface WalletActions {
   connect: Connect;
   getInstance: any;
@@ -109,6 +113,7 @@ export interface WalletActions {
   switchNetwork?: SwitchNetwork;
   getSigners: (provider: any) => SignerFactory;
   canSwitchNetworkTo?: CanSwitchNetwork;
+  canRestoreConnection?: CanRestoreConnection;
   getWalletInfo(allBlockChains: BlockchainMeta[]): WalletInfo;
 }
 

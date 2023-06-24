@@ -1,10 +1,12 @@
 import {
+  CanRestoreConnection,
   CanSwitchNetwork,
   Connect,
   Subscribe,
   SwitchNetwork,
   WalletInfo,
   WalletTypes,
+  canRestoreEvmConection,
   canSwitchNetworkToEvm,
   getEvmAccounts,
   subscribeToEvm,
@@ -23,7 +25,9 @@ export const config = {
 };
 
 export const connect: Connect = async ({ instance }) => {
-  let { accounts, chainId } = await getEvmAccounts(instance);
+  const result = await getEvmAccounts(instance);
+  const { chainId } = result;
+  let { accounts } = result;
   if (accounts.length > 1) accounts = [instance.selectedAddress];
 
   return {
@@ -39,6 +43,9 @@ export const switchNetwork: SwitchNetwork = switchNetworkForEvm;
 export const canSwitchNetworkTo: CanSwitchNetwork = canSwitchNetworkToEvm;
 
 export const getSigners: (provider: any) => SignerFactory = signer;
+
+export const canRestoreConnection: CanRestoreConnection =
+  canRestoreEvmConection;
 
 export const getWalletInfo: (allBlockChains: BlockchainMeta[]) => WalletInfo = (
   allBlockChains

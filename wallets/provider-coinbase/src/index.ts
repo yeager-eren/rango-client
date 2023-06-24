@@ -12,6 +12,8 @@ import {
   switchNetworkForEvm,
   getCoinbaseInstance as coinbase_instance,
   WalletInfo,
+  CanRestoreConnection,
+  canRestoreEvmConection,
 } from '@rango-dev/wallets-shared';
 import { getSolanaAccounts } from './helpers';
 import {
@@ -90,6 +92,9 @@ export const switchNetwork: SwitchNetwork = switchNetworkForEvm;
 export const canSwitchNetworkTo: CanSwitchNetwork = canSwitchNetworkToEvm;
 
 export const getSigners: (provider: any) => SignerFactory = signer;
+
+export const canRestoreConnection: CanRestoreConnection =
+  canRestoreEvmConection;
 
 export const getWalletInfo: (allBlockChains: BlockchainMeta[]) => WalletInfo = (
   allBlockChains

@@ -233,6 +233,10 @@ export type Subscribe = (options: {
   disconnect: () => void;
 }) => void;
 
+export type CanRestoreConnection = (options: {
+  instance: any;
+}) => Promise<boolean>;
+
 export type SwitchNetwork = (options: {
   instance: any;
   network: Network;

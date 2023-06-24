@@ -199,25 +199,61 @@ export async function autoConnect(
   if (lastConnectedWallets && lastConnectedWallets.length) {
     const connect_promises: {
       walletType: WalletType;
-      connect: () => Promise<any>;
+      restoreConnection: () => Promise<any>;
     }[] = [];
     lastConnectedWallets.forEach((walletType) => {
       const wallet = wallets.get(walletType);
 
       if (!!wallet) {
         const ref = addWalletRef(wallet);
-        connect_promises.push({ walletType, connect: ref.connect.bind(ref) });
+        connect_promises.push({
+          walletType,
+          restoreConnection: ref.restoreConnection.bind(ref),
+        });
       }
     });
 
-    for (const { connect, walletType } of connect_promises) {
-      try {
-        await connect();
-      } catch (error) {
-        removeWalletFromPersist(walletType);
+    const result = await Promise.allSettled(
+      connect_promises.map(({ restoreConnection }) => restoreConnection())
+    );
+
+    const canRestoreAnyConnection = !!result.find(({ status }) => {
+      status === 'fulfilled';
+    });
+
+    if (!canRestoreAnyConnection) return;
+    else {
+      const walletsToRemoveFromPersistance: WalletType[] = [];
+      result.forEach(({ status }, index) => {
+        if (status === 'rejected')
+          walletsToRemoveFromPersistance.push(
+            connect_promises[index].walletType
+          );
+      });
+
+      console.log({ walletsToRemoveFromPersistance });
+      if (walletsToRemoveFromPersistance.length) {
+        const persistor = new Persistor<string[]>();
+        persistor.setItem(
+          LASTE_CONNECTED_WALLETS,
+          lastConnectedWallets.filter(
+            (walletType) => !walletsToRemoveFromPersistance.includes(walletType)
+          )
+        );
       }
     }
+    console.log({ result });
   }
+
+  // for (const { restoreConnection, walletType } of connect_promises) {
+  //   try {
+  //     console.log({ restoreConnection });
+  //     await restoreConnection();
+  //   } catch (error) {
+  //     console.log(error);
+  //     removeWalletFromPersist(walletType);
+  //   }
+  // }
 }
 /*
   Our event handler includes an internal state updater, and a notifier

@@ -209,6 +209,31 @@ class Wallet<InstanceType = any> {
     }
   }
 
+  // metamask xdefi coinbase trustwallet phantom clover cosmostaion frontier
+  // aargentx isPreauthorized()
+  //tokenpocket math exodus okx enkrypt taho leap
+
+  async restoreConnection() {
+    const instance = await this.tryGetInstance({ network: undefined });
+    const { canRestoreConnection } = this.actions;
+
+    let restoreConnection = false;
+    if (canRestoreConnection) {
+      restoreConnection = await canRestoreConnection({
+        instance: instance,
+      });
+
+      if (restoreConnection) return this.connect();
+      else {
+        const error_message = `can't restore connection for ${this.options.config.type} .`;
+        throw new Error(error_message);
+      }
+    } else {
+      const error_message = `can't restore connection for ${this.options.config.type} .`;
+      throw new Error(error_message);
+    }
+  }
+
   getSigners(provider: any) {
     return this.actions.getSigners(provider);
   }

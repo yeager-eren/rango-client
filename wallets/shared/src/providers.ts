@@ -4,6 +4,7 @@ import {
   Subscribe,
   SwitchNetwork,
   Networks,
+  CanRestoreConnection,
 } from './rango';
 import { convertEvmBlockchainMetaToEvmChainInfo } from './helpers';
 import { switchOrAddNetworkForMetamaskCompatibleWallets } from './helpers';
@@ -42,6 +43,22 @@ export const subscribeToEvm: Subscribe = ({
   instance?.on('chainChanged', (chainId: string) => {
     updateChainId(chainId);
   });
+};
+
+export const canRestoreEvmConection: CanRestoreConnection = async ({
+  instance,
+}) => {
+  try {
+    const accounts: string[] = await instance.request({
+      method: 'eth_accounts',
+    });
+    console.log({ accounts });
+    if (accounts.length) return true;
+    else return false;
+  } catch (error) {
+    console.log({ error });
+    return false;
+  }
 };
 
 export const switchNetworkForEvm: SwitchNetwork = async ({

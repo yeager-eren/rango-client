@@ -17,6 +17,8 @@ import { ProviderProps, ProviderContext } from './types';
 import { WalletType } from '@rango-dev/wallets-shared';
 import { useInitializers } from './hooks';
 import { WalletContext } from './context';
+import { Persistor } from './persistor';
+import { LASTE_CONNECTED_WALLETS } from './constants';
 
 function Provider(props: ProviderProps) {
   const [providersState, dispatch] = useReducer(state_reducer, {});
@@ -40,7 +42,15 @@ function Provider(props: ProviderProps) {
 
       const walletInstance = getWalletInstance(wallet);
       const result = await walletInstance.connect(network);
-      if (props.autoConnect) persistWallet(type);
+      if (props.autoConnect && wallet.actions.canRestoreConnection) {
+        const persistor = new Persistor<string[]>();
+        const lastConnectedWallets = persistor.getItem(LASTE_CONNECTED_WALLETS);
+        const shouldClearPersistance = lastConnectedWallets?.find(
+          (walletType) => !api.state(walletType).connected
+        );
+        if (shouldClearPersistance) clearPersistStorage();
+        persistWallet(type);
+      }
 
       return result;
     },
