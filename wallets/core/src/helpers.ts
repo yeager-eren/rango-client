@@ -162,23 +162,47 @@ export function getComptaibleProvider(
   return provider;
 }
 
-export async function persistWallet(type: WalletType) {
-  const persistor = new Persistor<string[]>();
-  const wallets = persistor.getItem(LASTE_CONNECTED_WALLETS);
-  const walletAlreadyPersisted = !!wallets?.find((wallet) => wallet === type);
-  if (wallets && !walletAlreadyPersisted)
-    persistor.setItem(LASTE_CONNECTED_WALLETS, wallets.concat(type));
-  else persistor.setItem(LASTE_CONNECTED_WALLETS, [type]);
+export async function tryPersistWallet({
+  type,
+  walletActions,
+  getState,
+}: {
+  type: WalletType;
+  walletActions: WalletActions;
+  getState: (walletType: WalletType) => WalletState;
+}) {
+  if (walletActions.canRestoreConnection) {
+    const persistor = new Persistor<string[]>();
+    const wallets = persistor.getItem(LASTE_CONNECTED_WALLETS);
+    const shouldClearPersistance = wallets?.find(
+      (walletType) => !getState(walletType).connected
+    );
+
+    if (shouldClearPersistance) clearPersistStorage();
+
+    const walletAlreadyPersisted = !!wallets?.find((wallet) => wallet === type);
+    if (wallets && !walletAlreadyPersisted)
+      persistor.setItem(LASTE_CONNECTED_WALLETS, wallets.concat(type));
+    else persistor.setItem(LASTE_CONNECTED_WALLETS, [type]);
+  }
 }
 
-export function removeWalletFromPersist(type: WalletType) {
-  const persistor = new Persistor<string[]>();
-  const wallets = persistor.getItem(LASTE_CONNECTED_WALLETS);
-  if (wallets)
-    persistor.setItem(
-      LASTE_CONNECTED_WALLETS,
-      wallets.filter((wallet) => wallet !== type)
-    );
+export function tryRemoveWalletFromPersistance({
+  type,
+  walletActions,
+}: {
+  type: WalletType;
+  walletActions: WalletActions;
+}) {
+  if (walletActions.canRestoreConnection) {
+    const persistor = new Persistor<string[]>();
+    const wallets = persistor.getItem(LASTE_CONNECTED_WALLETS);
+    if (wallets)
+      persistor.setItem(
+        LASTE_CONNECTED_WALLETS,
+        wallets.filter((wallet) => wallet !== type)
+      );
+  }
 }
 
 export function clearPersistStorage() {

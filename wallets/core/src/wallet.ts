@@ -216,20 +216,18 @@ class Wallet<InstanceType = any> {
   async restoreConnection() {
     const instance = await this.tryGetInstance({ network: undefined });
     const { canRestoreConnection } = this.actions;
+    const error_message = `can't restore connection for ${this.options.config.type} .`;
 
-    let restoreConnection = false;
     if (canRestoreConnection) {
-      restoreConnection = await canRestoreConnection({
+      const restoreConnection = await canRestoreConnection({
         instance: instance,
       });
 
       if (restoreConnection) return this.connect();
       else {
-        const error_message = `can't restore connection for ${this.options.config.type} .`;
         throw new Error(error_message);
       }
     } else {
-      const error_message = `can't restore connection for ${this.options.config.type} .`;
       throw new Error(error_message);
     }
   }
@@ -277,6 +275,7 @@ class Wallet<InstanceType = any> {
           }
 
           const nextAccounts = accountAddressesWithNetwork(accounts, network);
+          // ^?
           if (nextAccounts.length > 0) {
             this.updateState({
               accounts: nextAccounts,

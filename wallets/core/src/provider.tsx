@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useRef } from 'react';
 
 import {
   autoConnect,
@@ -8,8 +8,8 @@ import {
   connectedWallets,
   defaultWalletState,
   getComptaibleProvider,
-  persistWallet,
-  removeWalletFromPersist,
+  tryPersistWallet,
+  tryRemoveWalletFromPersistance,
   makeEventHandler,
   state_reducer,
 } from './helpers';
@@ -17,11 +17,10 @@ import { ProviderProps, ProviderContext } from './types';
 import { WalletType } from '@rango-dev/wallets-shared';
 import { useInitializers } from './hooks';
 import { WalletContext } from './context';
-import { Persistor } from './persistor';
-import { LASTE_CONNECTED_WALLETS } from './constants';
 
 function Provider(props: ProviderProps) {
   const [providersState, dispatch] = useReducer(state_reducer, {});
+  const autoConnectRef = useRef(false);
 
   // Get (or add) wallet instance (`provider`s will be wraped in a `Wallet`)
   const getWalletInstance = useInitializers(
@@ -42,15 +41,12 @@ function Provider(props: ProviderProps) {
 
       const walletInstance = getWalletInstance(wallet);
       const result = await walletInstance.connect(network);
-      if (props.autoConnect && wallet.actions.canRestoreConnection) {
-        const persistor = new Persistor<string[]>();
-        const lastConnectedWallets = persistor.getItem(LASTE_CONNECTED_WALLETS);
-        const shouldClearPersistance = lastConnectedWallets?.find(
-          (walletType) => !api.state(walletType).connected
-        );
-        if (shouldClearPersistance) clearPersistStorage();
-        persistWallet(type);
-      }
+      if (props.autoConnect)
+        tryPersistWallet({
+          type,
+          walletActions: wallet.actions,
+          getState: api.state,
+        });
 
       return result;
     },
@@ -62,7 +58,8 @@ function Provider(props: ProviderProps) {
 
       const walletInstance = getWalletInstance(wallet);
       await walletInstance.disconnect();
-      if (props.autoConnect) removeWalletFromPersist(type);
+      if (props.autoConnect)
+        tryRemoveWalletFromPersistance({ type, walletActions: wallet.actions });
     },
     async disconnectAll() {
       const disconnect_promises: Promise<any>[] = [];
@@ -193,12 +190,16 @@ function Provider(props: ProviderProps) {
 
   useEffect(() => {
     const shouldTryAutoConnect =
-      props.allBlockChains && props.allBlockChains.length && props.autoConnect;
+      props.allBlockChains &&
+      props.allBlockChains.length &&
+      props.autoConnect &&
+      autoConnectRef.current === false;
     if (shouldTryAutoConnect) {
       (async () => {
         await autoConnect(wallets, getWalletInstance);
       })();
     }
+    autoConnectRef.current = props.autoConnect ?? false;
   }, [props.autoConnect, props.allBlockChains]);
 
   return (
