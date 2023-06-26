@@ -11,7 +11,7 @@ import {
   getEvmAccounts,
   switchNetworkForEvm,
   WalletInfo,
-  canRestoreEvmConection,
+  canRestoreEvmConnection,
   CanRestoreConnection,
 } from '@rango-dev/wallets-shared';
 import { getNonEvmAccounts, clover as clover_instance } from './helpers';
@@ -92,7 +92,7 @@ export const canSwitchNetworkTo: CanSwitchNetwork = canSwitchNetworkToEvm;
 export const getSigners: (provider: any) => SignerFactory = signer;
 
 export const canRestoreConnection: CanRestoreConnection =
-  canRestoreEvmConection;
+  canRestoreEvmConnection;
 
 export const getWalletInfo: (allBlockChains: BlockchainMeta[]) => WalletInfo = (
   allBlockChains

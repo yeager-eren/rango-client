@@ -6,7 +6,7 @@ import {
   SwitchNetwork,
   WalletInfo,
   WalletTypes,
-  canRestoreEvmConection,
+  canRestoreEvmConnection,
   canSwitchNetworkToEvm,
   getEvmAccounts,
   subscribeToEvm,
@@ -45,7 +45,7 @@ export const canSwitchNetworkTo: CanSwitchNetwork = canSwitchNetworkToEvm;
 export const getSigners: (provider: any) => SignerFactory = signer;
 
 export const canRestoreConnection: CanRestoreConnection =
-  canRestoreEvmConection;
+  canRestoreEvmConnection;
 
 export const getWalletInfo: (allBlockChains: BlockchainMeta[]) => WalletInfo = (
   allBlockChains

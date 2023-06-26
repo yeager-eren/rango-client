@@ -241,12 +241,11 @@ export async function autoConnect(
       connect_promises.map(({ restoreConnection }) => restoreConnection())
     );
 
-    const canRestoreAnyConnection = !!result.find(({ status }) => {
-      status === 'fulfilled';
-    });
+    const canRestoreAnyConnection = !!result.find(
+      ({ status }) => status === 'fulfilled'
+    );
 
-    if (!canRestoreAnyConnection) return;
-    else {
+    if (canRestoreAnyConnection) {
       const walletsToRemoveFromPersistance: WalletType[] = [];
       result.forEach(({ status }, index) => {
         if (status === 'rejected')
@@ -255,29 +254,15 @@ export async function autoConnect(
           );
       });
 
-      console.log({ walletsToRemoveFromPersistance });
-      if (walletsToRemoveFromPersistance.length) {
-        const persistor = new Persistor<string[]>();
+      if (walletsToRemoveFromPersistance.length)
         persistor.setItem(
           LASTE_CONNECTED_WALLETS,
           lastConnectedWallets.filter(
             (walletType) => !walletsToRemoveFromPersistance.includes(walletType)
           )
         );
-      }
     }
-    console.log({ result });
   }
-
-  // for (const { restoreConnection, walletType } of connect_promises) {
-  //   try {
-  //     console.log({ restoreConnection });
-  //     await restoreConnection();
-  //   } catch (error) {
-  //     console.log(error);
-  //     removeWalletFromPersist(walletType);
-  //   }
-  // }
 }
 /*
   Our event handler includes an internal state updater, and a notifier

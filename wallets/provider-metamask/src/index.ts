@@ -10,7 +10,7 @@ import {
   subscribeToEvm,
   switchNetworkForEvm,
   CanRestoreConnection,
-  canRestoreEvmConection,
+  canRestoreEvmConnection,
 } from '@rango-dev/wallets-shared';
 import { metamask as metamask_instance } from './helpers';
 import signer from './signer';
@@ -45,7 +45,7 @@ export const canSwitchNetworkTo: CanSwitchNetwork = canSwitchNetworkToEvm;
 export const getSigners: (provider: any) => SignerFactory = signer;
 
 export const canRestoreConnection: CanRestoreConnection =
-  canRestoreEvmConection;
+  canRestoreEvmConnection;
 
 export const getWalletInfo: (allBlockChains: BlockchainMeta[]) => WalletInfo = (
   allBlockChains

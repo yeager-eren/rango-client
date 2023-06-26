@@ -45,18 +45,16 @@ export const subscribeToEvm: Subscribe = ({
   });
 };
 
-export const canRestoreEvmConection: CanRestoreConnection = async ({
+export const canRestoreEvmConnection: CanRestoreConnection = async ({
   instance,
 }) => {
   try {
     const accounts: string[] = await instance.request({
       method: 'eth_accounts',
     });
-    console.log({ accounts });
     if (accounts.length) return true;
     else return false;
   } catch (error) {
-    console.log({ error });
     return false;
   }
 };

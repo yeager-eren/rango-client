@@ -20,7 +20,7 @@ import { WalletContext } from './context';
 
 function Provider(props: ProviderProps) {
   const [providersState, dispatch] = useReducer(state_reducer, {});
-  const autoConnectRef = useRef(false);
+  const autoConnectInitiated = useRef(false);
 
   // Get (or add) wallet instance (`provider`s will be wraped in a `Wallet`)
   const getWalletInstance = useInitializers(
@@ -38,7 +38,6 @@ function Provider(props: ProviderProps) {
       if (!wallet) {
         throw new Error(`You should add ${type} to provider first.`);
       }
-
       const walletInstance = getWalletInstance(wallet);
       const result = await walletInstance.connect(network);
       if (props.autoConnect)
@@ -193,13 +192,14 @@ function Provider(props: ProviderProps) {
       props.allBlockChains &&
       props.allBlockChains.length &&
       props.autoConnect &&
-      autoConnectRef.current === false;
+      !autoConnectInitiated.current;
+
     if (shouldTryAutoConnect) {
+      autoConnectInitiated.current = true;
       (async () => {
         await autoConnect(wallets, getWalletInstance);
       })();
     }
-    autoConnectRef.current = props.autoConnect ?? false;
   }, [props.autoConnect, props.allBlockChains]);
 
   return (
