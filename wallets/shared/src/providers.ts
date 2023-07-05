@@ -4,7 +4,7 @@ import {
   Subscribe,
   SwitchNetwork,
   Networks,
-  CanRestoreConnection,
+  CanConnectEagerly,
 } from './rango';
 import { convertEvmBlockchainMetaToEvmChainInfo } from './helpers';
 import { switchOrAddNetworkForMetamaskCompatibleWallets } from './helpers';
@@ -45,7 +45,7 @@ export const subscribeToEvm: Subscribe = ({
   });
 };
 
-export const canRestoreEvmConnection: CanRestoreConnection = async ({
+export const canConnectEagerlyToEvmProvider: CanConnectEagerly = async ({
   instance,
 }) => {
   try {

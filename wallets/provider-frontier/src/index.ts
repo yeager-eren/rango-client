@@ -10,10 +10,10 @@ import {
   switchNetworkForEvm,
   canSwitchNetworkToEvm,
   chooseInstance,
-  canRestoreEvmConnection,
+  canConnectEagerlyToEvmProvider,
 } from '@rango-dev/wallets-shared';
 import type {
-  CanRestoreConnection,
+  EagerConnect,
   ProviderConnectResult,
 } from '@rango-dev/wallets-shared';
 import { frontier as frontier_instance, getSolanaAccounts } from './helpers';
@@ -102,8 +102,24 @@ export const canSwitchNetworkTo: CanSwitchNetwork = canSwitchNetworkToEvm;
 
 export const getSigners: (provider: any) => SignerFactory = signer;
 
-export const canRestoreConnection: CanRestoreConnection =
-  canRestoreEvmConnection;
+export const eagerConnect: EagerConnect = async ({
+  instance,
+  meta,
+  network,
+}) => {
+  try {
+    const shouldTryEagerConnect = await canConnectEagerlyToEvmProvider({
+      instance,
+    });
+    if (shouldTryEagerConnect) {
+      return connect({ instance, meta, network });
+    } else {
+      return null;
+    }
+  } catch (error) {
+    return null;
+  }
+};
 
 export const getWalletInfo: (allBlockChains: BlockchainMeta[]) => WalletInfo = (
   allBlockChains

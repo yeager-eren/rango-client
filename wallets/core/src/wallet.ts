@@ -209,10 +209,6 @@ class Wallet<InstanceType = any> {
     }
   }
 
-  // metamask xdefi coinbase trustwallet phantom clover cosmostaion frontier
-  // aargentx isPreauthorized()
-  //tokenpocket math exodus okx enkrypt taho leap
-
   async restoreConnection() {
     const instance = await this.tryGetInstance({ network: undefined });
     const { canRestoreConnection } = this.actions;

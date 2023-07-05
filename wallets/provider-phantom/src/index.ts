@@ -6,7 +6,7 @@ import {
   Subscribe,
   getSolanaAccounts,
   WalletInfo,
-  CanRestoreConnection,
+  EagerConnect,
 } from '@rango-dev/wallets-shared';
 import { phantom as phantom_instance } from './helpers';
 import signer from './signer';
@@ -37,14 +37,20 @@ export const canSwitchNetworkTo: CanSwitchNetwork = () => false;
 
 export const getSigners: (provider: any) => SignerFactory = signer;
 
-export const canRestoreConnection: CanRestoreConnection = async ({
+export const eagerConnect: EagerConnect = async ({
   instance,
+  meta,
+  network,
 }) => {
   try {
     const result = await instance.connect({ onlyIfTrusted: true });
-    return !!result;
+    if (!!result) {
+      return connect({ instance, meta, network });
+    } else {
+      return null;
+    }
   } catch (error) {
-    return false;
+    return null;
   }
 };
 

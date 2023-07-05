@@ -70,6 +70,12 @@ export type Connect = (options: {
   meta: BlockchainMeta[];
 }) => Promise<ProviderConnectResult | ProviderConnectResult[]>;
 
+export type EagerConnect = (options: {
+  instance: any;
+  network?: Network;
+  meta: BlockchainMeta[];
+}) => Promise<ProviderConnectResult | ProviderConnectResult[] | null>;
+
 export type Disconnect = (options: {
   instance: any;
   destroyInstance: () => void;
@@ -106,7 +112,7 @@ export interface WalletActions {
   getInstance: any;
   disconnect?: Disconnect;
   subscribe?: Subscribe;
-  // eagerConnect, // optional?
+  eagerConnect?: EagerConnect;
   // unsubscribe, // coupled to subscribe.
 
   // Optional, but should be provided at the same time.

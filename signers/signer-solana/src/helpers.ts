@@ -171,7 +171,6 @@ export const generalSolanaTransactionExecutor = async (
     } else {
       throw new Error('error creating transaction');
     }
-    console.log(finalTx);
     const raw = await DefaultSolanaSigner(finalTx);
     const signature = await retryPromise(
       connection.sendRawTransaction(raw),
@@ -208,10 +207,6 @@ export async function executeSolanaTransaction(
     solanaWeb3Transaction
   ) => {
     try {
-      console.log({
-        sign: solanaProvider.signTransaction,
-        solanaWeb3Transaction,
-      });
       const signedTransaction = await solanaProvider.signTransaction(
         solanaWeb3Transaction
       );

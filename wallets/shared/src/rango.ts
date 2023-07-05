@@ -218,6 +218,12 @@ export type Connect = (options: {
   meta: BlockchainMeta[];
 }) => Promise<ProviderConnectResult | ProviderConnectResult[]>;
 
+export type EagerConnect = (options: {
+  instance: any;
+  network?: Network;
+  meta: BlockchainMeta[];
+}) => Promise<ProviderConnectResult | ProviderConnectResult[] | null>;
+
 export type Disconnect = (options: {
   instance: any;
   destroyInstance: () => void;
@@ -233,7 +239,7 @@ export type Subscribe = (options: {
   disconnect: () => void;
 }) => void;
 
-export type CanRestoreConnection = (options: {
+export type CanConnectEagerly = (options: {
   instance: any;
 }) => Promise<boolean>;
 
