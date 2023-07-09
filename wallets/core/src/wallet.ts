@@ -76,7 +76,71 @@ class Wallet<InstanceType = any> {
       };
     }
 
-    // TODO: call actions.eagerConnection
+    if (this.actions.eagerConnect) {
+      try {
+        // eslint-disable-next-line no-var
+        const network = this.state.network ?? undefined;
+        const instance = await this.tryGetInstance({ network });
+
+        // eslint-disable-next-line no-var
+        var connectResult = await this.actions.eagerConnect({
+          instance,
+          network: undefined,
+          meta: this.meta || [],
+        });
+      } catch (e) {
+        this.resetState();
+        throw e;
+      }
+
+      this.updateState({
+        connected: true,
+        reachable: true,
+        connecting: false,
+      });
+
+      // TODO: Handle accounts.length > 0
+
+      // Inserting accounts into our state.
+      let nextAccounts: string[] = [];
+      let nextNetwork: Network | null | undefined = null;
+      if (Array.isArray(connectResult)) {
+        const accounts = connectResult.flatMap((blockchain) => {
+          const chainId = blockchain.chainId || Networks.Unknown;
+          // Try to map chainId with a Network, if not found, we use chainId directly.
+          const network =
+            getBlockChainNameFromId(chainId, this.meta) || Networks.Unknown;
+          // TODO: second parameter should be `string` when we decided to open source the package.
+          return accountAddressesWithNetwork(blockchain.accounts, network);
+        });
+        // Typescript can not detect we are filtering out null values:(
+        nextAccounts = accounts.filter(Boolean) as string[];
+        nextNetwork = this.options.config.defaultNetwork;
+      } else {
+        const chainId = connectResult?.chainId || Networks.Unknown;
+        const network =
+          getBlockChainNameFromId(chainId, this.meta) || Networks.Unknown;
+        // We fallback to current active network if `chainId` not provided.
+        nextAccounts = accountAddressesWithNetwork(
+          connectResult?.accounts ?? [],
+          network
+        );
+        nextNetwork = network;
+      }
+
+      if (nextAccounts.length > 0) {
+        this.updateState({
+          accounts: nextAccounts,
+          network: nextNetwork,
+        });
+      }
+
+      return {
+        accounts: this.state.accounts,
+        network: this.state.network,
+        provider: this.provider,
+      };
+    }
     return null;
   }
   async connect(network?: Network) {
@@ -206,25 +270,6 @@ class Wallet<InstanceType = any> {
           this.setProvider(null);
         },
       });
-    }
-  }
-
-  async restoreConnection() {
-    const instance = await this.tryGetInstance({ network: undefined });
-    const { canRestoreConnection } = this.actions;
-    const error_message = `can't restore connection for ${this.options.config.type} .`;
-
-    if (canRestoreConnection) {
-      const restoreConnection = await canRestoreConnection({
-        instance: instance,
-      });
-
-      if (restoreConnection) return this.connect();
-      else {
-        throw new Error(error_message);
-      }
-    } else {
-      throw new Error(error_message);
     }
   }
 

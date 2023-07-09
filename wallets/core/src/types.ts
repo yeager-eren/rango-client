@@ -119,7 +119,6 @@ export interface WalletActions {
   switchNetwork?: SwitchNetwork;
   getSigners: (provider: any) => SignerFactory;
   canSwitchNetworkTo?: CanSwitchNetwork;
-  canRestoreConnection?: CanRestoreConnection;
   getWalletInfo(allBlockChains: BlockchainMeta[]): WalletInfo;
 }
 

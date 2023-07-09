@@ -171,7 +171,7 @@ export async function tryPersistWallet({
   walletActions: WalletActions;
   getState: (walletType: WalletType) => WalletState;
 }) {
-  if (walletActions.canRestoreConnection) {
+  if (walletActions.eagerConnect) {
     const persistor = new Persistor<string[]>();
     const wallets = persistor.getItem(LASTE_CONNECTED_WALLETS);
     const shouldClearPersistance = wallets?.find(
@@ -194,7 +194,7 @@ export function tryRemoveWalletFromPersistance({
   type: WalletType;
   walletActions: WalletActions;
 }) {
-  if (walletActions.canRestoreConnection) {
+  if (walletActions.eagerConnect) {
     const persistor = new Persistor<string[]>();
     const wallets = persistor.getItem(LASTE_CONNECTED_WALLETS);
     if (wallets)
@@ -223,7 +223,7 @@ export async function autoConnect(
   if (lastConnectedWallets && lastConnectedWallets.length) {
     const connect_promises: {
       walletType: WalletType;
-      restoreConnection: () => Promise<any>;
+      eagerConnect: () => Promise<any>;
     }[] = [];
     lastConnectedWallets.forEach((walletType) => {
       const wallet = wallets.get(walletType);
@@ -232,13 +232,13 @@ export async function autoConnect(
         const ref = addWalletRef(wallet);
         connect_promises.push({
           walletType,
-          restoreConnection: ref.restoreConnection.bind(ref),
+          eagerConnect: ref.eagerConnection.bind(ref),
         });
       }
     });
 
     const result = await Promise.allSettled(
-      connect_promises.map(({ restoreConnection }) => restoreConnection())
+      connect_promises.map(({ eagerConnect }) => eagerConnect())
     );
 
     const canRestoreAnyConnection = !!result.find(
