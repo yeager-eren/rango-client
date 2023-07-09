@@ -8,6 +8,7 @@ import { accountAddressesWithNetwork, needsCheckInstallation } from './helpers';
 import {
   Events,
   GetInstanceOptions,
+  ProviderConnectResult,
   WalletActions,
   WalletConfig,
 } from './types';
@@ -62,7 +63,7 @@ class Wallet<InstanceType = any> {
     }
   }
 
-  async eagerConnection() {
+  async eagerConnection(network?: Network) {
     // Already connected, so we return provider that we have in memory.
 
     // For switching network on Trust Wallet (WalletConnect),
@@ -77,70 +78,37 @@ class Wallet<InstanceType = any> {
     }
 
     if (this.actions.eagerConnect) {
+      const requestedNetwork = this.requestedNetwork(network);
+
       try {
-        // eslint-disable-next-line no-var
-        const network = this.state.network ?? undefined;
-        const instance = await this.tryGetInstance({ network });
+        const result = await this.tryConnect(
+          requestedNetwork,
+          async (params) => {
+            // Typescript type guards can not detect `this.actions.eagerConnect` will not be null here
+            // Because we are doing a check before inside the `if`.
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            const eagerResult = await this.actions.eagerConnect!({
+              instance: params.instance,
+              network: params.network,
+              meta: params.meta,
+            });
 
-        // eslint-disable-next-line no-var
-        var connectResult = await this.actions.eagerConnect({
-          instance,
-          network: undefined,
-          meta: this.meta || [],
-        });
-      } catch (e) {
-        this.resetState();
-        throw e;
-      }
+            if (eagerResult) {
+              return eagerResult;
+            }
 
-      this.updateState({
-        connected: true,
-        reachable: true,
-        connecting: false,
-      });
-
-      // TODO: Handle accounts.length > 0
-
-      // Inserting accounts into our state.
-      let nextAccounts: string[] = [];
-      let nextNetwork: Network | null | undefined = null;
-      if (Array.isArray(connectResult)) {
-        const accounts = connectResult.flatMap((blockchain) => {
-          const chainId = blockchain.chainId || Networks.Unknown;
-          // Try to map chainId with a Network, if not found, we use chainId directly.
-          const network =
-            getBlockChainNameFromId(chainId, this.meta) || Networks.Unknown;
-          // TODO: second parameter should be `string` when we decided to open source the package.
-          return accountAddressesWithNetwork(blockchain.accounts, network);
-        });
-        // Typescript can not detect we are filtering out null values:(
-        nextAccounts = accounts.filter(Boolean) as string[];
-        nextNetwork = this.options.config.defaultNetwork;
-      } else {
-        const chainId = connectResult?.chainId || Networks.Unknown;
-        const network =
-          getBlockChainNameFromId(chainId, this.meta) || Networks.Unknown;
-        // We fallback to current active network if `chainId` not provided.
-        nextAccounts = accountAddressesWithNetwork(
-          connectResult?.accounts ?? [],
-          network
+            throw new Error("Couldn't get any accounts by eager connection.");
+          }
         );
-        nextNetwork = network;
-      }
 
-      if (nextAccounts.length > 0) {
-        this.updateState({
-          accounts: nextAccounts,
-          network: nextNetwork,
-        });
+        return result;
+      } catch (e) {
+        // it fails silently, because eager connection is an optional action and should'nt failed the whole process.
+        // Which means by ignoring the error, it will continue the `connect`.
+        console.warn(e);
       }
-
-      return {
-        accounts: this.state.accounts,
-        network: this.state.network,
-        provider: this.provider,
-      };
     }
+
     return null;
   }
   async connect(network?: Network) {
@@ -188,75 +156,21 @@ class Wallet<InstanceType = any> {
     }
 
     // We are connecting to wallet for the first time
-
-    // Trying to get wallet's instance, if it's not available, raise an error.
-    const instance = await this.tryGetInstance({ network });
-
-    // Instance exists, trying to connect
-    this.updateState({
-      connecting: true,
-    });
-    this.setInstalledAs(true);
-
-    try {
-      // eslint-disable-next-line no-var
-      var connectResult = await this.actions.connect({
-        instance,
-        network: requestedNetwork || undefined,
-        meta: this.meta || [],
-      });
-    } catch (e) {
-      this.resetState();
-      throw e;
-    }
-
-    this.updateState({
-      connected: true,
-      reachable: true,
-      connecting: false,
+    const result = this.tryConnect(requestedNetwork, async (params) => {
+      try {
+        // eslint-disable-next-line no-var
+        return await this.actions.connect({
+          instance: params.instance,
+          network: params.network,
+          meta: params.meta,
+        });
+      } catch (e) {
+        this.resetState();
+        throw e;
+      }
     });
 
-    // TODO: Handle accounts.length > 0
-
-    // Inserting accounts into our state.
-    let nextAccounts: string[] = [];
-    let nextNetwork: Network | null | undefined = null;
-    if (Array.isArray(connectResult)) {
-      const accounts = connectResult.flatMap((blockchain) => {
-        const chainId = blockchain.chainId || Networks.Unknown;
-        // Try to map chainId with a Network, if not found, we use chainId directly.
-        const network =
-          getBlockChainNameFromId(chainId, this.meta) || Networks.Unknown;
-        // TODO: second parameter should be `string` when we decided to open source the package.
-        return accountAddressesWithNetwork(blockchain.accounts, network);
-      });
-      // Typescript can not detect we are filtering out null values:(
-      nextAccounts = accounts.filter(Boolean) as string[];
-      nextNetwork = requestedNetwork || this.options.config.defaultNetwork;
-    } else {
-      const chainId = connectResult.chainId || Networks.Unknown;
-      const network =
-        getBlockChainNameFromId(chainId, this.meta) || Networks.Unknown;
-      // We fallback to current active network if `chainId` not provided.
-      nextAccounts = accountAddressesWithNetwork(
-        connectResult.accounts,
-        network
-      );
-      nextNetwork = network;
-    }
-
-    if (nextAccounts.length > 0) {
-      this.updateState({
-        accounts: nextAccounts,
-        network: nextNetwork,
-      });
-    }
-
-    return {
-      accounts: this.state.accounts,
-      network: this.state.network,
-      provider: this.provider,
-    };
+    return result;
   }
 
   async disconnect() {
@@ -451,6 +365,82 @@ class Wallet<InstanceType = any> {
 
     this.setProvider(instance);
     return instance;
+  }
+
+  private async tryConnect(
+    network: Network | undefined,
+    connector: (params: {
+      instance: any;
+      network: Network | undefined;
+      meta: BlockchainMeta[];
+    }) => Promise<ProviderConnectResult | ProviderConnectResult[]>
+  ) {
+    // Trying to get wallet's instance, if it's not available, raise an error.
+    const instance = await this.tryGetInstance({ network });
+
+    // Instance exists, trying to connect
+    this.updateState({
+      connecting: true,
+    });
+    this.setInstalledAs(true);
+
+    const connectResult = await connector({
+      instance,
+      network,
+      meta: this.meta || [],
+    });
+
+    this.updateState({
+      connected: true,
+      reachable: true,
+      connecting: false,
+    });
+
+    // Inserting accounts into our state.
+    let nextAccounts: string[] = [];
+    let nextNetwork: Network | null | undefined = null;
+    if (Array.isArray(connectResult)) {
+      const accounts = connectResult.flatMap((blockchain) => {
+        const chainId = blockchain.chainId || Networks.Unknown;
+        // Try to map chainId with a Network, if not found, we use chainId directly.
+        const network =
+          getBlockChainNameFromId(chainId, this.meta) || Networks.Unknown;
+        return accountAddressesWithNetwork(blockchain.accounts, network);
+      });
+      // Typescript can not detect we are filtering out null values:(
+      nextAccounts = accounts.filter(Boolean) as string[];
+      nextNetwork = network || this.options.config.defaultNetwork;
+    } else {
+      const chainId = connectResult.chainId || Networks.Unknown;
+      const network =
+        getBlockChainNameFromId(chainId, this.meta) || Networks.Unknown;
+      // We fallback to current active network if `chainId` not provided.
+      nextAccounts = accountAddressesWithNetwork(
+        connectResult.accounts,
+        network
+      );
+      nextNetwork = network;
+    }
+
+    if (nextAccounts.length > 0) {
+      this.updateState({
+        accounts: nextAccounts,
+        network: nextNetwork,
+      });
+    }
+
+    return {
+      accounts: this.state.accounts,
+      network: this.state.network,
+      provider: this.provider,
+    };
+  }
+
+  // If a network hasn't been provided and also we have `lastNetwork`
+  // We will use lastNetwork to make sure we will not
+  // Ask the user to switch his network wrongly.
+  private requestedNetwork(network?: Network) {
+    return network || this.state.network || this.options.config.defaultNetwork;
   }
 }
 
