@@ -36,7 +36,6 @@ export const RouteContainer = styled(Collapsible.Root, {
 
 export const SummaryContainer = styled('div', {
   borderRadius: '$xm',
-  border: '1px solid $neutral100',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'start',

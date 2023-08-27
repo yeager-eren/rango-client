@@ -1,11 +1,11 @@
 import { styled } from '../../theme';
 
 export const BackDrop = styled('div', {
-  position: 'fixed',
+  position: 'absolute',
   top: '0',
   left: '0',
-  width: '100vw',
-  height: '100vh',
+  width: '100%',
+  height: '100%',
   backgroundColor: 'rgba(0,0,0,.1)',
   zIndex: 10,
   borderRadius: '$sm',
@@ -27,6 +27,7 @@ export const BackDrop = styled('div', {
 
 export const ModalContainer = styled('div', {
   backgroundColor: '$neutral100',
+  width: '100%',
   padding: '$10 $20',
   borderRadius: '$sm',
   display: 'flex',
@@ -35,16 +36,18 @@ export const ModalContainer = styled('div', {
   variants: {
     anchor: {
       bottom: {
-        width: '100%',
         maxHeight: '90%',
       },
-      center: {},
+      center: {
+        height: '100%',
+      },
     },
   },
 });
 export const Flex = styled('div', {
   display: 'flex',
   alignItems: 'center',
+  justifyContent: 'end',
 });
 export const ModalHeader = styled('div', {
   display: 'flex',

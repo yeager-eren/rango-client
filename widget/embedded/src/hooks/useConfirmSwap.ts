@@ -1,16 +1,28 @@
+import type {
+  ConfirmSwapError,
+  ConfirmSwapWarnings,
+  PendingSwapSettings,
+} from '../types';
+import type { PendingSwap } from '@rango-dev/queue-manager-rango-preset';
+import type { BestRouteResponse } from 'rango-sdk';
+
+import { calculatePendingSwap } from '@rango-dev/queue-manager-rango-preset';
+import BigNumber from 'bignumber.js';
 import { useEffect, useRef, useState } from 'react';
+
+import { httpService } from '../services/httpService';
 import { useBestRouteStore } from '../store/bestRoute';
 import { useMetaStore } from '../store/meta';
 import { useSettingsStore } from '../store/settings';
 import { useWalletsStore } from '../store/wallets';
+import { ConfirmSwapErrorTypes, ConfirmSwapWarningTypes } from '../types';
+import { numberToString } from '../utils/numbers';
 import {
-  ConfirmSwapError,
-  ConfirmSwapErrorTypes,
-  ConfirmSwapWarningTypes,
-  ConfirmSwapWarnings,
-  PendingSwapSettings,
-} from '../types';
-
+  isNumberOfSwapsChanged,
+  isRouteChanged,
+  isRouteInternalCoinsUpdated,
+  isRouteSwappersUpdated,
+} from '../utils/routing';
 import {
   createBestRouteRequestBody,
   getBalanceWarnings,
@@ -23,20 +35,6 @@ import {
   isOutputAmountChangedALot,
   outputRatioHasWarning,
 } from '../utils/swap';
-import { httpService } from '../services/httpService';
-import BigNumber from 'bignumber.js';
-import {
-  isNumberOfSwapsChanged,
-  isRouteChanged,
-  isRouteInternalCoinsUpdated,
-  isRouteSwappersUpdated,
-} from '../utils/routing';
-import { numberToString } from '../utils/numbers';
-import { BestRouteResponse } from 'rango-sdk';
-import {
-  calculatePendingSwap,
-  PendingSwap,
-} from '@rango-dev/queue-manager-rango-preset';
 
 type ConfirmSwap = {
   loading: boolean;
@@ -59,7 +57,9 @@ export function useConfirmSwap(): ConfirmSwap {
   const connectedWallets = useWalletsStore.use.connectedWallets();
   const destination = useWalletsStore.use.customDestination();
 
-  const selectedWallets = useWalletsStore.use.selectedWallets();
+  const selectedWallets = connectedWallets.filter(
+    (connectedWallet) => connectedWallet.selected
+  );
   const meta = useMetaStore.use.meta();
   const customSlippage = useSettingsStore.use.customSlippage();
   const slippage = useSettingsStore.use.slippage();
@@ -78,8 +78,9 @@ export function useConfirmSwap(): ConfirmSwap {
     return () => abortControllerRef.current?.abort();
   }, []);
 
-  if (!fromToken || !toToken || !inputAmount || !initialRoute)
+  if (!fromToken || !toToken || !inputAmount || !initialRoute) {
     return { loading: false, warnings: [], errors: [], confirmSwap: null };
+  }
 
   const confirmSwap = async (): Promise<PendingSwap | undefined> => {
     if (proceedAnywayRef.current) {
@@ -88,8 +89,12 @@ export function useConfirmSwap(): ConfirmSwap {
         disabledSwappersGroups: disabledLiquiditySources,
       };
 
-      if (errors.length > 0) setErrors([]);
-      if (warnings.length > 0) setWarnings([]);
+      if (errors.length > 0) {
+        setErrors([]);
+      }
+      if (warnings.length > 0) {
+        setWarnings([]);
+      }
       proceedAnywayRef.current = false;
 
       if (confiremedRouteRef.current) {
@@ -154,7 +159,7 @@ export function useConfirmSwap(): ConfirmSwap {
         warnings: [],
       };
 
-      const routeChanged = isRouteChanged(initialRoute, confiremedRoute!);
+      const routeChanged = isRouteChanged(initialRoute, confiremedRoute);
 
       if (routeChanged) {
         setBestRoute(confiremedRoute);
@@ -168,11 +173,11 @@ export function useConfirmSwap(): ConfirmSwap {
         );
         const highValueLoss = outputRatioHasWarning(inputUsdValue, outputRatio);
 
-        if (highValueLoss)
+        if (highValueLoss) {
           confirmSwapState.errors.push({
             type: ConfirmSwapErrorTypes.ROUTE_UPDATED_WITH_HIGH_VALUE_LOSS,
           });
-        else if (isOutputAmountChangedALot(initialRoute, confiremedRoute))
+        } else if (isOutputAmountChangedALot(initialRoute, confiremedRoute)) {
           confirmSwapState.warnings.push({
             type: ConfirmSwapWarningTypes.ROUTE_AND_OUTPUT_AMOUNT_UPDATED,
             newOutputAmount: numberToString(
@@ -184,21 +189,23 @@ export function useConfirmSwap(): ConfirmSwap {
                 getRouteOutputAmount(confiremedRoute)
               ),
               null,
+              // eslint-disable-next-line @typescript-eslint/no-magic-numbers
               2
             ),
           });
-        else if (isRouteInternalCoinsUpdated(initialRoute, confiremedRoute))
+        } else if (isRouteInternalCoinsUpdated(initialRoute, confiremedRoute)) {
           confirmSwapState.warnings.push({
             type: ConfirmSwapWarningTypes.ROUTE_COINS_UPDATED,
           });
-        else if (isNumberOfSwapsChanged(initialRoute, confiremedRoute))
+        } else if (isNumberOfSwapsChanged(initialRoute, confiremedRoute)) {
           confirmSwapState.warnings.push({
             type: ConfirmSwapWarningTypes.ROUTE_UPDATED,
           });
-        else if (isRouteSwappersUpdated(initialRoute, confiremedRoute))
+        } else if (isRouteSwappersUpdated(initialRoute, confiremedRoute)) {
           confirmSwapState.warnings.push({
             type: ConfirmSwapWarningTypes.ROUTE_SWAPPERS_UPDATED,
           });
+        }
       }
 
       const balanceWarnings = getBalanceWarnings(
@@ -207,19 +214,21 @@ export function useConfirmSwap(): ConfirmSwap {
       );
       const enoughBalance = balanceWarnings.length === 0;
 
-      if (!enoughBalance)
+      if (!enoughBalance) {
         confirmSwapState.errors.push({
           type: ConfirmSwapErrorTypes.INSUFFICIENT_BALANCE,
           messages: balanceWarnings,
         });
+      }
 
       const minRequiredSlippage = getMinRequiredSlippage(initialRoute);
 
-      if (!hasProperSlippage(userSlippage.toString(), minRequiredSlippage))
+      if (!hasProperSlippage(userSlippage.toString(), minRequiredSlippage)) {
         confirmSwapState.errors.push({
           type: ConfirmSwapErrorTypes.INSUFFICIENT_SLIPPAGE,
           minRequiredSlippage,
         });
+      }
 
       const noErrors = confirmSwapState.errors.length === 0;
       const noWarnings = confirmSwapState.warnings.length === 0;

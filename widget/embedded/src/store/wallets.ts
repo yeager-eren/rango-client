@@ -1,8 +1,10 @@
-import { SelectableWallet } from '@rango-dev/ui';
-import { WalletType } from '@rango-dev/wallets-shared';
+import type { Wallet } from '../types';
+import type { WalletType } from '@rango-dev/wallets-shared';
+
 import { create } from 'zustand';
 import { subscribeWithSelector } from 'zustand/middleware';
 import { shallow } from 'zustand/shallow';
+
 import { httpService } from '../services/httpService';
 import {
   getRequiredChains,
@@ -12,10 +14,10 @@ import {
   resetConnectedWalletState,
   sortTokens,
 } from '../utils/wallets';
+
 import { useBestRouteStore } from './bestRoute';
 import { useMetaStore } from './meta';
 import createSelectors from './selectors';
-import { Wallet } from '../types';
 
 export type TokenBalance = {
   chain: string;
@@ -31,19 +33,19 @@ export type TokenBalance = {
 
 export interface ConnectedWallet extends Wallet {
   balances: TokenBalance[] | null;
+  explorerUrl: string | null;
+  selected: boolean;
   loading: boolean;
   error: boolean;
-  explorerUrl: string | null;
 }
 
 interface WalletsStore {
   connectedWallets: ConnectedWallet[];
-  selectedWallets: Wallet[];
   customDestination: string;
   connectWallet: (accounts: Wallet[]) => void;
   disconnectWallet: (walletType: WalletType) => void;
   initSelectedWallets: () => void;
-  setSelectedWallet: (wallet: SelectableWallet) => void;
+  selectWallets: (wallets: { walletType: string; chain: string }[]) => void;
   clearConnectedWallet: () => void;
   getWalletsDetails: (accounts: Wallet[], shouldRetry?: boolean) => void;
   setCustomDestination: (customDestination: string) => void;
@@ -69,6 +71,7 @@ export const useWalletsStore = createSelectors(
                 walletType: account.walletType,
                 error: false,
                 explorerUrl: null,
+                selected: false,
               }))
             ),
         }));
@@ -79,9 +82,6 @@ export const useWalletsStore = createSelectors(
           connectedWallets: state.connectedWallets.filter(
             (balance) => balance.walletType !== walletType
           ),
-          selectedWallets: state.selectedWallets.filter(
-            (wallet) => wallet.walletType != walletType
-          ),
         }));
       },
       initSelectedWallets: () =>
@@ -90,37 +90,48 @@ export const useWalletsStore = createSelectors(
             useBestRouteStore.getState().bestRoute
           );
           const connectedWallets = state.connectedWallets;
-          const selectedWallets: Wallet[] = [];
+          const selectedWallets: string[] = [];
           requiredChains.forEach((chain) => {
-            const anyWalletSelected = !!state.selectedWallets.find(
-              (wallet) => wallet.chain === chain
+            const anyWalletSelected = !!state.connectedWallets.find(
+              (connectedWallet) =>
+                connectedWallet.chain === chain && connectedWallet.selected
             );
 
             if (!anyWalletSelected) {
               const firstWalletWithMatchedChain = connectedWallets.find(
                 (wallet) => wallet.chain === chain
               );
-              if (!!firstWalletWithMatchedChain)
-                selectedWallets.push({
-                  address: firstWalletWithMatchedChain.address,
-                  chain: firstWalletWithMatchedChain.chain,
-                  walletType: firstWalletWithMatchedChain.walletType,
-                });
+              if (firstWalletWithMatchedChain) {
+                selectedWallets.push(firstWalletWithMatchedChain.walletType);
+              }
             }
           });
           return {
-            selectedWallets: state.selectedWallets.concat(selectedWallets),
+            connectedWallets: state.connectedWallets.map((connectedWallet) => {
+              if (
+                selectedWallets.includes(connectedWallet.walletType) &&
+                !connectedWallet.selected
+              ) {
+                return { ...connectedWallet, selected: true };
+              }
+              return connectedWallet;
+            }),
           };
         }),
-      setSelectedWallet: (wallet) =>
+      selectWallets: (wallets) =>
         set((state) => ({
-          selectedWallets: state.selectedWallets
-            .filter((selectedWallet) => selectedWallet.chain !== wallet.chain)
-            .concat({
-              chain: wallet.chain,
-              address: wallet.address,
-              walletType: wallet.walletType,
-            }),
+          connectedWallets: state.connectedWallets.map((connectedWallet) => {
+            const selected = wallets.find(
+              (wallet) =>
+                wallet.chain === connectedWallet.chain &&
+                wallet.walletType === connectedWallet.walletType &&
+                !connectedWallet.selected
+            );
+            if (selected) {
+              return { ...connectedWallet, selected: true };
+            }
+            return connectedWallet;
+          }),
         })),
       setCustomDestination: (customDestination) =>
         set(() => ({
@@ -179,7 +190,9 @@ export const useWalletsStore = createSelectors(
                 }
               ),
             }));
-          } else throw new Error('Wallet not found');
+          } else {
+            throw new Error('Wallet not found');
+          }
         } catch (error) {
           set((state) => ({
             connectedWallets: state.connectedWallets.map((balance) => {

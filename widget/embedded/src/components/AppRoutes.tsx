@@ -1,16 +1,18 @@
+import type { WidgetConfig } from '../types';
+
 import React from 'react';
 import { useRoutes } from 'react-router-dom';
+
 import { navigationRoutes } from '../constants/navigationRoutes';
-import { ConfirmSwapPage } from '../pages/ConfirmSwapPage';
+import { ConfirmSwapPage } from '../pages/ConfirmSwapPage/ConfirmSwapPage';
 import { HistoryPage } from '../pages/HistoryPage';
 import { Home } from '../pages/Home';
 import { LiquiditySourcePage } from '../pages/LiquiditySourcesPage';
 import { SelectChainPage } from '../pages/SelectChainPage';
 import { SelectTokenPage } from '../pages/SelectTokenPage';
 import { SettingsPage } from '../pages/SettingsPage';
-import { WalletsPage } from '../pages/WalletsPage';
 import { SwapDetailsPage } from '../pages/SwapDetailsPage';
-import { WidgetConfig } from '../types';
+import { WalletsPage } from '../pages/WalletsPage';
 
 const getAbsolutePath = (path: string) => path.replace('/', '');
 

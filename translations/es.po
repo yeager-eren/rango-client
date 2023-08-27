@@ -19,7 +19,7 @@ msgid " Error connecting server, please reload the app and try again."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: widget/ui/src/components/BottomLogo/BottomLogo.tsx:30
+#: widget/ui/src/components/BottomLogo/BottomLogo.tsx:14
 msgid "Powered By"
 msgstr ""
 
@@ -56,12 +56,12 @@ msgid "Token"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: widget/ui/src/containers/ConnectWalletsModal/ConnectWalletsModal.tsx:35
+#: widget/ui/src/containers/ConnectWalletsModal/ConnectWalletsModal.tsx:30
 msgid "Connect Wallets"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: widget/ui/src/containers/HomePanel/HomePanel.tsx:131
+#: widget/ui/src/containers/HomePanel/HomePanel.tsx:123
 msgid "SWAP"
 msgstr ""
 
@@ -148,22 +148,22 @@ msgstr ""
 #~ msgstr ""
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/ConfirmSwapPage.tsx:196
+#: widget/embedded/src/pages/ConfirmSwapPage.tsx:219
 #~ msgid "From"
 #~ msgstr ""
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/ConfirmSwapPage.tsx:215
+#: widget/embedded/src/pages/ConfirmSwapPage.tsx:238
 #~ msgid "To"
 #~ msgstr ""
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/ConfirmSwapPage.tsx:260
+#: widget/embedded/src/pages/ConfirmSwapPage.tsx:285
 #~ msgid "Proceed anyway!"
 #~ msgstr ""
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/ConfirmSwapPage.tsx:261
+#: widget/embedded/src/pages/ConfirmSwapPage.tsx:286
 #~ msgid "Confirm swap!"
 #~ msgstr ""
 
@@ -173,7 +173,7 @@ msgstr ""
 #~ msgstr ""
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/Home.tsx:170
+#: widget/embedded/src/pages/Home.tsx:172
 #: widget/embedded/src/utils/swap.ts:151
 #: widget/embedded/src/utils/swap.ts:168
 #~ msgid "Swap"

@@ -1,5 +1,12 @@
 import { i18n } from '@lingui/core';
-import { Alert, Button, styled, TokenInfo, Typography } from '@rango-dev/ui';
+import {
+  Alert,
+  BestRoute,
+  Button,
+  styled,
+  TokenInfo,
+  Typography,
+} from '@rango-dev/ui';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,17 +19,26 @@ import { fetchBestRoute, useBestRouteStore } from '../store/bestRoute';
 import { useMetaStore } from '../store/meta';
 import { useUiStore } from '../store/ui';
 import { useWalletsStore } from '../store/wallets';
-import { numberToString } from '../utils/numbers';
+import {
+  numberToString,
+  secondsToString,
+  totalArrivalTime,
+} from '../utils/numbers';
+// import { getFormatedBestRoute } from '../utils/routing';
 import {
   canComputePriceImpact,
   getOutputRatio,
   getPercentageChange,
   getSwapButtonState,
+  getTotalFeeInUsd,
+  // hasHighFee,
   hasLimitError,
   LimitErrorMessage,
   outputRatioHasWarning,
 } from '../utils/swap';
 import { getBalanceFromWallet } from '../utils/wallets';
+
+import { formatBestRoute } from './ConfirmWalletsModal/ConfirmWallets.helpers';
 
 const Container = styled('div', {
   display: 'flex',
@@ -47,6 +63,7 @@ const Footer = styled('div', {
 });
 
 const balancePercision = 8;
+const feePercision = 2;
 
 export function Home() {
   const navigate = useNavigate();
@@ -60,6 +77,7 @@ export function Home() {
   const outputAmount = useBestRouteStore.use.outputAmount();
   const outputUsdValue = useBestRouteStore.use.outputUsdValue();
   const bestRoute = useBestRouteStore.use.bestRoute();
+  const tokens = useMetaStore.use.meta().tokens;
   const fetchingBestRoute = useBestRouteStore.use.loading();
   const bestRouteError = useBestRouteStore.use.error();
   const loadingMetaStatus = useMetaStore.use.loadingStatus();
@@ -76,8 +94,11 @@ export function Home() {
   const { fromAmountRangeError, recommendation, swap } =
     LimitErrorMessage(bestRoute);
 
+  const totalFeeInUsd = getTotalFeeInUsd(bestRoute, tokens);
+
   const needsToWarnEthOnPath = false;
 
+  // const highFee = hasHighFee(totalFeeInUsd);
   const outToInRatio = getOutputRatio(inputUsdValue, outputUsdValue);
   const highValueLoss = outputRatioHasWarning(inputUsdValue, outToInRatio);
 
@@ -207,7 +228,27 @@ export function Home() {
           tokenBalance={tokenBalance}
           showPercentageChange={!!percentageChange?.lt(0)}
         />
-        {showBestRoute && <BestRouteContainer></BestRouteContainer>}
+        {showBestRoute && (
+          <BestRouteContainer>
+            {bestRoute && (
+              <BestRoute
+                steps={formatBestRoute(bestRoute)}
+                input={{
+                  value: inputAmount,
+                  usdValue: inputUsdValue?.toString() || '',
+                }}
+                output={{
+                  value: outputAmount?.toString() || '',
+                  usdValue: outputUsdValue?.toString(),
+                }}
+                totalFee={numberToString(totalFeeInUsd, 0, feePercision)}
+                totalTime={secondsToString(totalArrivalTime(bestRoute))}
+                recommended={true}
+                type="basic"
+              />
+            )}
+          </BestRouteContainer>
+        )}
         {(errorMessage || hasLimitError(bestRoute)) && (
           <Alerts>
             {errorMessage && <Alert type="error">{errorMessage}</Alert>}

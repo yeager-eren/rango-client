@@ -36,6 +36,7 @@ export function Modal(props: PropsWithChildren<PropTypes>) {
       container.style.overflow = 'unset';
     }
   }, [open]);
+  console.log({ container });
   return (
     <>
       {open &&
@@ -44,9 +45,11 @@ export function Modal(props: PropsWithChildren<PropTypes>) {
             <ModalContainer css={containerStyle} anchor={anchor}>
               <ModalHeader>
                 {prefix}
-                <Typography variant="title" size="small">
-                  {title}
-                </Typography>
+                {title && (
+                  <Typography variant="title" size="small">
+                    {title}
+                  </Typography>
+                )}
                 <Flex>
                   {suffix}
                   {dismissible && (

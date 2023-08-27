@@ -1,9 +1,12 @@
-import React, { PropsWithChildren, useEffect, useState } from 'react';
-import { styled } from '../../theme';
-import { Typography } from '../Typography';
+import type { SelectableWallet } from '../Wallet';
+import type { PropsWithChildren } from 'react';
+
+import React, { useEffect, useState } from 'react';
+
 import { getConciseAddress } from '../../helper';
+import { styled } from '../../theme';
 import { Image } from '../common';
-import { SelectableWallet } from '../Wallet';
+import { Typography } from '../Typography';
 
 const Row = styled('div', {
   display: 'flex',
@@ -101,6 +104,7 @@ export function SelectableWalletList({
           <Container
             checked={checked}
             onClick={onClick.bind(null, w)}
+            // eslint-disable-next-line react/no-array-index-key
             key={index}>
             <Image src={w.image} alt={w.walletType} size={24} />
             <Typography variant="body" size="small">

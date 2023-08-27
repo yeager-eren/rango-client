@@ -19,7 +19,7 @@ msgid " Error connecting server, please reload the app and try again."
 msgstr " Error connecting server, please reload the app and try again."
 
 #. js-lingui-explicit-id
-#: widget/ui/src/components/BottomLogo/BottomLogo.tsx:30
+#: widget/ui/src/components/BottomLogo/BottomLogo.tsx:14
 msgid "Powered By"
 msgstr "Powered By"
 
@@ -56,12 +56,12 @@ msgid "Token"
 msgstr "Token"
 
 #. js-lingui-explicit-id
-#: widget/ui/src/containers/ConnectWalletsModal/ConnectWalletsModal.tsx:35
+#: widget/ui/src/containers/ConnectWalletsModal/ConnectWalletsModal.tsx:30
 msgid "Connect Wallets"
 msgstr "Connect Wallets"
 
 #. js-lingui-explicit-id
-#: widget/ui/src/containers/HomePanel/HomePanel.tsx:131
+#: widget/ui/src/containers/HomePanel/HomePanel.tsx:123
 msgid "SWAP"
 msgstr "SWAP"
 
@@ -148,22 +148,22 @@ msgstr "Insufficent Balance:"
 #~ msgstr "Connect Wallet"
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/ConfirmSwapPage.tsx:196
+#: widget/embedded/src/pages/ConfirmSwapPage.tsx:219
 #~ msgid "From"
 #~ msgstr "From"
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/ConfirmSwapPage.tsx:215
+#: widget/embedded/src/pages/ConfirmSwapPage.tsx:238
 #~ msgid "To"
 #~ msgstr "To"
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/ConfirmSwapPage.tsx:260
+#: widget/embedded/src/pages/ConfirmSwapPage.tsx:285
 #~ msgid "Proceed anyway!"
 #~ msgstr "Proceed anyway!"
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/ConfirmSwapPage.tsx:261
+#: widget/embedded/src/pages/ConfirmSwapPage.tsx:286
 #~ msgid "Confirm swap!"
 #~ msgstr "Confirm swap!"
 
@@ -173,7 +173,7 @@ msgstr "Insufficent Balance:"
 #~ msgstr "History"
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/Home.tsx:170
+#: widget/embedded/src/pages/Home.tsx:172
 #: widget/embedded/src/utils/swap.ts:151
 #: widget/embedded/src/utils/swap.ts:168
 #~ msgid "Swap"

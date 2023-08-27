@@ -5,7 +5,7 @@ import React from 'react';
 import Content from './Content';
 import { WalletButton } from './Wallet.styles';
 
-function SelectableWallet(props: SelectablePropTypes) {
+export function SelectableWalletComponent(props: SelectablePropTypes) {
   return (
     <WalletButton
       selected={props.selected}
@@ -20,5 +20,3 @@ function SelectableWallet(props: SelectablePropTypes) {
     </WalletButton>
   );
 }
-
-export default SelectableWallet;
