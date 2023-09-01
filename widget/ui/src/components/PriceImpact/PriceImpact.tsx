@@ -32,7 +32,7 @@ export function PriceImpact(props: PriceImpactProps) {
         variant="body"
         color={percentageChangeColor}>
         {outputUsdValue &&
-          `(-${percentageChange}${percentageChange ? '%' : ''})`}
+          `(${percentageChange}${percentageChange ? '%' : '-'})`}
 
         {!outputUsdValue && 'USD price unknown'}
       </Typography>

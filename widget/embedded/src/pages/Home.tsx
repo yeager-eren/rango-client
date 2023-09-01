@@ -232,7 +232,7 @@ export function Home() {
           <BestRouteContainer>
             {bestRoute && (
               <BestRoute
-                steps={formatBestRoute(bestRoute)}
+                steps={formatBestRoute(bestRoute) ?? []}
                 input={{
                   value: inputAmount,
                   usdValue: inputUsdValue?.toString() || '',
@@ -277,7 +277,10 @@ export function Home() {
               if (swapButtonState.title === 'Connect Wallet') {
                 navigate(navigationRoutes.wallets);
               } else {
-                navigate(navigationRoutes.confirmSwap, { replace: true });
+                navigate(navigationRoutes.confirmSwap, {
+                  replace: true,
+                  state: { from: navigationRoutes.home },
+                });
               }
             }}>
             {swapButtonState.title}

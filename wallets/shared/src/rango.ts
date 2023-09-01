@@ -12,12 +12,18 @@ export const getBlockChainNameFromId = (
       ? parseInt(chainId)
       : chainId;
 
-  // Sometimes providers are passing `Network` as chainId.
-  // If chainId is a `Network`, we return itself.
+  /*
+   * Sometimes providers are passing `Network` as chainId.
+   * If chainId is a `Network`, we return itself.
+   */
   const allNetworks = Object.values(Networks) as string[];
-  if (allNetworks.includes(String(chainId))) return chainId as Networks;
+  if (allNetworks.includes(String(chainId))) {
+    return chainId as Networks;
+  }
 
-  if (chainId === 'Binance-Chain-Tigris') return Networks.BINANCE;
+  if (chainId === 'Binance-Chain-Tigris') {
+    return Networks.BINANCE;
+  }
   return (
     blockchains
       .filter((blockchainMeta) => !!blockchainMeta.chainId)
@@ -140,7 +146,7 @@ export const XDEFI_WALLET_SUPPORTED_NATIVE_CHAINS = [
   Networks.BINANCE,
 ];
 
-export const KEPLR_COMPATIBLE_WALLETS = [
+export const KEPLR_COMPATIBLE_WALLETS: string[] = [
   WalletTypes.KEPLR,
   WalletTypes.COSMOSTATION,
 ];

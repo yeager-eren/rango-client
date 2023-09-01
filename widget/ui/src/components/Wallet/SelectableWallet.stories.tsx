@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { SelectableWalletComponent } from './SelectableWallet';
+import { SelectableWallet } from './SelectableWallet';
 
-const meta: Meta<typeof SelectableWalletComponent> = {
-  component: SelectableWalletComponent,
+const meta: Meta<typeof SelectableWallet> = {
+  component: SelectableWallet,
 };
 
 export default meta;
-type Story = StoryObj<typeof SelectableWalletComponent>;
+type Story = StoryObj<typeof SelectableWallet>;
 
 export const Main: Story = {
   args: {

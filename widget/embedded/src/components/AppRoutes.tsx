@@ -92,7 +92,16 @@ export function AppRoutes(props: PropTypes) {
     {
       path: getAbsolutePath(navigationRoutes.confirmSwap),
       element: (
-        <ConfirmSwapPage customDestinationEnabled={config?.customDestination} />
+        <ConfirmSwapPage
+          customDestinationEnabled={config?.customDestination}
+          supportedWallets={config?.wallets}
+          multiWallets={
+            typeof config?.multiWallets === 'undefined'
+              ? true
+              : config.multiWallets
+          }
+          config={config}
+        />
       ),
     },
   ]);

@@ -34,3 +34,4 @@ export * from './Wallet';
 export * from './Radio';
 export * from './PriceImpact';
 export * from './ChainToken';
+export * from './MessageBox';

@@ -160,30 +160,30 @@ export const useWalletsStore = createSelectors(
             blockchain: chain,
           }));
           const response = await httpService().getWalletsDetails(data);
-          const retrivedBalance = response.wallets;
-          if (retrivedBalance) {
+          const retrievedBalance = response.wallets;
+          if (retrievedBalance) {
             set((state) => ({
               connectedWallets: state.connectedWallets.map(
                 (connectedWallet) => {
                   const matchedAccount = accounts.find((account) =>
                     isAccountAndWalletMatched(account, connectedWallet)
                   );
-                  const retrivedBalanceAccount = retrivedBalance.find(
+                  const retrievedBalanceAccount = retrievedBalance.find(
                     (balance) =>
                       balance.address === connectedWallet.address &&
                       balance.blockChain === connectedWallet.chain
                   );
                   if (
-                    retrivedBalanceAccount?.failed &&
+                    retrievedBalanceAccount?.failed &&
                     matchedAccount &&
                     shouldRetry
                   ) {
                     getWalletsDetails([matchedAccount], false);
                   }
-                  return matchedAccount && retrivedBalanceAccount
+                  return matchedAccount && retrievedBalanceAccount
                     ? makeBalanceFor(
                         matchedAccount,
-                        retrivedBalanceAccount,
+                        retrievedBalanceAccount,
                         tokens
                       )
                     : connectedWallet;

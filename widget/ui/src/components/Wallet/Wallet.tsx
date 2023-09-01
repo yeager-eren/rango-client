@@ -1,2 +1,2 @@
 export { default as Wallet } from './ClickableWallet';
-export { SelectableWalletComponent } from './SelectableWallet';
+export { SelectableWallet } from './SelectableWallet';

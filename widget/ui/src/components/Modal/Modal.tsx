@@ -30,12 +30,14 @@ export function Modal(props: PropsWithChildren<PropTypes>) {
     }
   };
   useEffect(() => {
-    if (open) {
-      container.style.overflow = 'hidden';
-    } else {
-      container.style.overflow = 'unset';
+    if (container) {
+      if (open) {
+        container.style.overflow = 'hidden';
+      } else {
+        container.style.overflow = 'unset';
+      }
     }
-  }, [open]);
+  }, [open, container]);
   console.log({ container });
   return (
     <>

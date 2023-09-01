@@ -1,4 +1,3 @@
-import type { SelectableWallet } from '../../components';
 import type { PropsWithChildren, ReactNode } from 'react';
 
 import React from 'react';
@@ -65,8 +64,8 @@ export interface PropTypes {
   confirmDisabled?: boolean;
   loading?: boolean;
   requiredWallets: string[];
-  selectableWallets: SelectableWallet[];
-  onChange: (w: SelectableWallet) => void;
+  selectableWallets: any[];
+  onChange: (w: any) => void;
   isExperimentalChain?: (wallet: string) => boolean;
   handleConnectChain?: (wallet: string) => void;
   previewInputs?: ReactNode;

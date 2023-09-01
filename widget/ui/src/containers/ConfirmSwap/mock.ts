@@ -1,8 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-import { WalletType } from '@rango-dev/wallets-shared';
+import type { BestRouteType } from '../../types/swaps';
+
 import { RoutingResultType } from 'rango-sdk';
-import { BestRouteType } from '../../types/swaps';
-import { SelectableWallet } from '../../types';
 
 export const bestRoute: BestRouteType = {
   from: { blockchain: 'BSC', symbol: 'BNB', address: null },
@@ -31,7 +31,8 @@ export const bestRoute: BestRouteType = {
         to: {
           symbol: 'WETH.E',
           logo: 'https://api.rango.exchange/i/j9xgdC',
-          blockchainLogo: 'https://api.rango.exchange/blockchains/avax_cchain.svg',
+          blockchainLogo:
+            'https://api.rango.exchange/blockchains/avax_cchain.svg',
 
           address: '0x49d5c2bdffac6ce2bfdb6640f4f80f226bc10bab',
           blockchain: 'AVAX_CCHAIN',
@@ -72,7 +73,8 @@ export const bestRoute: BestRouteType = {
           blockchain: 'AVAX_CCHAIN',
           decimals: 18,
           usdPrice: 1329.24,
-          blockchainLogo: 'https://api.rango.exchange/blockchains/avax_cchain.svg',
+          blockchainLogo:
+            'https://api.rango.exchange/blockchains/avax_cchain.svg',
         },
         to: {
           symbol: 'AVAX',
@@ -81,7 +83,8 @@ export const bestRoute: BestRouteType = {
           blockchain: 'AVAX_CCHAIN',
           decimals: 18,
           usdPrice: 12.5,
-          blockchainLogo: 'https://api.rango.exchange/blockchains/avax_cchain.svg',
+          blockchainLogo:
+            'https://api.rango.exchange/blockchains/avax_cchain.svg',
         },
         fromAmount: '0.062064305934309070',
         fromAmountPrecision: null,
@@ -148,7 +151,7 @@ export const bestRoute: BestRouteType = {
   processingLimitReached: false,
 };
 
-export const wallets: SelectableWallet[] = [
+export const wallets: any[] = [
   {
     walletType: WalletTypes.META_MASK,
     address: '0x5423e28219d6d568dcf62a8134d623e6f4a1c2df',
@@ -173,7 +176,7 @@ export const wallets: SelectableWallet[] = [
   },
 ];
 
-export const exampleFor5Wallets: SelectableWallet[] = [
+export const exampleFor5Wallets: any[] = [
   {
     walletType: WalletTypes.META_MASK,
     address: '0x5423e28219d6d568dcf62a8134d623e6f4a1c2df',

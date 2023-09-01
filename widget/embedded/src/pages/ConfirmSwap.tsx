@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-nocheck
 import type { WalletType } from '@rango-dev/wallets-shared';
 
 import { i18n } from '@lingui/core';
@@ -26,11 +28,10 @@ import { useMetaStore } from '../store/meta';
 import { useSettingsStore } from '../store/settings';
 import { useUiStore } from '../store/ui';
 import { useWalletsStore } from '../store/wallets';
-import { ConfirmSwapErrorTypes } from '../types';
+import { ConfirmSwapWarningTypes } from '../types';
 import { numberToString } from '../utils/numbers';
 import { getBestRouteStatus } from '../utils/routing';
 import {
-  confirmSwapDisabled,
   getPercentageChange,
   getTotalFeeInUsd,
   isValidCustomDestination,
@@ -41,8 +42,6 @@ import {
   getSelectableWallets,
   isExperimentalChain,
 } from '../utils/wallets';
-
-import { ConfirmWalletsModal } from './ConfirmWalletsModal/ConfirmWalletsModal';
 
 export function ConfirmSwapPage({
   customDestinationEnabled,
@@ -73,7 +72,6 @@ export function ConfirmSwapPage({
   );
   const [destinationChain, setDestinationChain] = useState<string>('');
 
-  const [showWallets, setShowWallets] = useState(false);
   const { manager } = useManager();
   const {
     loading: fetchingConfirmedRoute,
@@ -84,8 +82,8 @@ export function ConfirmSwapPage({
 
   const selectedSlippage = customSlippage || slippage;
 
-  const showHighSlippageWarning = !errors.find(
-    (error) => error.type === ConfirmSwapErrorTypes.INSUFFICIENT_SLIPPAGE
+  const showHighSlippageWarning = !warnings.find(
+    (error) => error.type === ConfirmSwapWarningTypes.INSUFFICIENT_SLIPPAGE
   );
 
   const { getWalletInfo, connect } = useWallets();
@@ -136,17 +134,16 @@ export function ConfirmSwapPage({
 
   useEffect(() => {
     console.log('log');
-    setShowWallets(true);
   }, []);
   return (
     <>
-      {showWallets && (
+      {/* {showWallets && (
         <ConfirmWalletsModal
           open={showWallets}
           onClose={setShowWallets.bind(null, false)}
           customDestinationEnabled={customDestinationEnabled}
         />
-      )}
+      )} */}
       <ConfirmSwap
         requiredWallets={getRequiredChains(bestRoute)}
         selectableWallets={selectableWallets}
@@ -159,6 +156,7 @@ export function ConfirmSwapPage({
         onBack={navigateBackFrom.bind(null, navigationRoutes.confirmSwap)}
         onConfirm={async () => {
           await confirmSwap?.().then(async (swap) => {
+            console.log({ swap });
             if (swap) {
               try {
                 await manager?.create(
@@ -183,16 +181,7 @@ export function ConfirmSwapPage({
         onChange={() => {
           //
         }}
-        confirmDisabled={
-          loadingMetaStatus !== 'success' ||
-          confirmSwapDisabled(
-            fetchingBestRoute,
-            destinationChain,
-            customDestination,
-            bestRoute,
-            selectableWallets
-          )
-        }
+        confirmDisabled={false}
         handleConnectChain={(wallet) => handleConnectChain(wallet)}
         isExperimentalChain={(wallet) =>
           getKeplrCompatibleConnectedWallets(selectableWallets).length > 0

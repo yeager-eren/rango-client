@@ -1,8 +1,13 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 import type { Step } from '@rango-dev/ui/dist/widget/ui/src/components/BestRoute/BestRoute.types';
 import type { BestRouteResponse, BlockchainMeta } from 'rango-sdk';
 
-export function formatBestRoute(bestRoute: BestRouteResponse): Step[] {
-  return bestRoute.result!.swaps.map((swap) => {
+import { numberToString } from '../../utils/numbers';
+
+export function formatBestRoute(
+  bestRoute: BestRouteResponse
+): Step[] | undefined {
+  return bestRoute.result?.swaps.map((swap) => {
     return {
       swapper: { displayName: swap.swapperType, image: swap.swapperLogo },
       from: {
@@ -11,7 +16,10 @@ export function formatBestRoute(bestRoute: BestRouteResponse): Step[] {
           displayName: swap.from.blockchain,
           image: swap.from.blockchainLogo,
         },
-        price: { value: swap.fromAmount, usdValue: swap.from.usdPrice },
+        price: {
+          value: numberToString(swap.fromAmount, 6, 6),
+          usdValue: numberToString(swap.from.usdPrice?.toString(), 6, 6),
+        },
       },
       to: {
         token: { displayName: swap.to.symbol, image: swap.to.logo },
@@ -19,7 +27,10 @@ export function formatBestRoute(bestRoute: BestRouteResponse): Step[] {
           displayName: swap.to.blockchain,
           image: swap.to.blockchainLogo,
         },
-        price: { value: swap.toAmount, usdValue: swap.to.usdPrice },
+        price: {
+          value: numberToString(swap.toAmount, 6, 6),
+          usdValue: numberToString(swap.to.usdPrice?.toString(), 6, 6),
+        },
       },
     };
   });
@@ -48,5 +59,7 @@ export function isValidAddress(
   address: string
 ): boolean {
   const regex = chain.addressPatterns;
-  return regex.filter((r) => new RegExp(r).test(address)).length > 0;
+  const valid = regex.filter((r) => new RegExp(r).test(address)).length > 0;
+  console.log({ valid });
+  return valid;
 }

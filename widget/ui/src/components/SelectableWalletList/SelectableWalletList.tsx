@@ -1,4 +1,3 @@
-import type { SelectableWallet } from '../Wallet';
 import type { PropsWithChildren } from 'react';
 
 import React, { useEffect, useState } from 'react';
@@ -76,8 +75,8 @@ const Container = styled('div', {
 });
 
 export interface PropTypes {
-  list: SelectableWallet[];
-  onChange: (w: SelectableWallet) => void;
+  list: any[];
+  onChange: (w: any) => void;
 }
 
 export function SelectableWalletList({
@@ -87,7 +86,7 @@ export function SelectableWalletList({
   const [active, setActive] = useState<string>(
     list.find((item) => item.selected)?.walletType || ''
   );
-  const onClick = (w: SelectableWallet) => {
+  const onClick = (w: any) => {
     setActive(w.walletType);
     onChange(w);
   };

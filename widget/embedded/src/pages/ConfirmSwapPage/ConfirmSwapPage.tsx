@@ -1,11 +1,16 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 import type { PropTypes } from './ConfirmSwapPage.types';
-import type { BestRouteProps } from '@rango-dev/ui/dist/widget/ui/src/components/BestRoute/BestRoute.types';
+import type { PriceImpactWarningLevel } from '@rango-dev/ui/dist/widget/ui/src/components/PriceImpact/PriceImpact.types';
 
 import { i18n } from '@lingui/core';
+import { useManager } from '@rango-dev/queue-manager-react';
 import {
+  Alert,
   BestRoute,
   Button,
   IconButton,
+  MessageBox,
+  Modal,
   RefreshIcon,
   SettingsIcon,
   styled,
@@ -13,11 +18,28 @@ import {
   Typography,
   WalletIcon,
 } from '@rango-dev/ui';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { getConfirmSwapErrorMessage } from '../../components/ConfirmSwapErrors';
+import { getRouteWarningMessage } from '../../components/ConfirmSwapWarnings';
 import { HeaderButton } from '../../components/HeaderButtons/HeaderButtons.styles';
 import { Layout } from '../../components/Layout';
+import { navigationRoutes } from '../../constants/navigationRoutes';
+import { HIGHT_PRICE_IMPACT, LOW_PRICE_IMPACT } from '../../constants/routing';
+import { useConfirmSwap } from '../../hooks/useConfirmSwap';
+import { useBestRouteStore } from '../../store/bestRoute';
+import { useMetaStore } from '../../store/meta';
+import { useSettingsStore } from '../../store/settings';
+import { useUiStore } from '../../store/ui';
+import { SlippageWarningType } from '../../types';
+import {
+  numberToString,
+  secondsToString,
+  totalArrivalTime,
+} from '../../utils/numbers';
+import { getPercentageChange, getTotalFeeInUsd } from '../../utils/swap';
+import { formatBestRoute } from '../ConfirmWalletsModal/ConfirmWallets.helpers';
 import { ConfirmWalletsModal } from '../ConfirmWalletsModal/ConfirmWalletsModal';
 
 const Container = styled('div', {
@@ -51,163 +73,96 @@ const Container = styled('div', {
   },
 });
 
-export const route1: BestRouteProps = {
-  type: 'list-item',
-  recommended: true,
-  input: { value: '1', usdValue: '30000' },
-  output: { value: '3161.441024', usdValue: '26.890' },
-  steps: [
-    {
-      swapper: {
-        displayName: 'MayaProtocol',
-        image: 'https://api.rango.exchange/swappers/maya.jpg',
-      },
-      from: {
-        token: {
-          displayName: 'BTC',
-          image: 'https://api.rango.exchange/tokens/BTC/BTC.png',
-        },
-        chain: {
-          displayName: 'BTC',
-          image: 'https://api.rango.exchange/tokens/BTC/BTC.png',
-        },
-        price: {
-          value: '1.00000000',
-        },
-      },
-      to: {
-        chain: {
-          displayName: 'ETH',
-          image: 'https://api.rango.exchange/blockchains/ethereum.svg',
-        },
-        token: {
-          displayName: 'ETH',
-
-          image: 'https://api.rango.exchange/tokens/ETH/ETH.png',
-        },
-        price: {
-          value: '14.863736725876758517',
-        },
-      },
-    },
-    {
-      swapper: {
-        displayName: 'Satellite',
-        image: 'https://api.rango.exchange/swappers/satellite.png',
-      },
-      from: {
-        token: {
-          displayName: 'ETH',
-          image: 'https://api.rango.exchange/tokens/ETH/ETH.png',
-        },
-        chain: {
-          displayName: 'ETH',
-          image: 'https://api.rango.exchange/blockchains/ethereum.svg',
-        },
-        price: { value: '14.863736725876758517' },
-      },
-      to: {
-        token: {
-          displayName: 'ETH',
-          image: 'https://api.rango.exchange/tokens/COSMOS/ETH.png',
-        },
-        chain: {
-          displayName: 'OSMOSIS',
-          image: 'https://api.rango.exchange/blockchains/osmosis.svg',
-        },
-        price: {
-          value: '14.825674725876758517',
-        },
-      },
-    },
-    {
-      swapper: {
-        displayName: 'Osmosis',
-        image: 'https://api.rango.exchange/swappers/osmosis.png',
-      },
-      from: {
-        token: {
-          displayName: 'ETH',
-          image: 'https://api.rango.exchange/tokens/COSMOS/ETH.png',
-        },
-        chain: {
-          displayName: 'OSMOSIS',
-          image: 'https://api.rango.exchange/blockchains/osmosis.svg',
-        },
-        price: {
-          value: '14.825674725876758517',
-        },
-      },
-      to: {
-        token: {
-          displayName: 'ATOM',
-          image: 'https://api.rango.exchange/tokens/COSMOS/ATOM.png',
-        },
-        chain: {
-          displayName: 'OSMOSIS',
-          image: 'https://api.rango.exchange/blockchains/osmosis.svg',
-        },
-        price: {
-          value: '3161.441024',
-        },
-      },
-    },
-    {
-      swapper: {
-        displayName: 'IBC',
-        image: 'https://api.rango.exchange/swappers/IBC.png',
-      },
-      from: {
-        token: {
-          displayName: 'ATOM',
-          image: 'https://api.rango.exchange/tokens/COSMOS/ATOM.png',
-        },
-        chain: {
-          displayName: 'OSMOSIS',
-          image: 'https://api.rango.exchange/blockchains/osmosis.svg',
-        },
-        price: {
-          value: '3161.441024',
-        },
-      },
-      to: {
-        token: {
-          displayName: 'ATOM',
-          image: 'https://api.rango.exchange/tokens/COSMOS/ATOM.png',
-        },
-        chain: {
-          displayName: 'COSMOS',
-          image: 'https://api.rango.exchange/blockchains/cosmos.svg',
-        },
-        price: {
-          value: '3161.441024',
-        },
-      },
-    },
-  ],
-
-  percentageChange: '7.51',
-  warningLevel: 'high',
-  totalFee: '9.90',
-  totalTime: '23:00',
-};
-
 export function ConfirmSwapPage(props: PropTypes) {
-  const { customDestinationEnabled } = props;
+  const { customDestinationEnabled, multiWallets, supportedWallets, config } =
+    props;
   const navigate = useNavigate();
   const [showWallets, setShowWallets] = useState(false);
+  const [dbErrorMessage, setDbErrorMessage] = useState<string>('');
+  const [showSlippageWarning, setShowSlippageWarning] = useState(false);
+  const bestRoute = useBestRouteStore.use.bestRoute();
+  const [walletsConfirmed, setWalletsConfirmed] = useState(false);
+  const inputAmount = useBestRouteStore.use.inputAmount();
+  const outputAmount = useBestRouteStore.use.outputAmount();
+  const inputUsdValue = useBestRouteStore.use.inputUsdValue();
+  const outputUsdValue = useBestRouteStore.use.outputUsdValue();
+  const setInputAmount = useBestRouteStore.use.setInputAmount();
+  const setSelectedSwap = useUiStore.use.setSelectedSwap();
+  const { tokens } = useMetaStore.use.meta();
+  const slippage = useSettingsStore.use.slippage();
+  const customSlippage = useSettingsStore.use.customSlippage();
+  const { manager } = useManager();
+  const selectedSlippage = customSlippage || slippage;
+  const { confirmSwap, cancel, loading, warnings, error } = useConfirmSwap();
+  const routeWarning = warnings.route;
+  const balanceWarnings = warnings.balance;
+  const slippageWarning = warnings.slippage;
+  const totalFeeInUsd = getTotalFeeInUsd(bestRoute, tokens);
+  const percentageChange = numberToString(
+    getPercentageChange(
+      inputUsdValue?.toNumber() ?? 0,
+      outputUsdValue?.toNumber() ?? 0
+    ),
+    2,
+    2
+  );
+  let warningLevel: PriceImpactWarningLevel = undefined;
+  if (parseFloat(percentageChange) >= HIGHT_PRICE_IMPACT) {
+    warningLevel = 'high';
+  } else if (parseFloat(percentageChange) >= LOW_PRICE_IMPACT) {
+    warningLevel = 'low';
+  }
 
-  /*
-   * useEffect(() => {
-   *   setShowWallets(true);
-   * }, []);
-   */
+  const onClose = () => {
+    cancel();
+    setShowWallets(false);
+  };
+
+  const onConfirm = async () => {
+    await confirmSwap?.().then(async (swap) => {
+      if (swap) {
+        try {
+          await manager?.create(
+            'swap',
+            { swapDetails: swap },
+            { id: swap.requestId }
+          );
+          setSelectedSwap(swap.requestId);
+          navigate('/' + navigationRoutes.swaps + `/${swap.requestId}`, {
+            replace: true,
+          });
+          setTimeout(() => {
+            setInputAmount('');
+          }, 0);
+        } catch (e) {
+          setDbErrorMessage('Error: ' + (e as any)?.message);
+        }
+      }
+    });
+  };
+
+  const onClick = async () => {
+    if (warnings.slippage) {
+      setShowSlippageWarning(true);
+    } else {
+      await onConfirm();
+    }
+  };
+
+  useEffect(() => {
+    setShowWallets(true);
+  }, []);
+
+  useEffect(() => {
+    if (!showWallets && !walletsConfirmed) {
+      navigate(navigationRoutes.home);
+    }
+  }, [showWallets, walletsConfirmed]);
 
   return (
     <Layout
       header={{
         title: 'Confirm Swap',
-        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
         onBack: navigate.bind(null, -1),
         hasConnectWallet: true,
         suffix: (
@@ -218,12 +173,81 @@ export function ConfirmSwapPage(props: PropTypes) {
           </Tooltip>
         ),
       }}>
+      <Modal
+        anchor="bottom"
+        open={showSlippageWarning}
+        prefix={
+          <Button
+            size="small"
+            onClick={() => navigate('/' + navigationRoutes.settings)}>
+            <Typography variant="label" size="medium" color="$neutral500">
+              Change settings
+            </Typography>
+          </Button>
+        }
+        container={document.querySelector('#swap-box') as HTMLDivElement}
+        onClose={setShowSlippageWarning.bind(null, (prevState) => !prevState)}>
+        {slippageWarning && (
+          <MessageBox
+            type="warning"
+            title={
+              slippageWarning.type === SlippageWarningType.HIGH_SLIPPAGE
+                ? 'High slippage'
+                : 'Low slippage'
+            }
+            description={
+              slippageWarning.type === SlippageWarningType.HIGH_SLIPPAGE
+                ? i18n.t(
+                    'highSlippage',
+                    { selectedSlippage },
+                    {
+                      message:
+                        ' Caution, your slippage is high (={selectedSlippage}). Your trade may be front run.',
+                    }
+                  )
+                : i18n.t(
+                    'increaseSlippage',
+
+                    { minRequiredSlippage: slippageWarning.slippage },
+                    {
+                      message:
+                        'We recommend you to increase slippage to at least {minRequiredSlippage} for this route.',
+                    }
+                  )
+            }>
+            <Button
+              style={{ marginTop: '10px' }}
+              type="primary"
+              variant="contained"
+              fullWidth
+              onClick={onConfirm}>
+              Confirm anyway
+            </Button>
+          </MessageBox>
+        )}
+      </Modal>
       <ConfirmWalletsModal
         open={showWallets}
-        onClose={setShowWallets.bind(null, false)}
+        onClose={onClose}
         customDestinationEnabled={customDestinationEnabled}
+        multiWallets={multiWallets}
+        supportedWallets={supportedWallets}
+        config={config}
+        walletsConfirmed={walletsConfirmed}
+        loading={loading}
+        warning={balanceWarnings?.messages}
+        confirmWallets={setWalletsConfirmed.bind(null, true)}
+        confirmSwap={confirmSwap}
       />
       <Container>
+        {error && (
+          <Alert type="error" title={getConfirmSwapErrorMessage(error)} />
+        )}
+        {dbErrorMessage && <Alert type="error" title={dbErrorMessage} />}
+        {routeWarning && (
+          <Alert type="error" title={getRouteWarningMessage(routeWarning)} />
+        )}
+
         <div className="title">
           <Typography variant="title" size="small">
             You get
@@ -234,10 +258,33 @@ export function ConfirmSwapPage(props: PropTypes) {
             </div>
           </Button>
         </div>
-        <BestRoute {...route1} />
+        {bestRoute && (
+          <BestRoute
+            steps={formatBestRoute(bestRoute) ?? []}
+            input={{
+              value: numberToString(inputAmount, 6, 6),
+              usdValue: numberToString(inputUsdValue, 6, 6),
+            }}
+            output={{
+              value: numberToString(outputAmount, 6, 6),
+              usdValue: numberToString(outputUsdValue, 6, 6),
+            }}
+            totalFee={numberToString(totalFeeInUsd, 0, 2)}
+            totalTime={secondsToString(totalArrivalTime(bestRoute))}
+            recommended={true}
+            type="swap-preview"
+            percentageChange={percentageChange}
+            warningLevel={warningLevel}
+          />
+        )}
         <div className="buttons">
           <div className="confirm-button">
-            <Button variant="contained" type="primary" size="large" fullWidth>
+            <Button
+              variant="contained"
+              type="primary"
+              size="large"
+              fullWidth
+              onClick={onClick}>
               Start Swap
             </Button>
           </div>

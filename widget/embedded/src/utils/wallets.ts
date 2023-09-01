@@ -1,10 +1,8 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 import type { TokenWithBalance } from '../pages/SelectTokenPage';
 import type { ConnectedWallet, TokenBalance } from '../store/wallets';
 import type { Wallet } from '../types';
-import type {
-  WalletInfo as ModalWalletInfo,
-  SelectableWallet,
-} from '@rango-dev/ui';
+import type { WalletInfo as ModalWalletInfo } from '@rango-dev/ui';
 import type {
   Network,
   WalletInfo,
@@ -53,10 +51,20 @@ export const excludedWallets = [WalletTypes.LEAP];
 export function getlistWallet(
   getState: (type: WalletType) => WalletState,
   getWalletInfo: (type: WalletType) => WalletInfo,
-  list: WalletType[]
+  list: WalletType[],
+  chain?: string
 ): ModalWalletInfo[] {
   return list
     .filter((wallet) => !excludedWallets.includes(wallet as WalletTypes))
+    .filter((wallet) => {
+      if (chain) {
+        const { supportedChains } = getWalletInfo(wallet);
+        return !!supportedChains.find(
+          (supportedChain) => supportedChain.name === chain
+        );
+      }
+      return true;
+    })
     .map((type) => {
       const { name, img: image, installLink } = getWalletInfo(type);
       const state = mapStatusToWalletState(getState(type));
@@ -201,7 +209,7 @@ export function getSelectableWallets(
   connectedWallets: ConnectedWallet[],
   getWalletInfo: (type: WalletType) => WalletInfo,
   destinationChain?: string
-): SelectableWallet[] {
+): Wallet[] {
   const selectableWallets = connectedWallets.map(
     (connectedWallet: ConnectedWallet) => {
       return {
@@ -423,7 +431,7 @@ export const isExperimentalChain = (
 };
 
 export const getKeplrCompatibleConnectedWallets = (
-  selectableWallets: SelectableWallet[]
+  selectableWallets: Wallet[]
 ): WalletType[] => {
   const connectedWalletTypes = new Set(
     selectableWallets.map((wallet) => {
@@ -536,4 +544,35 @@ export function sortWalletsBasedOnState(
             a.state === WalletStatus.CONNECTING
         )
   );
+}
+
+export function getConciseAddress(
+  address: string,
+  maxChars = 8,
+  ellipsisLength = 3
+): string {
+  if (address.length < 2 * maxChars + ellipsisLength) {
+    return address;
+  }
+  const start = Math.ceil((address.length - maxChars) / 2);
+  const end = address.length - maxChars;
+  return `${address.substr(start, maxChars)}${'.'.repeat(
+    ellipsisLength
+  )}${address.substr(end)}`;
+}
+
+export function getAddress({
+  chain,
+  connectedWallets,
+  walletType,
+}: {
+  connectedWallets: ConnectedWallet[];
+  walletType: string;
+  chain: string;
+}): string | undefined {
+  return connectedWallets.find(
+    (connectedWallet) =>
+      connectedWallet.walletType === walletType &&
+      connectedWallet.chain === chain
+  )?.address;
 }

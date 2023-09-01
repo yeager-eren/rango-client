@@ -1,6 +1,4 @@
 import type { WidgetConfig } from '../types';
-import type { WalletInfo } from '@rango-dev/ui';
-import type { WalletType } from '@rango-dev/wallets-shared';
 
 import { i18n } from '@lingui/core';
 import {
@@ -11,19 +9,14 @@ import {
   styled,
   Typography,
   Wallet,
-  WalletState,
 } from '@rango-dev/ui';
-import { useWallets } from '@rango-dev/wallets-core';
-import { WalletTypes } from '@rango-dev/wallets-shared';
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
 import { Layout } from '../components/Layout';
 import { navigationRoutes } from '../constants/navigationRoutes';
 import { useNavigateBack } from '../hooks/useNavigateBack';
+import { useWalletList } from '../hooks/useWalletList';
 import { useMetaStore } from '../store/meta';
-import { useUiStore } from '../store/ui';
-import { configWalletsToWalletName } from '../utils/providers';
-import { getlistWallet, sortWalletsBasedOnState } from '../utils/wallets';
 
 interface PropTypes {
   supportedWallets: WidgetConfig['wallets'];
@@ -53,71 +46,18 @@ const Container = styled('div', {
   textAlign: 'center',
 });
 
-const ALL_SUPPORTED_WALLETS = Object.values(WalletTypes);
-
 export function WalletsPage({
   supportedWallets,
   multiWallets,
   config,
 }: PropTypes) {
-  const { navigateBackFrom } = useNavigateBack();
-  const { state, disconnect, getWalletInfo, connect } = useWallets();
-  const wallets = getlistWallet(
-    state,
-    getWalletInfo,
-    configWalletsToWalletName(supportedWallets, {
-      walletConnectProjectId: config?.walletConnectProjectId,
-    }) || ALL_SUPPORTED_WALLETS
-  );
-  const walletsRef = useRef<WalletInfo[]>();
-
-  const sortedWallets = sortWalletsBasedOnState(wallets);
-  const [walletErrorMessage, setWalletErrorMessage] = useState('');
-  const toggleConnectWalletsButton =
-    useUiStore.use.toggleConnectWalletsButton();
   const loadingMetaStatus = useMetaStore.use.loadingStatus();
-
-  const onSelectWallet = async (type: WalletType) => {
-    const wallet = state(type);
-    try {
-      if (walletErrorMessage) {
-        setWalletErrorMessage('');
-      }
-      if (wallet.connected) {
-        await disconnect(type);
-      } else {
-        if (
-          !multiWallets &&
-          !!wallets.find((w) => w.state === WalletState.CONNECTED)
-        ) {
-          return;
-        }
-        await connect(type);
-      }
-    } catch (e) {
-      setWalletErrorMessage('Error: ' + (e as any)?.message);
-    }
-  };
-  const disconnectConnectingWallets = () => {
-    const connectingWallets =
-      walletsRef.current?.filter(
-        (wallet) => wallet.state === WalletState.CONNECTING
-      ) || [];
-    for (const wallet of connectingWallets) {
-      void disconnect(wallet.type);
-    }
-  };
-  useEffect(() => {
-    toggleConnectWalletsButton();
-    return () => {
-      disconnectConnectingWallets();
-      toggleConnectWalletsButton();
-    };
-  }, []);
-
-  useEffect(() => {
-    walletsRef.current = wallets;
-  }, [wallets]);
+  const { navigateBackFrom } = useNavigateBack();
+  const { wallets, onClickWallet, error } = useWalletList({
+    supportedWallets,
+    multiWallets,
+    config,
+  });
 
   return (
     <Layout
@@ -126,9 +66,9 @@ export function WalletsPage({
         onBack: navigateBackFrom.bind(null, navigationRoutes.wallets),
       }}>
       <Container>
-        {walletErrorMessage && (
+        {error && (
           <>
-            <Alert type="error" title={walletErrorMessage} />
+            <Alert type="error" title={error} />
             <Divider direction="vertical" size={16} />
           </>
         )}
@@ -143,14 +83,14 @@ export function WalletsPage({
         </Typography>
         <ListContainer>
           {loadingMetaStatus === 'success' &&
-            sortedWallets.map((wallet, index) => {
+            wallets.map((wallet, index) => {
               const key = `wallet-${index}-${wallet.type}`;
               return (
                 <Wallet
                   {...wallet}
                   key={key}
                   onClick={(type) => {
-                    void onSelectWallet(type);
+                    void onClickWallet(type);
                   }}
                 />
               );

@@ -44,6 +44,26 @@ msgid "Swap Details"
 msgstr ""
 
 #. js-lingui-explicit-id
+#: widget/ui/src/components/SwapListItem/SwapListItem.helpers.ts:8
+msgid "Failed"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: widget/ui/src/components/SwapListItem/SwapListItem.helpers.ts:10
+msgid "Complete"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: widget/ui/src/components/SwapListItem/SwapListItem.helpers.ts:12
+msgid "In progress"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: widget/ui/src/components/SwapListItem/SwapToken.tsx:71
+msgid "Waiting for bridge transaction"
+msgstr ""
+
+#. js-lingui-explicit-id
 #: widget/ui/src/components/TokenPreview/TokenPreview.tsx:150
 #: widget/ui/src/containers/TokenInfo/TokenInfo.tsx:235
 msgid "Chain"
@@ -132,6 +152,7 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/HeaderButtons/HomeButtons.tsx:42
+#: widget/embedded/src/pages/ConfirmSwapPage/ConfirmSwapPage.tsx:214
 #~ msgid "Settings"
 #~ msgstr ""
 
@@ -148,40 +169,35 @@ msgstr ""
 #~ msgstr ""
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/ConfirmSwapPage.tsx:219
+#: widget/embedded/src/pages/ConfirmSwap.tsx:215
 #~ msgid "From"
 #~ msgstr ""
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/ConfirmSwapPage.tsx:238
+#: widget/embedded/src/pages/ConfirmSwap.tsx:234
 #~ msgid "To"
 #~ msgstr ""
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/ConfirmSwapPage.tsx:285
+#: widget/embedded/src/pages/ConfirmSwap.tsx:281
 #~ msgid "Proceed anyway!"
 #~ msgstr ""
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/ConfirmSwapPage.tsx:286
+#: widget/embedded/src/pages/ConfirmSwap.tsx:282
 #~ msgid "Confirm swap!"
 #~ msgstr ""
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/HistoryPage.tsx:28
+#: widget/embedded/src/pages/HistoryPage.tsx:77
 #~ msgid "History"
 #~ msgstr ""
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/Home.tsx:172
+#: widget/embedded/src/pages/Home.tsx:173
 #: widget/embedded/src/utils/swap.ts:151
 #: widget/embedded/src/utils/swap.ts:168
 #~ msgid "Swap"
-#~ msgstr ""
-
-#. js-lingui-explicit-id
-#: widget/embedded/src/pages/WalletsPage.tsx:122
-#~ msgid "Select Wallet"
 #~ msgstr ""
 
 #. js-lingui-explicit-id
@@ -212,6 +228,11 @@ msgstr ""
 #. js-lingui-explicit-id
 #: widget/embedded/src/utils/swap.ts:164
 #~ msgid "The route goes through Ethereum. Continue?"
+#~ msgstr ""
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/pages/WalletsPage.tsx:122
+#~ msgid "Select Wallet"
 #~ msgstr ""
 
 #. js-lingui-explicit-id

@@ -54,5 +54,5 @@ export const ModalHeader = styled('div', {
   justifyContent: 'space-between',
   alignItems: 'center',
   position: 'relative',
-  marginBottom: '$16',
+  paddingBottom: '$16',
 });

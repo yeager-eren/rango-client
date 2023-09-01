@@ -98,6 +98,7 @@ export const Chains = styled(Collapsible.Trigger, {
   boxSizing: 'border-box',
   cursor: 'pointer',
   border: 'none',
+  outline: 'none',
   backgroundColor: 'transparent',
   variants: {
     error: {
