@@ -34,6 +34,7 @@ export function SelectSwapItemsPage(props: PropTypes) {
   } = useQuoteStore();
   const getBalanceFor = useWalletsStore.use.getBalanceFor();
   const [searchedFor, setSearchedFor] = useState<string>('');
+  const { isTokenPinned } = useAppStore();
 
   const selectedBlockchain = type === 'source' ? fromBlockchain : toBlockchain;
   const selectedBlockchainName = selectedBlockchain?.name ?? '';
@@ -47,7 +48,12 @@ export function SelectSwapItemsPage(props: PropTypes) {
     blockchain: selectedBlockchainName,
     searchFor: searchedFor,
   });
-  const tokensList = sortTokensByBalance(tokens, getBalanceFor);
+  const checkIsTokenPinned = (token: Token) => isTokenPinned(token, type);
+  const tokensList = sortTokensByBalance(
+    tokens,
+    getBalanceFor,
+    checkIsTokenPinned
+  );
 
   // Actions
   const updateBlockchain = (blockchain: BlockchainMeta) => {
@@ -96,6 +102,7 @@ export function SelectSwapItemsPage(props: PropTypes) {
         list={tokensList}
         selectedBlockchain={selectedBlockchainName}
         searchedFor={searchedFor}
+        type={type}
         onChange={(token) => {
           updateToken(token);
 
