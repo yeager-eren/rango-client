@@ -1,6 +1,7 @@
 import type { GroupBy } from '../components/SwapsGroup/SwapsGroup.types';
 import type { PendingSwap } from '@rango-dev/queue-manager-rango-preset';
 
+import { i18n } from '@lingui/core';
 import dayjs from 'dayjs';
 
 export const groupSwapsByDate: GroupBy = (swaps) => {
@@ -14,28 +15,28 @@ export const groupSwapsByDate: GroupBy = (swaps) => {
     [
       'today',
       {
-        title: 'Today',
+        title: i18n.t('Today'),
         swaps: [],
       },
     ],
     [
       'month',
       {
-        title: 'Last month',
+        title: i18n.t('Last month'),
         swaps: [],
       },
     ],
     [
       'year',
       {
-        title: 'Last year',
+        title: i18n.t('Last year'),
         swaps: [],
       },
     ],
     [
       'history',
       {
-        title: 'History',
+        title: i18n.t('History'),
         swaps: [],
       },
     ],

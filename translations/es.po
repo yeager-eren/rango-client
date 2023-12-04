@@ -22,7 +22,7 @@ msgstr ""
 #: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:37
 #: widget/embedded/src/components/TokenList/TokenList.tsx:125
 #: widget/embedded/src/pages/HistoryPage.tsx:95
-#: widget/embedded/src/pages/LiquiditySourcePage.tsx:126
+#: widget/embedded/src/pages/LiquiditySourcePage.tsx:129
 msgid "No results found"
 msgstr "No hay resultados"
 
@@ -30,7 +30,7 @@ msgstr "No hay resultados"
 #: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:38
 #: widget/embedded/src/components/TokenList/TokenList.tsx:126
 #: widget/embedded/src/pages/HistoryPage.tsx:97
-#: widget/embedded/src/pages/LiquiditySourcePage.tsx:127
+#: widget/embedded/src/pages/LiquiditySourcePage.tsx:130
 msgid "Try using different keywords"
 msgstr "Intenta usar diferentes palabras clave"
 
@@ -50,6 +50,12 @@ msgstr "Todos"
 #: widget/embedded/src/components/BlockchainsSection/BlockchainsSection.tsx:91
 msgid "More +{count}"
 msgstr "Más +{count}"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/components/ConfirmWalletsModal/ConfirmWalletsModal.tsx:272
+#: widget/embedded/src/components/ConfirmWalletsModal/WalletList.tsx:224
+msgid "Confirm"
+msgstr "Confirmar"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/ConfirmWalletsModal/ConfirmWalletsModal.tsx:287
@@ -103,11 +109,6 @@ msgstr "Añadir cadena {blockchainDisplayName}"
 #: widget/embedded/src/components/ConfirmWalletsModal/WalletList.tsx:241
 msgid "You should connect a {blockchainDisplayName} supported wallet or choose a different {blockchainDisplayName} address"
 msgstr "Deberías conectar un monedero compatible con {blockchainDisplayName} o elegir una dirección {blockchainDisplayName} diferente"
-
-#. js-lingui-explicit-id
-#: widget/embedded/src/components/ConfirmWalletsModal/WalletList.tsx:224
-msgid "Confirm"
-msgstr "Confirmar"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/ConfirmWalletsModal/WalletList.tsx:259
@@ -202,6 +203,16 @@ msgstr "Tu: {amount} {symbol}"
 #: widget/embedded/src/components/Quote/Quote.tsx:239
 msgid "Minimum required slippage is {minRequiredSlippage}"
 msgstr ""
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/components/Quote/QuoteSummary.tsx:22
+msgid "Swap input"
+msgstr "Intercambiar entrada"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/components/Quote/QuoteSummary.tsx:34
+msgid "Estimated output"
+msgstr "Producción estimada"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/QuoteWarningsAndErrors/HighValueLossWarningModal.tsx:41
@@ -609,6 +620,7 @@ msgstr "Obtienes"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/pages/HistoryPage.tsx:78
+#: widget/embedded/src/utils/date.ts:39
 msgid "History"
 msgstr "Historial"
 
@@ -638,7 +650,29 @@ msgid "language"
 msgstr "idioma"
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/LiquiditySourcePage.tsx:118
+#: widget/embedded/src/pages/LiquiditySourcePage.tsx:43
+#: widget/ui/src/components/LiquiditySourceList/LiquiditySourceList.tsx:151
+msgid "Exchanges"
+msgstr "Intercambios"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/pages/LiquiditySourcePage.tsx:43
+#: widget/ui/src/components/LiquiditySourceList/LiquiditySourceList.tsx:112
+msgid "Bridges"
+msgstr "Puentes"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/pages/LiquiditySourcePage.tsx:107
+msgid "Deselect all"
+msgstr "Deseleccionar todo"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/pages/LiquiditySourcePage.tsx:107
+msgid "Select all"
+msgstr "Seleccionar todo"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/pages/LiquiditySourcePage.tsx:119
 msgid "Search {sourceType}"
 msgstr "Buscar {sourceType}"
 
@@ -649,11 +683,21 @@ msgstr "Buscar Blockchain"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/pages/SelectSwapItemsPage.tsx:72
+msgid "Source"
+msgstr "Fuente"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/pages/SelectSwapItemsPage.tsx:73
+msgid "Destination"
+msgstr "Destino"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/pages/SelectSwapItemsPage.tsx:79
 msgid "Swap {type}"
 msgstr "Intercambiar {type}"
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/SelectSwapItemsPage.tsx:87
+#: widget/embedded/src/pages/SelectSwapItemsPage.tsx:94
 msgid "Search Token"
 msgstr "Buscar token"
 
@@ -719,6 +763,21 @@ msgstr "Conectar billeteras"
 #: widget/embedded/src/pages/WalletsPage.tsx:67
 msgid "Choose a wallet to connect."
 msgstr "Elija una cartera para conectar."
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/utils/date.ts:18
+msgid "Today"
+msgstr "Hoy"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/utils/date.ts:25
+msgid "Last month"
+msgstr "El mes pasado"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/utils/date.ts:32
+msgid "Last year"
+msgstr "El año pasado"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/utils/swap.ts:125
@@ -857,16 +916,6 @@ msgid "Change Slippage"
 msgstr "Cambiar Slippage"
 
 #. js-lingui-explicit-id
-#: widget/ui/src/components/LiquiditySourceList/LiquiditySourceList.tsx:112
-msgid "Bridges"
-msgstr "Puentes"
-
-#. js-lingui-explicit-id
-#: widget/ui/src/components/LiquiditySourceList/LiquiditySourceList.tsx:151
-msgid "Exchanges"
-msgstr "Intercambios"
-
-#. js-lingui-explicit-id
 #: widget/ui/src/components/SelectableCategoryList/SelectableCategoryList.tsx:63
 msgid "{blockchainCategory}"
 msgstr ""
@@ -889,7 +938,7 @@ msgstr "Fallo"
 #. js-lingui-explicit-id
 #: widget/ui/src/components/SwapListItem/SwapListItem.helpers.ts:10
 msgid "Complete"
-msgstr "Complete"
+msgstr "Completa"
 
 #. js-lingui-explicit-id
 #: widget/ui/src/components/SwapListItem/SwapListItem.helpers.ts:12

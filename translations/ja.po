@@ -22,7 +22,7 @@ msgstr ""
 #: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:37
 #: widget/embedded/src/components/TokenList/TokenList.tsx:125
 #: widget/embedded/src/pages/HistoryPage.tsx:95
-#: widget/embedded/src/pages/LiquiditySourcePage.tsx:126
+#: widget/embedded/src/pages/LiquiditySourcePage.tsx:129
 msgid "No results found"
 msgstr "結果が見つかりませんでした"
 
@@ -30,7 +30,7 @@ msgstr "結果が見つかりませんでした"
 #: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:38
 #: widget/embedded/src/components/TokenList/TokenList.tsx:126
 #: widget/embedded/src/pages/HistoryPage.tsx:97
-#: widget/embedded/src/pages/LiquiditySourcePage.tsx:127
+#: widget/embedded/src/pages/LiquiditySourcePage.tsx:130
 msgid "Try using different keywords"
 msgstr "別のキーワードを使用してみてください"
 
@@ -50,6 +50,12 @@ msgstr "すべて"
 #: widget/embedded/src/components/BlockchainsSection/BlockchainsSection.tsx:91
 msgid "More +{count}"
 msgstr "その他 +{count}"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/components/ConfirmWalletsModal/ConfirmWalletsModal.tsx:272
+#: widget/embedded/src/components/ConfirmWalletsModal/WalletList.tsx:224
+msgid "Confirm"
+msgstr "確認する"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/ConfirmWalletsModal/ConfirmWalletsModal.tsx:287
@@ -103,11 +109,6 @@ msgstr "{blockchainDisplayName} チェーンを追加"
 #: widget/embedded/src/components/ConfirmWalletsModal/WalletList.tsx:241
 msgid "You should connect a {blockchainDisplayName} supported wallet or choose a different {blockchainDisplayName} address"
 msgstr "{blockchainDisplayName} サポートされているウォレットに接続するか、別の {blockchainDisplayName} アドレスを選択してください"
-
-#. js-lingui-explicit-id
-#: widget/embedded/src/components/ConfirmWalletsModal/WalletList.tsx:224
-msgid "Confirm"
-msgstr "確認する"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/ConfirmWalletsModal/WalletList.tsx:259
@@ -202,6 +203,16 @@ msgstr "あなたの: {amount} {symbol}"
 #: widget/embedded/src/components/Quote/Quote.tsx:239
 msgid "Minimum required slippage is {minRequiredSlippage}"
 msgstr ""
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/components/Quote/QuoteSummary.tsx:22
+msgid "Swap input"
+msgstr "スワップ入力"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/components/Quote/QuoteSummary.tsx:34
+msgid "Estimated output"
+msgstr "推定生産量"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/QuoteWarningsAndErrors/HighValueLossWarningModal.tsx:41
@@ -474,7 +485,7 @@ msgstr "ウォレットに接続中"
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/WalletModal/WalletModalContent.tsx:43
 msgid "Click connect in your wallet popup."
-msgstr "ウォレットのポップアップでformat@@0をクリックします。"
+msgstr "ウォレットのポップアップで「接続」をクリックします。"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/constants/errors.ts:9
@@ -609,6 +620,7 @@ msgstr "あなたは"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/pages/HistoryPage.tsx:78
+#: widget/embedded/src/utils/date.ts:39
 msgid "History"
 msgstr "沿革"
 
@@ -638,7 +650,29 @@ msgid "language"
 msgstr "言語"
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/LiquiditySourcePage.tsx:118
+#: widget/embedded/src/pages/LiquiditySourcePage.tsx:43
+#: widget/ui/src/components/LiquiditySourceList/LiquiditySourceList.tsx:151
+msgid "Exchanges"
+msgstr "交換"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/pages/LiquiditySourcePage.tsx:43
+#: widget/ui/src/components/LiquiditySourceList/LiquiditySourceList.tsx:112
+msgid "Bridges"
+msgstr "ブリッジ"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/pages/LiquiditySourcePage.tsx:107
+msgid "Deselect all"
+msgstr "すべての選択を解除"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/pages/LiquiditySourcePage.tsx:107
+msgid "Select all"
+msgstr "すべて選択"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/pages/LiquiditySourcePage.tsx:119
 msgid "Search {sourceType}"
 msgstr "{sourceType} を検索"
 
@@ -649,11 +683,21 @@ msgstr "ブロックチェーンを検索"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/pages/SelectSwapItemsPage.tsx:72
+msgid "Source"
+msgstr "ソース"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/pages/SelectSwapItemsPage.tsx:73
+msgid "Destination"
+msgstr "行き先"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/pages/SelectSwapItemsPage.tsx:79
 msgid "Swap {type}"
 msgstr "{type} を入れ替え"
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/SelectSwapItemsPage.tsx:87
+#: widget/embedded/src/pages/SelectSwapItemsPage.tsx:94
 msgid "Search Token"
 msgstr "トークンを検索"
 
@@ -719,6 +763,21 @@ msgstr "ウォレットを接続"
 #: widget/embedded/src/pages/WalletsPage.tsx:67
 msgid "Choose a wallet to connect."
 msgstr "接続するウォレットを選択してください。"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/utils/date.ts:18
+msgid "Today"
+msgstr "今日"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/utils/date.ts:25
+msgid "Last month"
+msgstr "先月"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/utils/date.ts:32
+msgid "Last year"
+msgstr "去年"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/utils/swap.ts:125
@@ -849,22 +908,12 @@ msgstr " サーバー接続中にエラーが発生しました。アプリを�
 #. js-lingui-explicit-id
 #: widget/ui/src/components/BottomLogo/BottomLogo.tsx:14
 msgid "Powered By"
-msgstr "Powered By"
+msgstr "搭載"
 
 #. js-lingui-explicit-id
 #: widget/ui/src/components/ChangeSlippageButton/ChangeSlippageButton.tsx:14
 msgid "Change Slippage"
 msgstr "僅用於中文"
-
-#. js-lingui-explicit-id
-#: widget/ui/src/components/LiquiditySourceList/LiquiditySourceList.tsx:112
-msgid "Bridges"
-msgstr "ブリッジ"
-
-#. js-lingui-explicit-id
-#: widget/ui/src/components/LiquiditySourceList/LiquiditySourceList.tsx:151
-msgid "Exchanges"
-msgstr "交換"
 
 #. js-lingui-explicit-id
 #: widget/ui/src/components/SelectableCategoryList/SelectableCategoryList.tsx:63
@@ -889,7 +938,7 @@ msgstr "失敗しました"
 #. js-lingui-explicit-id
 #: widget/ui/src/components/SwapListItem/SwapListItem.helpers.ts:10
 msgid "Complete"
-msgstr "Complete"
+msgstr "完了"
 
 #. js-lingui-explicit-id
 #: widget/ui/src/components/SwapListItem/SwapListItem.helpers.ts:12

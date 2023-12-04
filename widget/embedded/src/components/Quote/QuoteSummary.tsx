@@ -1,5 +1,6 @@
 import type { PriceImpactWarningLevel, Step } from '@rango-dev/ui';
 
+import { i18n } from '@lingui/core';
 import { TokenAmount } from '@rango-dev/ui';
 import React from 'react';
 
@@ -18,7 +19,7 @@ export function QuoteSummary(props: PropTypes) {
     <Container>
       <TokenAmount
         direction="horizontal"
-        label="Swap input"
+        label={i18n.t('Swap input')}
         type="input"
         price={{ value: from.price.value, usdValue: from.price.usdValue }}
         token={{
@@ -30,7 +31,7 @@ export function QuoteSummary(props: PropTypes) {
       <div className="separator" />
       <TokenAmount
         direction="horizontal"
-        label="Estimated output"
+        label={i18n.t('Estimated output')}
         type="output"
         price={{ value: to.price.value, usdValue: to.price.usdValue }}
         token={{

@@ -40,7 +40,7 @@ export function SelectSwapItemsPage(props: PropTypes) {
 
   // Tokens & Blockchains list
   const blockchains = useAppStore().blockchains({
-    type: type,
+    type,
   });
   const tokens = useAppStore().tokens({
     type,
@@ -65,11 +65,15 @@ export function SelectSwapItemsPage(props: PropTypes) {
       setToToken({ token, meta: { blockchains, tokens } });
     }
   };
+  const types = {
+    source: i18n.t('Source'),
+    destination: i18n.t('Destination'),
+  };
 
   return (
     <Layout
       header={{
-        title: i18n.t('Swap {type}', { type }),
+        title: i18n.t('Swap {type}', { type: types[type] }),
       }}>
       <BlockchainsSection
         blockchains={blockchains}
