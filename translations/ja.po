@@ -192,7 +192,7 @@ msgstr "通知がありません"
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/Quote/Quote.tsx:194
 msgid "Slippage Error:"
-msgstr ""
+msgstr "滑りエラー:"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/Quote/Quote.tsx:218
@@ -202,7 +202,7 @@ msgstr "あなたの: {amount} {symbol}"
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/Quote/Quote.tsx:239
 msgid "Minimum required slippage is {minRequiredSlippage}"
-msgstr ""
+msgstr "最小必要スリッページは {minRequiredSlippage} です"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/Quote/QuoteSummary.tsx:22
@@ -817,7 +817,7 @@ msgstr " 入力とネットワーク料金について"
 #. js-lingui-explicit-id
 #: widget/embedded/src/utils/swap.ts:650
 msgid "Needs ≈ {requiredAmount} {symbol}{reason}, but you have {currentAmount} {symbol} in your {blockchain} wallet."
-msgstr ""
+msgstr "ニーズ ≈ {requiredAmount} {symbol}{reason} が必要ですが、{blockchain} ウォレットには {currentAmount} {symbol} があります。"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/utils/swap.ts:710

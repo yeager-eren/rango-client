@@ -17,11 +17,11 @@ export function SwapsGroup(props: PropTypes) {
 
     const loadingGroups = [
       {
-        title: 'Today',
+        title: i18n.t('Today'),
         swaps,
       },
       {
-        title: 'Last month',
+        title: i18n.t('Last month'),
         swaps,
       },
     ];
@@ -68,7 +68,7 @@ export function SwapsGroup(props: PropTypes) {
                   variant="label"
                   size="medium"
                   className="group-title">
-                  {i18n.t(group.title)}
+                  {group.title}
                 </Typography>
               </Time>
               <Divider size={4} />
@@ -83,7 +83,7 @@ export function SwapsGroup(props: PropTypes) {
                         creationTime={swap.creationTime}
                         status={swap.status}
                         onClick={onSwapClick}
-                        onlyShowTime={group.title === 'Today'}
+                        onlyShowTime={group.title === i18n.t('Today')}
                         swapTokenData={{
                           from: {
                             token: {

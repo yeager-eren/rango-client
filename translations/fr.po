@@ -192,7 +192,7 @@ msgstr "Vous n'avez aucune notification"
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/Quote/Quote.tsx:194
 msgid "Slippage Error:"
-msgstr ""
+msgstr "Erreur de glissement :"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/Quote/Quote.tsx:218
@@ -202,7 +202,7 @@ msgstr "Vous: {amount} {symbol}"
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/Quote/Quote.tsx:239
 msgid "Minimum required slippage is {minRequiredSlippage}"
-msgstr ""
+msgstr "Le glissement minimum requis est de {minRequiredSlippage}."
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/Quote/QuoteSummary.tsx:22
@@ -817,7 +817,7 @@ msgstr " pour les frais d'entrée et de réseau"
 #. js-lingui-explicit-id
 #: widget/embedded/src/utils/swap.ts:650
 msgid "Needs ≈ {requiredAmount} {symbol}{reason}, but you have {currentAmount} {symbol} in your {blockchain} wallet."
-msgstr ""
+msgstr "Besoins ≈ {requiredAmount} {symbol}{reason}, mais vous avez {currentAmount} {symbol} dans votre portefeuille {blockchain}."
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/utils/swap.ts:710
