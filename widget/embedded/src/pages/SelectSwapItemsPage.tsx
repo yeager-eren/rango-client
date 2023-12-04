@@ -48,13 +48,12 @@ export function SelectSwapItemsPage(props: PropTypes) {
     blockchain: selectedBlockchainName,
     searchFor: searchedFor,
   });
-  const checkIsTokenPinned = (token: Token) => isTokenPinned(token, type);
-  const tokensList = sortTokensByBalance(
-    tokens,
-    getBalanceFor,
-    checkIsTokenPinned
-  );
+  const pinnedTokens = tokens.filter((token) => isTokenPinned(token, type));
+  const otherTokens = tokens.filter((token) => !isTokenPinned(token, type));
 
+  const sortedOtherTokens = sortTokensByBalance(otherTokens, getBalanceFor);
+  const sortedPinnedTokens = sortTokensByBalance(pinnedTokens, getBalanceFor);
+  const tokensList = [...sortedPinnedTokens, ...sortedOtherTokens];
   // Actions
   const updateBlockchain = (blockchain: BlockchainMeta) => {
     if (type === 'source') {

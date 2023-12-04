@@ -382,19 +382,12 @@ export function formatBalance(balance: Balance | null): Balance | null {
 
 export function sortTokensByBalance(
   tokens: Token[],
-  getBalanceFor: (token: Token) => Balance | null,
-  checkIsTokenPinned: (token: Token) => boolean
+  getBalanceFor: (token: Token) => Balance | null
 ) {
   tokens.sort((token1, token2) => {
     const token1Balance = getBalanceFor(token1);
     const token2Balance = getBalanceFor(token2);
-    // Check pinned tokens
-    if (checkIsTokenPinned(token1)) {
-      return -1;
-    }
-    if (checkIsTokenPinned(token2)) {
-      return 1;
-    }
+
     if (token1Balance?.usdValue && token2Balance?.usdValue) {
       return (
         parseFloat(token2Balance.usdValue) - parseFloat(token1Balance.usdValue)
