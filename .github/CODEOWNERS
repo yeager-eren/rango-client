@@ -1,0 +1,15 @@
+# Learn how to add code owners here:
+# https://help.github.com/en/articles/about-code-owners
+
+/crowdin.yml @nikaaru
+/lingui.config.ts @yeager-eren  @nikaaru
+/.github @yeager-eren @RanGojo
+/queue-manager/* @yeager-eren @samobasquiat
+/scripts @yeager-eren
+/signers/* @RanGojo @mikasackermn
+/wallets/core @yeager-eren
+/wallets/react @yeager-eren
+/widget/embedded/store @yeager-eren @Ikari-Shinji-re
+/widget/iframe @yeager-eren @Ikari-Shinji-re
+/widget/playground @samobasquiat @mikasackermn
+/widget/ui @mikasackermn @Ikari-Shinji-re
