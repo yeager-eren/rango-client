@@ -35,7 +35,7 @@ export function SwapsGroup(props: PropTypes) {
                   variant="label"
                   size="medium"
                   className="group-title">
-                  {i18n.t(group.title)}
+                  {group.title}
                 </Typography>
               </Time>
               <Divider size={4} />
