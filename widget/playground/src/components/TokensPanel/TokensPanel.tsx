@@ -1,6 +1,8 @@
 import type { PropTypes, TokenType } from './TokensPanel.types';
+import type { Tokens } from '@rango-dev/ui';
+import type { Asset } from 'rango-sdk';
 
-import { ChainsIcon, Divider, Typography } from '@rango-dev/ui';
+import { ChainsIcon, Checkbox, Divider, Typography } from '@rango-dev/ui';
 import React, { useState } from 'react';
 
 import { tokensAreEqual } from '../../utils/common';
@@ -26,12 +28,30 @@ export function TokensPanel(props: PropTypes) {
     list: listProps,
     selectedBlockchains: selectedBlockchainsProps,
     onChange,
+    configTokens,
   } = props;
 
   const [selectedBlockchain, setSelectedBlockchain] = useState(
     selectedBlockchainsProps[0]
   );
-  const [list, setList] = useState(listProps);
+  const [list, setList] = useState(() =>
+    listProps.map((token) => {
+      return {
+        ...token,
+        checked:
+          !configTokens ||
+          selectedBlockchainsProps.some(
+            (blockchain) =>
+              configTokens[blockchain] &&
+              configTokens[blockchain].tokens.some((ct) =>
+                tokensAreEqual(ct, token)
+              )
+          ),
+      };
+    })
+  );
+
+  const [excludeList, setExcludeList] = useState(configTokens);
   const [showSelectedTokens, setShowSelectedTokens] = useState(false);
 
   const handleChange = (token: TokenType) => {
@@ -69,7 +89,66 @@ export function TokensPanel(props: PropTypes) {
   const handleConfirmAllList = () => {
     const allChecked = list.filter((item) => item.checked);
     const allSelected = listProps.length === allChecked.length;
-    onChange(allSelected ? undefined : allChecked);
+    const allExcludeList = excludeList
+      ? Object.keys(excludeList).filter((key) => excludeList[key].isExcluded)
+      : {};
+    let result: { [blockchain: string]: Tokens } | undefined =
+      allSelected && !Object.keys(allExcludeList).length ? undefined : {};
+    if (result) {
+      for (const item of allChecked) {
+        const isAllSelected =
+          getItemCountLabel(item.blockchain, list) === 'All';
+        if (!isAllSelected) {
+          const { symbol, blockchain, address } = item;
+
+          const token = {
+            symbol,
+            blockchain,
+            address,
+          };
+          const tokens: Asset[] = result[blockchain]?.tokens
+            ? [...result[blockchain].tokens, token]
+            : [token];
+          result = {
+            ...result,
+            [token.blockchain]: {
+              isExcluded:
+                excludeList && excludeList[token.blockchain]
+                  ? excludeList[token.blockchain].isExcluded
+                  : false,
+              tokens,
+            },
+          };
+        }
+      }
+    }
+
+    onChange(result && !Object.keys(result).length ? undefined : result);
+  };
+
+  const onExcludedChange = () => {
+    const list =
+      !!excludeList && excludeList[selectedBlockchain]
+        ? {
+            ...excludeList,
+            [selectedBlockchain]: {
+              isExcluded: !excludeList[selectedBlockchain].isExcluded,
+            },
+          }
+        : {
+            [selectedBlockchain]: {
+              isExcluded: true,
+            },
+          };
+    setList((prev) =>
+      prev.map((item) => {
+        if (item.blockchain === selectedBlockchain) {
+          return { ...item, checked: !item.checked };
+        }
+        return item;
+      })
+    );
+    setExcludeList(list);
   };
 
   return (
@@ -100,6 +179,21 @@ export function TokensPanel(props: PropTypes) {
           />
         ))}
       </BlockchainsList>
+      <Divider size={20} />
+      <Checkbox
+        id="new-source"
+        onCheckedChange={onExcludedChange}
+        checked={
+          excludeList && excludeList[selectedBlockchain]
+            ? excludeList[selectedBlockchain].isExcluded
+            : false
+        }
+        label={
+          <Typography size="medium" variant="body">
+            Exclude {selectedBlockchain} Tokens
+          </Typography>
+        }
+      />
       <Divider size={20} />
       <TokensList
         list={list.filter((token) => token.blockchain === selectedBlockchain)}

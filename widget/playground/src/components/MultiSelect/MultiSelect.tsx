@@ -87,6 +87,7 @@ export function MultiSelect(props: MuliSelectPropTypes) {
           ) : (
             <TokensPanel
               list={list}
+              configTokens={props.configTokens}
               onChange={(items) => {
                 props.onChange(items);
                 onBack();

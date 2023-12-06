@@ -83,21 +83,32 @@ export const createDataSlice: StateCreator<
     const config = get().config;
     const supportedTokensFromConfig =
       (options.type === 'source' ? config.from?.tokens : config.to?.tokens) ??
-      [];
+      {};
     const blockchains = get().blockchains({
       type: options.type,
     });
 
     const list = tokensFromState
       .filter((token) => {
-        // If there is a list of tokens in config, we only keep them.
         if (
-          supportedTokensFromConfig.length > 0 &&
-          !supportedTokensFromConfig.some((asset) => {
-            return tokensAreEqual(asset, token);
-          })
+          supportedTokensFromConfig &&
+          supportedTokensFromConfig[token.blockchain]
         ) {
-          return false;
+          const isExcluded =
+            supportedTokensFromConfig[token.blockchain].isExcluded;
+          const hasToken = supportedTokensFromConfig[
+            token.blockchain
+          ].tokens.some((asset) => {
+            return tokensAreEqual(asset, token);
+          });
+
+          if (!isExcluded && !hasToken) {
+            // If there is a list of tokens in the configuration and isExcluded is false, we only keep them.
+            return false;
+          } else if (isExcluded && hasToken) {
+            // If there is a list of tokens in the configuration and isExcluded is true, we don't keep them.
+            return false;
+          }
         }
 
         // If a specific blockchain has passed, we only keep that blockchain's tokens.

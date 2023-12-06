@@ -68,6 +68,19 @@ export type WidgetAffiliate = {
 };
 
 /**
+ * `Tokens`
+ *
+ * @property {boolean} isExcluded - This is a boolean property capable of removing tokens from all or a blockchain.
+ * @property {Asset[]} tokens - The `tokens` property is an array of `Asset` objects that
+ * you could use that to limit tokens to some limited ones.
+ */
+
+export type Tokens = {
+  isExcluded: boolean;
+  tokens: Asset[];
+};
+
+/**
  * `BlockchainAndTokenConfig`
  *
  * @property {string} blockchain - This property is optional and represents the default selected blockchain.
@@ -75,14 +88,14 @@ export type WidgetAffiliate = {
  * which is selected. e.g. {blockchain: 'BSC', symbol: 'BNB', address: null}
  * @property {string[]} blockchains - An optional array of strings representing the supported
  * blockchains. e.g. ['BSC','ETHEREUM']
- * @property {Asset[]} tokens - The `tokens` property is an optional array of `Asset` objects that
+ * @property {{ [blockchain: string]: Tokens }} tokens - The `tokens` property is an optional object of `blockchain` objects that
  * you could use that to limit tokens to some limited ones.
  */
 export type BlockchainAndTokenConfig = {
   blockchain?: string;
   token?: Asset;
   blockchains?: string[];
-  tokens?: Asset[];
+  tokens?: { [blockchain: string]: Tokens };
 };
 
 /**

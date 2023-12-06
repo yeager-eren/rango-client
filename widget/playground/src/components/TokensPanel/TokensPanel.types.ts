@@ -1,10 +1,12 @@
-import type { Asset, Token } from 'rango-sdk';
+import type { Tokens } from '@rango-dev/ui';
+import type { Token } from 'rango-sdk';
 
-export type TokenType = Token & { checked: boolean };
+export type TokenType = Token & { checked?: boolean };
 export interface PropTypes {
   list: TokenType[];
   selectedBlockchains: string[];
-  onChange: (items?: Asset[]) => void;
+  onChange: (items?: { [blockchain: string]: Tokens }) => void;
+  configTokens?: { [blockchain: string]: Tokens };
 }
 
 export interface TokensListProps {

@@ -1,6 +1,6 @@
 import type { Asset } from 'rango-sdk';
 
-import { useEffect, useLayoutEffect, useMemo, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 
 import { useAppStore } from '../store/AppStore';
 import { useQuoteStore } from '../store/quote';
@@ -28,22 +28,10 @@ export function useSyncStoresWithConfig() {
   const { setAffiliateRef, setAffiliatePercent, setAffiliateWallets } =
     useSettingsStore();
 
-  const fromTokensConfig = useMemo(
-    () => config?.from?.tokens,
-    [config?.from?.tokens]
-  );
-  const fromBlockchainsConfig = useMemo(
-    () => config?.from?.blockchains,
-    [config?.from?.blockchains]
-  );
-  const toTokensConfig = useMemo(
-    () => config?.to?.tokens,
-    [config?.to?.tokens]
-  );
-  const toBlockchainsConfig = useMemo(
-    () => config?.to?.blockchains,
-    [config?.to?.blockchains]
-  );
+  const fromTokensConfig = config?.from?.tokens;
+  const fromBlockchainsConfig = config?.from?.blockchains;
+  const toTokensConfig = config?.to?.tokens;
+  const toBlockchainsConfig = config?.to?.blockchains;
   const prevConfigFromToken = useRef<Asset | undefined>(undefined);
   const prevConfigToToken = useRef<Asset | undefined>(undefined);
   const prevConfigFromBlockchain = useRef<string | undefined>(undefined);
@@ -91,8 +79,17 @@ export function useSyncStoresWithConfig() {
   ]);
 
   useEffect(() => {
-    if (fromToken && fromTokensConfig) {
-      if (!fromTokensConfig.some((token) => tokensAreEqual(token, fromToken))) {
+    if (
+      fromToken &&
+      fromTokensConfig &&
+      fromTokensConfig[fromToken?.blockchain]
+    ) {
+      const isExcluded = fromTokensConfig[fromToken?.blockchain].isExcluded;
+      const hasToken = fromTokensConfig[fromToken?.blockchain].tokens.some(
+        (asset) => tokensAreEqual(asset, fromToken)
+      );
+
+      if ((!isExcluded && !hasToken) || (isExcluded && hasToken)) {
         setFromToken({ token: null });
       }
     }
@@ -105,9 +102,13 @@ export function useSyncStoresWithConfig() {
   }, [fromTokensConfig, fromBlockchainsConfig]);
 
   useEffect(() => {
-    if (toToken && toTokensConfig) {
-      if (!toTokensConfig.some((token) => tokensAreEqual(token, toToken))) {
-        setToToken({ token: null });
+    if (toToken && toTokensConfig && toTokensConfig[toToken?.blockchain]) {
+      const isExcluded = toTokensConfig[toToken?.blockchain].isExcluded;
+      const hasToken = toTokensConfig[toToken?.blockchain].tokens.some(
+        (asset) => tokensAreEqual(asset, toToken)
+      );
+      if ((!isExcluded && !hasToken) || (isExcluded && hasToken)) {
+        setFromToken({ token: null });
       }
     }
 
