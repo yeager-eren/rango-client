@@ -122,6 +122,12 @@ export const SummaryContainer = styled('div', {
       color: '$$color',
     },
   },
+  '& .basic-info__output': {
+    width: '100%',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    letterSpacing: 0.4,
+  },
 });
 
 export const Chains = styled(Collapsible.Trigger, {

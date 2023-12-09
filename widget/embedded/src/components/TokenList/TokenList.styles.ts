@@ -4,6 +4,7 @@ export const Container = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   flexGrow: 1,
+  textAlign: 'left',
 });
 
 export const Title = styled('div', {

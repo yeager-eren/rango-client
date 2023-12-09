@@ -1,6 +1,7 @@
 import { darkTheme, styled } from '../../theme';
 
 export const Container = styled('div', {
+  textAlign: 'left',
   display: 'flex',
   flexDirection: 'column',
   borderRadius: '$xs',

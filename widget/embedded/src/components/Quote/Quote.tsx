@@ -288,9 +288,9 @@ export function Quote(props: QuoteProps) {
                 <InfoIcon size={12} color="gray" />
               </FrameIcon>
               <Typography
+                className="basic-info__output"
                 size="small"
-                variant="body"
-                style={{ letterSpacing: 0.4 }}>
+                variant="body">
                 {`${roundedInput} ${
                   steps[0].from.token.displayName
                 } = ${roundedOutput} ${

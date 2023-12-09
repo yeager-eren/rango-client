@@ -8,6 +8,7 @@ import {
   TooltipArrow,
   TooltipContent,
   TooltipTypography,
+  TriggerContent,
 } from './Tooltip.styles';
 
 export function Tooltip(props: PropsWithChildren<PropTypes>) {
@@ -24,7 +25,7 @@ export function Tooltip(props: PropsWithChildren<PropTypes>) {
     <RadixTooltip.Provider delayDuration={0}>
       <RadixTooltip.Root open={open}>
         <RadixTooltip.Trigger asChild>
-          <div>{children}</div>
+          <TriggerContent>{children}</TriggerContent>
         </RadixTooltip.Trigger>
         <RadixTooltip.Portal container={container}>
           <TooltipContent side={side} sideOffset={sideOffset}>

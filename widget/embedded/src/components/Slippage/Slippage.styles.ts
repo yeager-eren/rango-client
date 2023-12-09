@@ -2,13 +2,14 @@ import { styled } from '@rango-dev/ui';
 
 export const BaseContainer = styled('div', {
   paddingTop: '$5',
-  paddingBottom: '30px',
+  paddingBottom: '22px',
 });
 
 export const SlippageChipsContainer = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'start',
+  flexWrap: 'wrap',
 });
 
 export const Head = styled('div', {
@@ -19,6 +20,6 @@ export const Head = styled('div', {
 });
 
 export const SlippageTooltipContainer = styled('div', {
-  maxWidth: '300px',
+  maxWidth: '280px',
   padding: '$10',
 });

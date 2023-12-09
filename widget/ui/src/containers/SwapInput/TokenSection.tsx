@@ -30,9 +30,9 @@ export function TokenSection(props: TokenSectionProps) {
         <div className="token-chain-name">
           {loading ? (
             <div className="token-chain-name__skeleton">
-              <Skeleton variant="text" size="large" width={92} />
+              <Skeleton variant="text" size="large" width="100%" />
               <Divider size={8} />
-              <Skeleton variant="text" size="medium" width={92} />
+              <Skeleton variant="text" size="medium" width="100%" />
             </div>
           ) : (
             <>

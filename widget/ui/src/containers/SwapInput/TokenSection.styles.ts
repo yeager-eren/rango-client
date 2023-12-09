@@ -3,6 +3,8 @@ import { darkTheme, styled } from '../../theme';
 
 export const Container = styled(Button, {
   maxWidth: '180px',
+  minWidth: '130px',
+  flexGrow: 1,
   backgroundColor: 'transparent',
   color: '$neutral700',
   '&:disabled': {
@@ -29,7 +31,7 @@ export const Container = styled(Button, {
 });
 
 export const TokenSectionContainer = styled('div', {
-  width: '10.625rem',
+  maxWidth: '10.625rem',
   padding: '$2 $5',
   display: 'flex',
   borderRadius: '$xs',
@@ -50,8 +52,11 @@ export const TokenSectionContainer = styled('div', {
     justifyContent: 'center',
     alignItems: 'start',
     paddingLeft: '$10',
+    textAlign: 'left',
+    flexGrow: 1,
   },
   '& .token-chain-name__skeleton': {
+    width: '100%',
     padding: '$5 $0',
   },
 });

@@ -8,13 +8,13 @@ type BaseSizes = Exclude<BaseProps['size'], object>;
 type TextVariant = {
   variant: 'text';
   size: BaseSizes;
-  width: number;
+  width: number | string;
 };
 
 type OtherVariant = {
   variant: Exclude<BaseVariants, 'text'>;
-  width?: number;
-  height: number;
+  width?: number | string;
+  height: number | string;
 };
 
 export type PropTypes = TextVariant | OtherVariant;

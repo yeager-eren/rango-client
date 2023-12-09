@@ -20,7 +20,7 @@ function StepSkeleton(props: { separator?: boolean }) {
           <div className="step__token-info">
             <ChainToken size="small" loading chainImage="" tokenImage="" />
             <Divider direction="horizontal" size={8} />
-            <Skeleton height={12} width={76} variant="rounded" />
+            <Skeleton height={12} width="100%" variant="rounded" />
           </div>
           <div className="step__icon-container">
             <NextIcon color="gray" size={16} />
@@ -28,7 +28,7 @@ function StepSkeleton(props: { separator?: boolean }) {
           <div className="step__token-info">
             <ChainToken size="small" loading chainImage="" tokenImage="" />
             <Divider direction="horizontal" size={8} />
-            <Skeleton height={12} width={76} variant="rounded" />
+            <Skeleton height={12} width="100%" variant="rounded" />
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@ export function QuoteSkeleton(props: PropTypes) {
         <div className="token-amount__label">
           <Skeleton height={10} width={60} variant="rounded" />
           <Divider size={4} />
-          <Skeleton height={15} width={148} variant="rounded" />
+          <Skeleton height={15} width="100%" variant="rounded" />
         </div>
       </div>
       <Skeleton height={12} width={64} variant="rounded" />
@@ -92,7 +92,7 @@ export function QuoteSkeleton(props: PropTypes) {
         </>
       )}
       <div className="chains">
-        <Skeleton height={15} width={321} variant="rounded" />
+        <Skeleton height={15} variant="rounded" width="100%" />
       </div>
 
       {expanded && (

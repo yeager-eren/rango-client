@@ -4,6 +4,7 @@ export const Container = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   overflow: 'hidden',
+  textAlign: 'left',
 });
 
 export const List = styled('ul', {

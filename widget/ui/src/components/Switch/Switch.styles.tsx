@@ -15,7 +15,6 @@ export const StyledSwitchRoot = styled(RadixSwitch.Root, {
   backgroundColor: '$$color',
   borderColor: '$$color',
   borderRadius: '99999px',
-  position: 'relative',
   padding: '0',
   cursor: 'pointer',
   transition: 'all 0.35s',
@@ -32,8 +31,6 @@ export const StyledSwitchRoot = styled(RadixSwitch.Root, {
 });
 
 export const StyledSwitchThumb = styled(RadixSwitch.Thumb, {
-  position: 'absolute',
-  top: '0',
   boxSizing: 'border-box',
   display: 'block',
   width: '12px',

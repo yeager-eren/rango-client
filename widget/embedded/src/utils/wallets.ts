@@ -514,3 +514,11 @@ export function makeTokensBalance(connectedWallets: ConnectedWallet[]) {
       return balances;
     }, {});
 }
+
+export const isFetchingBalance = (
+  connectedWallets: ConnectedWallet[],
+  blockchain: string
+) =>
+  !!connectedWallets.find(
+    (wallet) => wallet.chain === blockchain && wallet.loading
+  );

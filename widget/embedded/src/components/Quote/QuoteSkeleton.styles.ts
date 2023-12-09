@@ -50,13 +50,16 @@ export const Container = styled('div', {
     borderLeft: '1px solid $neutral700',
   },
   '& .token-amount': {
+    width: '65%',
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'start',
   },
   '& .token-amount__label': {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'start',
+    flexGrow: 1,
+    maxWidth: '148px',
   },
   '& .chains': {
     paddingTop: '$2',
@@ -76,6 +79,7 @@ export const Container = styled('div', {
     alignItems: 'start',
   },
   '& .step__tokens': {
+    flexGrow: 1,
     paddingTop: '$5',
     paddingBottom: '$10',
     display: 'flex',
@@ -84,6 +88,7 @@ export const Container = styled('div', {
   '& .step__token-info': {
     display: 'flex',
     alignItems: 'center',
+    flexGrow: 1,
   },
   '& .step__icon-container': {
     margin: '$0 $2',

@@ -14,6 +14,10 @@ import {
 import { TokenSection } from './TokenSection';
 
 export function SwapInput(props: SwapInputProps) {
+  const showBalance =
+    'balance' in props && !props.loading && !props.loadingBalance;
+  const showBalanceSkeleton =
+    'balance' in props && (props.loading || props.loadingBalance);
   return (
     <Container sharpBottomStyle={props.sharpBottomStyle}>
       <div className="label__container">
@@ -21,7 +25,7 @@ export function SwapInput(props: SwapInputProps) {
           <Typography variant="body" size="small" className="gray-text">
             {props.label}
           </Typography>
-          {'balance' in props && !props.loading && (
+          {showBalance && (
             <div className="balance">
               <Typography
                 className="gray-text"
@@ -40,7 +44,7 @@ export function SwapInput(props: SwapInputProps) {
               </MaxButton>
             </div>
           )}
-          {props.loading && (
+          {showBalanceSkeleton && (
             <div className="balance">
               <Skeleton variant="text" size="large" width={105} />
             </div>
@@ -60,9 +64,9 @@ export function SwapInput(props: SwapInputProps) {
         <div className="amount">
           {props.loading || (props.mode === 'To' && props.fetchingQuote) ? (
             <>
-              <Skeleton variant="text" size="large" width={92} />
+              <Skeleton variant="text" size="large" width="100%" />
               <Divider size={8} />
-              <Skeleton variant="text" size="medium" width={92} />
+              <Skeleton variant="text" size="medium" width="100%" />
             </>
           ) : (
             <>
@@ -90,7 +94,16 @@ export function SwapInput(props: SwapInputProps) {
                 />
               ) : (
                 <ValueTypography hasWarning={!!props.price.error}>
-                  <Typography variant="body" size="medium">
+                  <Typography
+                    variant="body"
+                    size="medium"
+                    style={{
+                      width: '100%',
+                      textAlign: 'right',
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                    }}>
                     {props.price.usdValue
                       ? `~$${props.price.usdValue}`
                       : props.price.error}

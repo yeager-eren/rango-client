@@ -44,7 +44,7 @@ export function Slippage() {
           return (
             <>
               <Chip
-                style={{ width: '64px', flexShrink: 0 }}
+                style={{ width: '64px', flexShrink: 0, marginBottom: '8px' }}
                 key={key}
                 onClick={() => {
                   if (customSlippage) {
@@ -65,6 +65,7 @@ export function Slippage() {
           max="30"
           step="0.01"
           fullWidth
+          style={{ width: '134px', marginBottom: '8px' }}
           variant="contained"
           value={customSlippage || ''}
           color="dark"
