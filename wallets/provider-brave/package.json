@@ -1,5 +1,5 @@
 {
-  "name": "@rango-dev/provider-brave",
+  "name": "@yeager-dev/provider-brave",
   "version": "0.22.1-next.5",
   "license": "MIT",
   "type": "module",

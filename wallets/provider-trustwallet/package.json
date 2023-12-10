@@ -1,5 +1,5 @@
 {
-  "name": "@rango-dev/provider-trustwallet",
+  "name": "@yeager-dev/provider-trustwallet",
   "version": "0.21.1-next.5",
   "license": "MIT",
   "type": "module",
