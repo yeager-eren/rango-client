@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/widget-playground",
-  "version": "0.13.1-next.29",
+  "version": "0.13.1-next.30",
   "license": "MIT",
   "private": true,
   "source": "public/index.html",

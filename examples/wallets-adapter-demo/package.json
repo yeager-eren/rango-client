@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/wallets-adapter-demo",
-  "version": "0.14.1-next.18",
+  "version": "0.14.1-next.19",
   "license": "MIT",
   "private": true,
   "source": "public/index.html",

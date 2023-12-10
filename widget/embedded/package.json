@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/widget-embedded",
-  "version": "0.17.1-next.29",
+  "version": "0.17.1-next.30",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",

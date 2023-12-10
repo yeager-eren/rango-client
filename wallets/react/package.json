@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/wallets-react",
-  "version": "0.8.1-next.5",
+  "version": "0.8.1-next.6",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",

@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/queue-manager-demo",
-  "version": "0.13.1-next.13",
+  "version": "0.13.1-next.14",
   "license": "MIT",
   "private": true,
   "source": "public/index.html",

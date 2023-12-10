@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/wallets-adapter",
-  "version": "0.17.1-next.18",
+  "version": "0.17.1-next.19",
   "license": "MIT",
   "type": "module",
   "module": "./dist/index.js",
