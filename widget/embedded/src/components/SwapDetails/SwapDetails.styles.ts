@@ -14,6 +14,7 @@ export const Container = styled('div', {
     alignItems: 'center',
     padding: '$10 $20',
     borderBottom: '1px solid',
+    textAlign: 'left',
     $$color: '$colors$neutral300',
     [`.${darkTheme} &`]: {
       $$color: '$colors$neutral400',

@@ -292,7 +292,10 @@ export function WalletList(props: PropTypes) {
         );
       })}
       {shouldShowMoreWallets && (
-        <WalletButton selected={false} onClick={onShowMore.bind(null)}>
+        <WalletButton
+          style={{ alignSelf: 'stretch' }}
+          selected={false}
+          onClick={onShowMore.bind(null)}>
           <Typography variant="label" size="medium">
             {i18n.t('Show more wallets')}
             <Typography variant="label" size="medium" color="$primary">

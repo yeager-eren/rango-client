@@ -38,7 +38,7 @@ export function BlockchainsSection(props: PropTypes) {
   const showMoreButton = !onlyOneItemInList && hasMoreItemsInList;
 
   return (
-    <div>
+    <div style={{ textAlign: 'left' }}>
       <Divider size={12} />
       <Typography variant="label" size="large">
         {i18n.t('Select Blockchain')}

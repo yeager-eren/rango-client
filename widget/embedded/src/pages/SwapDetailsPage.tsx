@@ -44,7 +44,8 @@ export function SwapDetailsPage() {
   };
   const swap = selectedSwap?.swap;
 
-  if (!swap || showSkeleton) {
+  // eslint-disable-next-line no-constant-condition
+  if (true) {
     return (
       <SwapDetailsPlaceholder
         requestId={requestId || ''}

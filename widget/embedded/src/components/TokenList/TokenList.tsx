@@ -72,6 +72,7 @@ const renderDesc = (props: RenderDescProps) => {
             {length > 10
               ? `${address.slice(0, 5)}...${address.slice(length - 6, length)}`
               : address}{' '}
+            <Divider size={4} direction="horizontal" />
             <ExternalLinkIcon color="gray" size={12} />
           </a>
         </div>
@@ -167,6 +168,8 @@ export function TokenList(props: PropTypes) {
               <ListItemButton
                 style={{
                   height: style?.height,
+                  width: '100%',
+                  overflow: 'hidden',
                 }}
                 tab-index={index}
                 key={`${token.symbol}${token.address}`}
@@ -229,7 +232,14 @@ export function TokenList(props: PropTypes) {
                   ) : (
                     tokenBalance && (
                       <BalanceContainer>
-                        <Typography variant="title" size="small">
+                        <Typography
+                          variant="title"
+                          size="small"
+                          style={{
+                            width: '100%',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                          }}>
                           {tokenBalance.amount}
                         </Typography>
                         <div />

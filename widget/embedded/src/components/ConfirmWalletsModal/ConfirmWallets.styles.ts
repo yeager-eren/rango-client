@@ -114,10 +114,13 @@ export const NavigateBack = styled(IconButton, {
 export const WalletsContainer = styled('div', {
   paddingTop: '$20',
   '& .wallets-list': {
-    display: 'grid',
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
     gap: '$10',
-    gridTemplateColumns: ' repeat(3, minmax(0, 1fr))',
-    alignContent: 'baseline',
+    flexWrap: 'wrap',
+    paddingTop: '$5',
+    height: '100%',
   },
 });
 

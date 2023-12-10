@@ -27,7 +27,8 @@ export const List = styled('ul', {
     '.description': {
       position: 'relative',
       height: 12,
-      width: 150,
+      width: '30%',
+      maxWidth: '150px',
       '.token-title': {
         position: 'absolute',
         transform: 'none',
@@ -39,6 +40,9 @@ export const List = styled('ul', {
         transform: 'translateY(12px)',
         visibility: 'hidden',
         '& a': {
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
           fontSize: '$12',
           lineHeight: '$16',
           $$color: '$colors$neutral600',
@@ -97,6 +101,10 @@ export const TagTitle = styled(Typography, {});
 
 export const BalanceContainer = styled('div', {
   textAlign: 'right',
+  width: '100%',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
 
   '.usd-value': {
     $$color: '$colors$neutral600',
@@ -107,7 +115,7 @@ export const BalanceContainer = styled('div', {
   },
 });
 
-export const End = styled('ul', {
+export const End = styled('div', {
   display: 'flex',
   alignItems: 'end',
   flexDirection: 'column',

@@ -4,6 +4,7 @@ export const Container = styled('div', {
   position: 'relative',
   display: 'flex',
   flexDirection: 'column',
+  textAlign: 'left',
   width: '100%',
   '& .separator': {
     height: '14px',
