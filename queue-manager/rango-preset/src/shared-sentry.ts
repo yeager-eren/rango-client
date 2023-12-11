@@ -1,6 +1,7 @@
+import type { PendingSwap, PendingSwapStep } from './shared';
+import type { WalletType } from '@yeager-dev/wallets-shared';
+
 import * as Sentry from '@sentry/browser';
-import { PendingSwap, PendingSwapStep } from './shared';
-import { WalletType } from '@rango-dev/wallets-shared';
 
 export function logRPCError(
   error: unknown,

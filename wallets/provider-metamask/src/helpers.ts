@@ -1,4 +1,4 @@
-import { getCoinbaseInstance } from '@rango-dev/wallets-shared';
+import { getCoinbaseInstance } from '@yeager-dev/wallets-shared';
 
 export function metamask() {
   const isCoinbaseWalletAvailable = !!getCoinbaseInstance();
@@ -8,10 +8,10 @@ export function metamask() {
   if (isCoinbaseWalletAvailable) {
     // Getting intance from overrided structure from coinbase.
     return getCoinbaseInstance('metamask');
-  } else {
-    if (!!ethereum && ethereum.isMetaMask) {
-      return ethereum;
-    }
   }
+  if (!!ethereum && ethereum.isMetaMask) {
+    return ethereum;
+  }
+
   return null;
 }

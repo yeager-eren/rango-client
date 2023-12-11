@@ -1,5 +1,5 @@
 import type { Wallet } from '../types';
-import type { PendingSwap } from '@rango-dev/queue-manager-rango-preset/dist/shared';
+import type { PendingSwap } from '@yeager-dev/queue-manager-rango-preset/dist/shared';
 import type {
   BestRouteResponse,
   BlockchainMeta,

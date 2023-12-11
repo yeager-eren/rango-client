@@ -1,23 +1,23 @@
-import { ExecuterActions } from '@rango-dev/queue-manager-core';
-import {
-  StepEventType,
-  SwapActionTypes,
-  SwapQueueContext,
-  SwapStorage,
-  StepExecutionEventStatus,
-} from '../types';
+import type { SwapQueueContext, SwapStorage } from '../types';
+import type { ExecuterActions } from '@yeager-dev/queue-manager-core';
+import type { CreateTransactionRequest } from 'rango-sdk';
+
+import { DEFAULT_ERROR_CODE } from '../constants';
 import {
   getCurrentStep,
-  updateSwapStatus,
-  throwOnOK,
   getCurrentStepTx,
   setCurrentStepTx,
+  throwOnOK,
+  updateSwapStatus,
 } from '../helpers';
-import { prettifyErrorMessage } from '../shared-errors';
-import { CreateTransactionRequest } from 'rango-sdk';
 import { httpService } from '../services';
 import { notifier } from '../services/eventEmitter';
-import { DEFAULT_ERROR_CODE } from '../constants';
+import { prettifyErrorMessage } from '../shared-errors';
+import {
+  StepEventType,
+  StepExecutionEventStatus,
+  SwapActionTypes,
+} from '../types';
 
 /**
  *
@@ -36,14 +36,17 @@ export async function createTransaction(
   const transaction = getCurrentStepTx(currentStep);
 
   if (!transaction) {
-    notifier({
+    const n = {
       event: {
         type: StepEventType.TX_EXECUTION,
         status: StepExecutionEventStatus.CREATE_TX,
       },
       swap,
       step: currentStep,
-    });
+    };
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    notifier(n);
     const request: CreateTransactionRequest = {
       requestId: swap.requestId,
       step: currentStep.id,
@@ -63,7 +66,9 @@ export async function createTransaction(
         httpService().createTransaction(request)
       );
 
-      if (transaction) setCurrentStepTx(currentStep, transaction);
+      if (transaction) {
+        setCurrentStepTx(currentStep, transaction);
+      }
 
       setStorage({ ...getStorage(), swapDetails: swap });
       schedule(SwapActionTypes.EXECUTE_TRANSACTION);
@@ -83,14 +88,17 @@ export async function createTransaction(
         errorCode: 'FETCH_TX_FAILED',
       });
 
-      notifier({
+      const n = {
         event: {
           type: StepEventType.FAILED,
           reason: extraMessage,
           reasonCode: updateResult.failureType ?? DEFAULT_ERROR_CODE,
         },
         ...updateResult,
-      });
+      };
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      notifier(n);
 
       actions.failed();
     }

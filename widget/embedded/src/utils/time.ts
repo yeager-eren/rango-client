@@ -1,4 +1,4 @@
-import type { PendingSwap } from '@rango-dev/queue-manager-rango-preset';
+import type { PendingSwap } from '@yeager-dev/queue-manager-rango-preset';
 
 import { i18n } from '@lingui/core';
 

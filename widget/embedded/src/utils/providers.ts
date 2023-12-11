@@ -1,5 +1,5 @@
-import { allProviders } from '@rango-dev/provider-all';
-import { ProviderInterface } from '@rango-dev/wallets-react';
+import { allProviders } from '@yeager-dev/provider-all';
+import { ProviderInterface } from '@yeager-dev/wallets-react';
 import { WidgetConfig } from '../types';
 
 export interface ProvidersOptions {
@@ -27,7 +27,7 @@ export function matchAndGenerateProviders(
 
     providers.forEach((requestedProvider) => {
       // There are two types of provider we get, the first one is only passing the wallet name
-      // then we will match the wallet name with our providers (@rango-dev/provider-*).
+      // then we will match the wallet name with our providers (@yeager-dev/provider-*).
       // The second way is passing a custom provider which implemented ProviderInterface.
       if (typeof requestedProvider === 'string') {
         const result: ProviderInterface | undefined = all.find((provider) => {

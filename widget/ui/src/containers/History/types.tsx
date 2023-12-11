@@ -1,1 +1,1 @@
-export type { PendingSwap } from '@rango-dev/queue-manager-rango-preset';
+export type { PendingSwap } from '@yeager-dev/queue-manager-rango-preset';

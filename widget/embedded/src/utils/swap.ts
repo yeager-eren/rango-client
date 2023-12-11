@@ -11,8 +11,8 @@ import type {
 import type {
   PendingSwap,
   PendingSwapStep,
-} from '@rango-dev/queue-manager-rango-preset';
-import type { WalletType } from '@rango-dev/wallets-shared';
+} from '@yeager-dev/queue-manager-rango-preset';
+import type { WalletType } from '@yeager-dev/wallets-shared';
 import type {
   BestRouteRequest,
   BestRouteResponse,
@@ -23,7 +23,7 @@ import type {
 } from 'rango-sdk';
 
 import { i18n } from '@lingui/core';
-import { PendingSwapNetworkStatus } from '@rango-dev/queue-manager-rango-preset';
+import { PendingSwapNetworkStatus } from '@yeager-dev/queue-manager-rango-preset';
 import BigNumber from 'bignumber.js';
 
 import { isValidAddress } from '../components/ConfirmWalletsModal/ConfirmWallets.helpers';

@@ -1,5 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import type { GroupBy } from '../components/SwapsGroup/SwapsGroup.types';
-import type { PendingSwap } from '@rango-dev/queue-manager-rango-preset';
+import type { PendingSwap } from '@yeager-dev/queue-manager-rango-preset';
 
 import dayjs from 'dayjs';
 

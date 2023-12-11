@@ -1,5 +1,5 @@
-import type { PendingSwapNetworkStatus } from '@rango-dev/queue-manager-rango-preset';
-import type { WalletType } from '@rango-dev/wallets-shared';
+import type { PendingSwapNetworkStatus } from '@yeager-dev/queue-manager-rango-preset';
+import type { WalletType } from '@yeager-dev/wallets-shared';
 
 export type ModalState =
   | Exclude<PendingSwapNetworkStatus, PendingSwapNetworkStatus.WaitingForQueue>

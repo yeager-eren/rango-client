@@ -1,16 +1,13 @@
-import { ExecuterActions } from '@rango-dev/queue-manager-core';
-import {
-  StepEventType,
-  SwapActionTypes,
-  SwapQueueContext,
-  SwapStorage,
-} from '../types';
+import type { SwapQueueContext, SwapStorage } from '../types';
+import type { ExecuterActions } from '@yeager-dev/queue-manager-core';
+
 import {
   getCurrentStep,
   getLastSuccessfulStep,
   isTxAlreadyCreated,
 } from '../helpers';
 import { notifier } from '../services/eventEmitter';
+import { StepEventType, SwapActionTypes } from '../types';
 
 /**
  *
@@ -47,11 +44,14 @@ export function scheduleNextStep({
 
     setStorage({ ...getStorage(), swapDetails: swap });
 
-    notifier({
+    const n = {
       event: { type: StepEventType.STARTED },
       swap,
       step: currentStep,
-    });
+    };
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    notifier(n);
 
     schedule(SwapActionTypes.CREATE_TRANSACTION);
     next();
@@ -64,7 +64,7 @@ export function scheduleNextStep({
       swapDetails: swap,
     });
 
-    notifier({
+    const n = {
       ...(isFailed
         ? {
             event: {
@@ -82,9 +82,15 @@ export function scheduleNextStep({
           }),
       swap: swap,
       step: null,
-    });
+    };
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    notifier(n);
 
-    if (isFailed) failed();
-    else next();
+    if (isFailed) {
+      failed();
+    } else {
+      next();
+    }
   }
 }

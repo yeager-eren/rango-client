@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/provider-station",
-  "version": "0.21.1-next.6",
+  "version": "0.21.1-next.18",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
@@ -24,9 +24,9 @@
     "react": ">=16"
   },
   "dependencies": {
-    "@rango-dev/signer-terra": "^0.21.1-next.1",
-    "@rango-dev/wallets-shared": "^0.21.1-next.5",
     "@terra-money/wallet-controller": "^3.11.2",
+    "@yeager-dev/signer-terra": "^0.21.1-next.1",
+    "@yeager-dev/wallets-shared": "^0.21.1-next.5",
     "rango-types": "^0.1.46"
   },
   "publishConfig": {

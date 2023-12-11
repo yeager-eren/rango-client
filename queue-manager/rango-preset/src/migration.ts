@@ -1,11 +1,9 @@
-import {
-  PersistedQueue,
-  Persistor,
-  Status,
-  DB_NAME,
-} from '@rango-dev/queue-manager-core';
+import type { PendingSwap } from './shared';
+import type { PersistedQueue } from '@yeager-dev/queue-manager-core';
+
+import { DB_NAME, Persistor, Status } from '@yeager-dev/queue-manager-core';
 import { v4 as uuid } from 'uuid';
-import { PendingSwap } from './shared';
+
 import { SwapActionTypes } from './types';
 
 const MIGRATED_KEY = 'migratedToQueueManager';
@@ -49,9 +47,9 @@ async function migration(): Promise<boolean> {
   const convertedSwaps: PersistedQueue[] = [];
 
   swaps.forEach((swap) => {
-    /* 
-      For running task we need to add some more work
-      We need to create a queue task to be run and resume the running task from queue manager.
+    /*
+     *For running task we need to add some more work
+     *We need to create a queue task to be run and resume the running task from queue manager.
      */
     if (swap.status === 'running') {
       const taskId = uuid();

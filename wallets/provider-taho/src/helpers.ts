@@ -1,9 +1,11 @@
-import { Networks } from '@rango-dev/wallets-shared';
+import { Networks } from '@yeager-dev/wallets-shared';
 
 export function taho() {
   const { tally } = window;
 
-  if (!tally) return null;
+  if (!tally) {
+    return null;
+  }
 
   return tally;
 }

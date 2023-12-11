@@ -1,6 +1,6 @@
 import type { Type } from '../../types';
 
-import { ChainsIcon, Divider, Tooltip } from '@rango-dev/ui';
+import { ChainsIcon, Divider, Tooltip } from '@yeager-dev/ui';
 import React, { useState } from 'react';
 
 import { ItemPicker } from '../../components/ItemPicker';

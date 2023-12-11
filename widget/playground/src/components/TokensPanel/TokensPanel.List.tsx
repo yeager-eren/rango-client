@@ -13,7 +13,7 @@ import {
   TextField,
   Typography,
   VirtualizedList,
-} from '@rango-dev/ui';
+} from '@yeager-dev/ui';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 
 import {

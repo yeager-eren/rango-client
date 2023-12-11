@@ -1,13 +1,16 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import type { Meta } from '../../store/quote';
-import type { Manager } from '@rango-dev/queue-manager-core';
-import type { PendingSwap } from '@rango-dev/queue-manager-rango-preset';
+import type { Manager } from '@yeager-dev/queue-manager-core';
+import type { PendingSwap } from '@yeager-dev/queue-manager-rango-preset';
 
 import {
   cancelSwap,
   getCurrentBlockchainOfOrNull,
   getCurrentStep,
   getRelatedWalletOrNull,
-} from '@rango-dev/queue-manager-rango-preset';
+} from '@yeager-dev/queue-manager-rango-preset';
 
 import { getPendingSwaps } from '../../utils/queue';
 

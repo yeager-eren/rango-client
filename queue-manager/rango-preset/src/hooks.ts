@@ -1,12 +1,14 @@
-import { useManager } from '@rango-dev/queue-manager-react';
+import type { UseQueueManagerParams } from './types';
+
+import { useManager } from '@yeager-dev/queue-manager-react';
 import { useEffect, useState } from 'react';
+
 import {
   checkWaitingForConnectWalletChange,
   checkWaitingForNetworkChange,
   retryOn,
 } from './helpers';
 import { migrated, migration } from './migration';
-import { UseQueueManagerParams } from './types';
 import { eventEmitter } from './services/eventEmitter';
 
 let isCalled = 0;
@@ -26,7 +28,9 @@ function useMigration(): {
   useEffect(() => {
     (async () => {
       // Preventing react to be called twice on Strict Mode (development)
-      if (isCalled) return;
+      if (isCalled) {
+        return;
+      }
       isCalled = 1;
 
       migration().finally(() => {
@@ -64,10 +68,10 @@ function useQueueManager(params: UseQueueManagerParams): void {
     if (params.disconnectedWallet) {
       checkWaitingForNetworkChange(manager);
 
-      /* 
-        We need to reset the state value, so if a wallet disconnected twice (after reconnect),
-        this effect will be run properly.
-      */
+      /*
+       *We need to reset the state value, so if a wallet disconnected twice (after reconnect),
+       *this effect will be run properly.
+       */
       params.clearDisconnectedWallet();
     }
   }, [params.disconnectedWallet]);

@@ -1,5 +1,5 @@
 import type { SwapActionTypes, SwapQueueContext, SwapStorage } from '../types';
-import type { ExecuterActions } from '@rango-dev/queue-manager-core';
+import type { ExecuterActions } from '@yeager-dev/queue-manager-core';
 
 import {
   ERROR_MESSAGE_DEPENDS_ON_OTHER_QUEUES,

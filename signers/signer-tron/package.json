@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/signer-tron",
-  "version": "0.21.1-next.2",
+  "version": "0.21.1-next.15",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",

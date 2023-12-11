@@ -8,7 +8,7 @@ import {
   Image,
   Skeleton,
   Typography,
-} from '@rango-dev/ui';
+} from '@yeager-dev/ui';
 import React from 'react';
 
 import { BLOCKCHAIN_LIST_SIZE } from '../../constants/configs';

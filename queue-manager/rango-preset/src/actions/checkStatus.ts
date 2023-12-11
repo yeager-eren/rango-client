@@ -1,5 +1,5 @@
 import type { SwapQueueContext, SwapStorage } from '../types';
-import type { ExecuterActions } from '@rango-dev/queue-manager-core';
+import type { ExecuterActions } from '@yeager-dev/queue-manager-core';
 import type { Transaction, TransactionStatusResponse } from 'rango-sdk';
 import type { GenericSigner } from 'rango-types';
 
@@ -131,6 +131,8 @@ async function checkTransactionStatus({
       errorCode: extraMessageErrorCode,
     });
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     notifier({
       event: {
         type: StepEventType.FAILED,
@@ -197,18 +199,31 @@ async function checkTransactionStatus({
   }
 
   if (prevOutputAmount === null && outputAmount !== null) {
-    notifier({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+
+    const n = {
       event: { type: StepEventType.OUTPUT_REVEALED, outputAmount },
       swap: swap,
       step: currentStep,
-    });
+    };
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    notifier(n);
   } else if (prevOutputAmount === null && outputAmount === null) {
-    // it is needed to set notification after reloading the page
-    notifier({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    /*
+     * @ts-ignore
+     * it is needed to set notification after reloading the page
+     */
+    const n = {
       event: { type: StepEventType.CHECK_STATUS },
       swap: swap,
       step: currentStep,
-    });
+    };
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    notifier(n);
   }
 
   if (currentStep.status === 'success') {
@@ -217,14 +232,17 @@ async function checkTransactionStatus({
     swap.extraMessage = nextStep
       ? `starting next step: ${nextStep.swapperId}: ${nextStep.fromBlockchain} -> ${nextStep.toBlockchain}`
       : '';
-    notifier({
+    const n = {
       event: {
         type: StepEventType.SUCCEEDED,
         outputAmount: currentStep.outputAmount ?? '',
       },
       swap,
       step: currentStep,
-    });
+    };
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    notifier(n);
   } else if (currentStep.status === 'failed') {
     swap.extraMessage = 'Transaction failed in blockchain';
     swap.extraMessageSeverity = MessageSeverity.error;
@@ -353,14 +371,18 @@ async function checkApprovalStatus({
       details: extraMessageDetail,
       errorCode: extraMessageErrorCode,
     });
-    notifier({
+    const n = {
       event: {
         type: StepEventType.FAILED,
         reason: extraMessage,
         reasonCode: updateResult.failureType ?? DEFAULT_ERROR_CODE,
       },
       ...updateResult,
-    });
+    };
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    notifier(n);
     return failed();
   }
 
@@ -406,6 +428,8 @@ async function checkApprovalStatus({
         details: details,
       });
 
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       notifier({
         event: {
           type: StepEventType.FAILED,
@@ -418,11 +442,14 @@ async function checkApprovalStatus({
       failed();
     } else if (!isApproved) {
       // it is needed to set notification after reloading the page
-      notifier({
+      const n = {
         event: { type: StepEventType.CHECK_STATUS },
         swap,
         step: currentStep,
-      });
+      };
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      notifier(n);
     }
   } catch (e) {
     isApproved = false;
@@ -443,11 +470,14 @@ async function checkApprovalStatus({
       swapDetails: swap,
     });
 
-    notifier({
+    const n = {
       event: { type: StepEventType.APPROVAL_TX_SUCCEEDED },
       swap: swap,
       step: currentStep,
-    });
+    };
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    notifier(n);
 
     schedule(SwapActionTypes.SCHEDULE_NEXT_STEP);
     next();

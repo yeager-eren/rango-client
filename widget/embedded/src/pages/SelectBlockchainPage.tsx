@@ -2,8 +2,8 @@ import { i18n } from '@lingui/core';
 import {
   Divider,
   getCountCategories,
-  SelectableCategoryList
-} from '@rango-dev/ui';
+  SelectableCategoryList,
+} from '@yeager-dev/ui';
 import React, { useState } from 'react';
 
 import { BlockchainList } from '../components/BlockchainList';
@@ -27,7 +27,7 @@ export function SelectBlockchainPage(props: PropTypes) {
   const fetchStatus = useAppStore().fetchStatus;
 
   const blockchains = useAppStore().blockchains({
-    type: type
+    type: type,
   });
 
   const countActiveCategories = getCountCategories(blockchains);
@@ -37,7 +37,7 @@ export function SelectBlockchainPage(props: PropTypes) {
   return (
     <Layout
       header={{
-        title: i18n.t(`Select Blockchain`)
+        title: i18n.t(`Select Blockchain`),
       }}>
       <Divider size={12} />
 

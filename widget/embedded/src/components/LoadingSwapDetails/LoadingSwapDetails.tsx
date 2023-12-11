@@ -1,5 +1,5 @@
 import { i18n } from '@lingui/core';
-import { ChainToken, Divider, Skeleton, Typography } from '@rango-dev/ui';
+import { ChainToken, Divider, Skeleton, Typography } from '@yeager-dev/ui';
 import React from 'react';
 
 import { Container, StepSeparator } from './LoadingSwapDetails.styles';

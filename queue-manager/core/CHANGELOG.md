@@ -1,3 +1,30 @@
+# [0.30.0](https://github.com/yeager-eren/rango-client/compare/queue-manager-core@0.22.0...queue-manager-core@0.30.0) (2023-12-10)
+
+
+### Bug Fixes
+
+* fix HMR for widget and playground ([8524820](https://github.com/yeager-eren/rango-client/commit/8524820f10cf0b8921f3db0c4f620ff98daa4103))
+
+
+
+# [0.29.0](https://github.com/yeager-eren/rango-client/compare/queue-manager-core@0.22.0...queue-manager-core@0.29.0) (2023-12-10)
+
+
+### Bug Fixes
+
+* fix HMR for widget and playground ([8524820](https://github.com/yeager-eren/rango-client/commit/8524820f10cf0b8921f3db0c4f620ff98daa4103))
+
+
+
+# [0.28.0](https://github.com/yeager-eren/rango-client/compare/queue-manager-core@0.22.0...queue-manager-core@0.28.0) (2023-12-10)
+
+
+### Bug Fixes
+
+* fix HMR for widget and playground ([8524820](https://github.com/yeager-eren/rango-client/commit/8524820f10cf0b8921f3db0c4f620ff98daa4103))
+
+
+
 # [0.14.0](https://github.com/rango-exchange/rango-client/compare/queue-manager-core@0.13.0...queue-manager-core@0.14.0) (2023-08-03)
 
 

@@ -1,4 +1,4 @@
-import { Button, Collapsible, styled } from '@rango-dev/ui';
+import { Button, Collapsible, styled } from '@yeager-dev/ui';
 
 export const Layout = styled('div', {
   borderRadius: '20px',

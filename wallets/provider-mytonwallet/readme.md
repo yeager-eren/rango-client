@@ -1,1 +1,1 @@
-# @rango-dev/provider-mytonwallet
+# @yeager-dev/provider-mytonwallet

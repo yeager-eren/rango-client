@@ -1,8 +1,8 @@
-import { Manager } from '@rango-dev/queue-manager-core';
+import { Manager } from '@yeager-dev/queue-manager-core';
 import {
   PendingSwapWithQueueID,
   SwapStorage,
-} from '@rango-dev/queue-manager-rango-preset';
+} from '@yeager-dev/queue-manager-rango-preset';
 
 export const getPendingSwaps = (manager: Manager | undefined) => {
   const result: PendingSwapWithQueueID[] = [];

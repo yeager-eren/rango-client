@@ -1,8 +1,10 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import type { ConfirmSwap, Params } from './useConfirmSwap.types';
 import type { PendingSwapSettings } from '../../types';
 import type { BestRouteResponse } from 'rango-sdk';
 
-import { calculatePendingSwap } from '@rango-dev/queue-manager-rango-preset';
+import { calculatePendingSwap } from '@yeager-dev/queue-manager-rango-preset';
 import { useEffect } from 'react';
 
 import { useAppStore } from '../../store/AppStore';

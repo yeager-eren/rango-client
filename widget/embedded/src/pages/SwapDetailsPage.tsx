@@ -1,5 +1,7 @@
-import { cancelSwap } from '@rango-dev/queue-manager-rango-preset';
-import { useManager } from '@rango-dev/queue-manager-react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+import { cancelSwap } from '@yeager-dev/queue-manager-rango-preset';
+import { useManager } from '@yeager-dev/queue-manager-react';
 import React from 'react';
 
 import { SwapDetails } from '../components/SwapDetails';

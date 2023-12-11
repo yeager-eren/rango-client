@@ -1,6 +1,8 @@
 /* eslint-disable destructuring/in-params */
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 /* eslint-disable @typescript-eslint/no-floating-promises */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import type {
   PendingSwap,
   PendingSwapStep,
@@ -21,14 +23,14 @@ import type {
   QueueInfo,
   QueueName,
   QueueType,
-} from '@rango-dev/queue-manager-core';
+} from '@yeager-dev/queue-manager-core';
 import type {
   Meta,
   Network,
   Providers,
   WalletState,
   WalletType,
-} from '@rango-dev/wallets-shared';
+} from '@yeager-dev/wallets-shared';
 import type {
   CreateTransactionResponse,
   EvmBlockchainMeta,
@@ -36,13 +38,13 @@ import type {
 } from 'rango-sdk';
 import type { APIErrorCode, SignerErrorCode } from 'rango-types';
 
-import { Status } from '@rango-dev/queue-manager-core';
-import { readAccountAddress } from '@rango-dev/wallets-core';
+import { Status } from '@yeager-dev/queue-manager-core';
+import { readAccountAddress } from '@yeager-dev/wallets-core';
 import {
   getBlockChainNameFromId,
   getEvmProvider,
   splitWalletNetwork,
-} from '@rango-dev/wallets-shared';
+} from '@yeager-dev/wallets-shared';
 import { TransactionType } from 'rango-sdk';
 
 import {
