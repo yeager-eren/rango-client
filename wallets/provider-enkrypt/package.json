@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/provider-enkrypt",
-  "version": "0.24.2",
+  "version": "0.24.3",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
@@ -21,8 +21,8 @@
     "lint": "eslint \"**/*.{ts,tsx}\" --ignore-path ../../.eslintignore"
   },
   "dependencies": {
-    "@yeager-dev/signer-evm": "^0.24.2",
-    "@yeager-dev/wallets-shared": "^0.24.2",
+    "@yeager-dev/signer-evm": "^0.24.3",
+    "@yeager-dev/wallets-shared": "^0.24.3",
     "rango-types": "^0.1.46"
   },
   "publishConfig": {

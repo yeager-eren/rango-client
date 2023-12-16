@@ -1,3 +1,7 @@
+## [0.11.3](https://github.com/yeager-eren/rango-client/compare/wallets-react@0.11.2...wallets-react@0.11.3) (2023-12-16)
+
+
+
 ## [0.11.2](https://github.com/yeager-eren/rango-client/compare/wallets-react@0.11.1...wallets-react@0.11.2) (2023-12-16)
 
 

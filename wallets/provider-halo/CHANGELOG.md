@@ -1,3 +1,7 @@
+## [0.24.3](https://github.com/yeager-eren/rango-client/compare/provider-halo@0.24.2...provider-halo@0.24.3) (2023-12-16)
+
+
+
 ## [0.24.2](https://github.com/yeager-eren/rango-client/compare/provider-halo@0.24.1...provider-halo@0.24.2) (2023-12-16)
 
 

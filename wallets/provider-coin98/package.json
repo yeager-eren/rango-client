@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/provider-coin98",
-  "version": "0.25.2",
+  "version": "0.25.3",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
@@ -22,9 +22,9 @@
   },
   "dependencies": {
     "@solana/web3.js": "^1.67.2",
-    "@yeager-dev/signer-evm": "^0.24.2",
-    "@yeager-dev/signer-solana": "^0.24.2",
-    "@yeager-dev/wallets-shared": "^0.24.2",
+    "@yeager-dev/signer-evm": "^0.24.3",
+    "@yeager-dev/signer-solana": "^0.24.3",
+    "@yeager-dev/wallets-shared": "^0.24.3",
     "bs58": "^5.0.0",
     "rango-types": "^0.1.46"
   },
