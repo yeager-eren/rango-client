@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/wallets-adapter",
-  "version": "0.17.1-next.87",
+  "version": "0.17.1-next.88",
   "license": "MIT",
   "type": "module",
   "module": "./dist/index.js",
@@ -24,8 +24,8 @@
   },
   "dependencies": {
     "@yeager-dev/provider-all": "^0.22.1-next.71",
-    "@yeager-dev/ui": "^0.22.1-next.83",
-    "@yeager-dev/wallets-react": "^0.8.1-next.71",
+    "@yeager-dev/ui": "^0.22.1-next.84",
+    "@yeager-dev/wallets-react": "^0.8.1-next.72",
     "@yeager-dev/wallets-shared": "^0.21.1-next.71",
     "rango-types": "^0.1.46"
   },
