@@ -175,16 +175,22 @@ export async function publishCommitAndTags(pkgs) {
     console.log({ out: output.stdout });
 
     const res = await Promise.all(
-      tags.map((tag) =>
-        execa('git', ['tag', '-a', tag, '-m', tag, commitId]).catch((error) => {
-          throw new GitError(`git tag failed. \n ${error.stderr}`);
-        })
-      )
+      tags.map((tag) => {
+        console.log({
+          command: ['git', 'tag', '-a', tag, '-m', tag, commitId].join(' '),
+        });
+
+        return execa('git', ['tag', '-a', tag, '-m', tag, commitId]).catch(
+          (error) => {
+            throw new GitError(`git tag failed. \n ${error.stderr}`);
+          }
+        );
+      })
     );
 
     console.log('------------------------------------------------');
-    console.log({ err: res.stderr });
-    console.log(res.stdout);
+    console.log({ err: res.map((r) => r.stderr) });
+    console.log(res.map((r) => r.stdout));
     console.log('------------------------------------------------');
   }
 
