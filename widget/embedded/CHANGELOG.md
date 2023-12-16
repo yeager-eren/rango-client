@@ -1,3 +1,12 @@
+# [0.19.0](https://github.com/yeager-eren/rango-client/compare/widget-embedded@0.18.2...widget-embedded@0.19.0) (2023-12-16)
+
+
+### Features
+
+* something cool ([3378982](https://github.com/yeager-eren/rango-client/commit/33789821504250e726ba8b3217f969436f617854))
+
+
+
 ## [0.18.2](https://github.com/yeager-eren/rango-client/compare/widget-embedded@0.18.1...widget-embedded@0.18.2) (2023-12-16)
 
 

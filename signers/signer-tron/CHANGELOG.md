@@ -1,3 +1,7 @@
+# [0.23.0](https://github.com/yeager-eren/rango-client/compare/signer-tron@0.22.2...signer-tron@0.23.0) (2023-12-16)
+
+
+
 ## [0.22.2](https://github.com/yeager-eren/rango-client/compare/signer-tron@0.22.1...signer-tron@0.22.2) (2023-12-16)
 
 

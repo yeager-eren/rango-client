@@ -1,3 +1,7 @@
+# [0.24.0](https://github.com/yeager-eren/rango-client/compare/ui@0.23.2...ui@0.24.0) (2023-12-16)
+
+
+
 ## [0.23.2](https://github.com/yeager-eren/rango-client/compare/ui@0.23.1...ui@0.23.2) (2023-12-16)
 
 

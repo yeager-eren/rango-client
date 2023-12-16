@@ -1,3 +1,7 @@
+# [0.16.0](https://github.com/yeager-eren/rango-client/compare/provider-walletconnect-2@0.15.2...provider-walletconnect-2@0.16.0) (2023-12-16)
+
+
+
 ## [0.15.2](https://github.com/yeager-eren/rango-client/compare/provider-walletconnect-2@0.15.1...provider-walletconnect-2@0.15.2) (2023-12-16)
 
 
