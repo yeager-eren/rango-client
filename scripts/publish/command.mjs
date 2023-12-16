@@ -62,13 +62,13 @@ async function run() {
    */
 
   logAsSection(`::group::🔨 Start building...`);
-  await build(libPkgs);
+  await build(pkgs);
   console.log('::endgroup::');
 
   // 3. Publish
   logAsSection(`::group::🚀 Start publishing...`);
   try {
-    await tryPublish(libPkgs, {
+    await tryPublish(pkgs, {
       onUpdateState: state.setState.bind(state),
     });
   } catch (e) {
