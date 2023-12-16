@@ -40,7 +40,7 @@ export async function update(pkg) {
   const npmVersion = npmVersionInfo ? npmVersionInfo[channel] : null;
 
   return {
-    version: pkg.version,
+    version: updatedPkg.version,
     githubRelease: release,
     gitTag: tag,
     npmVersion: npmVersion,
