@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/wallets-react",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
@@ -26,8 +26,8 @@
     "react-dom": "^17.0.0 || ^18.0.0"
   },
   "dependencies": {
-    "@yeager-dev/wallets-core": "^0.22.1-next.74",
-    "@yeager-dev/wallets-shared": "^0.21.1-next.72",
+    "@yeager-dev/wallets-core": "^0.22.1",
+    "@yeager-dev/wallets-shared": "^0.21.1",
     "rango-types": "^0.1.46"
   },
   "publishConfig": {

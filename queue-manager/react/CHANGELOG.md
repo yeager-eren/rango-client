@@ -1,3 +1,7 @@
+## [0.22.2](https://github.com/yeager-eren/rango-client/compare/queue-manager-react@0.22.1-next.67...queue-manager-react@0.22.2) (2023-12-16)
+
+
+
 ## [0.22.1](https://github.com/yeager-eren/rango-client/compare/queue-manager-react@0.23.0...queue-manager-react@0.22.1) (2023-12-16)
 
 

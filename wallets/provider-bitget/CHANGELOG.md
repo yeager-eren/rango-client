@@ -1,3 +1,7 @@
+## [0.18.2](https://github.com/yeager-eren/rango-client/compare/provider-bitget@0.18.1-next.69...provider-bitget@0.18.2) (2023-12-16)
+
+
+
 ## [0.18.1](https://github.com/yeager-eren/rango-client/compare/provider-bitget@0.19.0...provider-bitget@0.18.1) (2023-12-16)
 
 
