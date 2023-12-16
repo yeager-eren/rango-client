@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/provider-safepal",
-  "version": "0.21.1-next.18",
+  "version": "0.21.1-next.65",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
@@ -21,9 +21,9 @@
     "lint": "eslint \"**/*.{ts,tsx}\" --ignore-path ../../.eslintignore"
   },
   "dependencies": {
-    "@yeager-dev/signer-evm": "^0.21.1-next.1",
-    "@yeager-dev/signer-solana": "^0.21.1-next.1",
-    "@yeager-dev/wallets-shared": "^0.21.1-next.5",
+    "@yeager-dev/signer-evm": "^0.21.1-next.55",
+    "@yeager-dev/signer-solana": "^0.21.1-next.53",
+    "@yeager-dev/wallets-shared": "^0.21.1-next.59",
     "rango-types": "^0.1.46"
   },
   "publishConfig": {

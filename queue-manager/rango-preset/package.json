@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/queue-manager-rango-preset",
-  "version": "0.22.1-next.24",
+  "version": "0.22.1-next.72",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",

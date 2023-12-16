@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/wallets-adapter-demo",
-  "version": "0.14.1-next.31",
+  "version": "0.14.1-next.35",
   "license": "MIT",
   "private": true,
   "source": "public/index.html",
@@ -11,8 +11,8 @@
     "clean": "rimraf .parcel-cache && rimraf dist"
   },
   "dependencies": {
-    "@yeager-dev/provider-all": "^0.22.1-next.8",
-    "@yeager-dev/wallets-adapter": "^0.17.1-next.18",
+    "@yeager-dev/provider-all": "^0.22.1-next.44",
+    "@yeager-dev/wallets-adapter": "^0.17.1-next.54",
     "rango-sdk": "^0.1.35",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

@@ -8077,14 +8077,6 @@
     js-yaml "^3.10.0"
     tslib "^2.4.0"
 
-"@yeager-dev/queue-manager-core@^0.22.1-next.3":
-  version "0.22.1-next.4"
-  resolved "https://registry.yarnpkg.com/@yeager-dev/queue-manager-core/-/queue-manager-core-0.22.1-next.4.tgz#056713bb7d5d0036fc76c67d1f0c18e65c85cca5"
-  integrity sha512-l3GCTb41VsjZM4VTFpxKivfreCp8881c7IyMwuTVZ8jZcOtsXhcz43YDt35pOEAC+Hqmv6YkTZaEP5y+KSMLaA==
-  dependencies:
-    idb "^7.1.1"
-    uuid "^9.0.0"
-
 "@zkochan/js-yaml@0.0.6":
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/@zkochan/js-yaml/-/js-yaml-0.0.6.tgz#975f0b306e705e28b8068a07737fa46d3fc04826"

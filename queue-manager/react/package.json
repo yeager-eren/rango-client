@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/queue-manager-react",
-  "version": "0.22.1-next.16",
+  "version": "0.22.1-next.63",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",

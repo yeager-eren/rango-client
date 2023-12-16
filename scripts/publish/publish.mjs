@@ -43,7 +43,6 @@ export async function tryPublish(pkgs, { onUpdateState }) {
  */
 async function publishTask(pkg, { onUpdateState }) {
   console.log(chalk.green('[1/4]'), `Publish ${pkg.name} to npm`);
-  throw new Error('my error');
   await publishOnNpm(pkg);
   onUpdateState(pkg.name, 'npmVersion', pkg.version);
 

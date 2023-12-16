@@ -1,5 +1,6 @@
 import chalk from 'chalk';
 import { should } from '../common/features.mjs';
+import { addFileToStage } from '../common/git.mjs';
 
 /**
  *

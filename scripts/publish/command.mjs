@@ -32,6 +32,8 @@ async function run() {
    * We are using esbuild so don't need to do anything.
    * but if we need, the potential solution is filtering parcel apps and run them secquentially.
    */
+
+  // TODO: uncomment next line.
   //   await build(pkgs);
 
   // 2. Publish

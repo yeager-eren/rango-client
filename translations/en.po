@@ -16,7 +16,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:37
 #: widget/embedded/src/components/TokenList/TokenList.tsx:125
-#: widget/embedded/src/pages/HistoryPage.tsx:95
+#: widget/embedded/src/pages/HistoryPage.tsx:97
 #: widget/embedded/src/pages/LiquiditySourcePage.tsx:126
 msgid "No results found"
 msgstr "No results found"
@@ -24,7 +24,7 @@ msgstr "No results found"
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:38
 #: widget/embedded/src/components/TokenList/TokenList.tsx:126
-#: widget/embedded/src/pages/HistoryPage.tsx:97
+#: widget/embedded/src/pages/HistoryPage.tsx:99
 #: widget/embedded/src/pages/LiquiditySourcePage.tsx:127
 msgid "Try using different keywords"
 msgstr "Try using different keywords"
@@ -603,12 +603,12 @@ msgid "You get"
 msgstr "You get"
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/HistoryPage.tsx:78
+#: widget/embedded/src/pages/HistoryPage.tsx:80
 msgid "History"
 msgstr "History"
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/HistoryPage.tsx:85
+#: widget/embedded/src/pages/HistoryPage.tsx:87
 msgid "Search Transaction"
 msgstr "Search Transaction"
 
