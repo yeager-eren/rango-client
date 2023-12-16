@@ -8,7 +8,6 @@ import { detectChannel } from './github.mjs';
  *
  */
 const config = {
-  // TODO: only prod
   generateChangelog: ['prod'],
   checkGithubRelease: ['prod'],
   checkGitTags: ['prod'],

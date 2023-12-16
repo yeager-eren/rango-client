@@ -29,8 +29,13 @@ async function run() {
   const affectedPkgs = await getAffectedPackages();
   const libPkgs = affectedPkgs.filter((pkg) => !pkg.private);
   const clientPkgs = affectedPkgs.filter((pkg) => pkg.private);
-  const state = new State(libPkgs);
 
+  if (libPkgs.length === 0) {
+    console.log('No library has changed. Skip.');
+    process.exit(0);
+  }
+
+  const state = new State(libPkgs);
   const updateTasks = libPkgs.map((pkg) => {
     return update(pkg).then((pkgState) => {
       state.setState(pkg.name, 'gitTag', pkgState.gitTag);
@@ -56,35 +61,31 @@ async function run() {
    */
 
   logAsSection(`::group::🔨 Start building...`);
-  // TODO: uncomment next line.
-  //   await build(pkgs);
+  await build(libPkgs);
   console.log('::endgroup::');
 
   // 3. Publish
   logAsSection(`::group::🚀 Start publishing...`);
-  if (pkgs.length > 0) {
-    try {
-      await tryPublish(pkgs, {
-        onUpdateState: state.setState.bind(state),
-      });
-    } catch (e) {
-      console.error(e);
+  try {
+    await tryPublish(libPkgs, {
+      onUpdateState: state.setState.bind(state),
+    });
+  } catch (e) {
+    console.error(e);
 
-      /** @type {import('../common/typedefs.mjs').Package | undefined} */
-      const pkg = e.cause.pkg;
-      if (!pkg) {
-        console.error(
-          "🚨 The error hasn't thrown `pkg`. Here is more information to debug"
-        );
-        console.log(state.toJSON());
-      } else {
-        // Ignoring error since it's possible to file hasn't changed yet.
-        await addPkgFileChangesToStage(pkg).catch(console.warn);
-      }
+    /** @type {import('../common/typedefs.mjs').Package | undefined} */
+    const pkg = e.cause.pkg;
+    if (!pkg) {
+      console.error(
+        "🚨 The error hasn't thrown `pkg`. Here is more information to debug"
+      );
+      console.log(state.toJSON());
+    } else {
+      // Ignoring error since it's possible to file hasn't changed yet.
+      await addPkgFileChangesToStage(pkg).catch(console.warn);
     }
-  } else {
-    console.log('Skipped.');
   }
+
   console.log('::endgroup::');
 
   // 4. Tag and Push

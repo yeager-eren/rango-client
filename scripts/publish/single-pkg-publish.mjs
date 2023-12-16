@@ -12,7 +12,6 @@ import { generateChangelog } from '../common/changelog.mjs';
 import { makeGithubRelease } from '../common/github.mjs';
 
 export async function publish(changedPkg, channel) {
-  // TODO: If affected pkg, commit a fix: upgrade pkg
   console.log(`::group::Publish ${changedPkg.name} (${channel})`);
   performance.mark(`start-publish-${changedPkg.name}`);
 
