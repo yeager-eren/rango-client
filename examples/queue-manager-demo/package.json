@@ -16,9 +16,9 @@
   },
   "dependencies": {
     "@yeager-dev/provider-all": "^0.22.1-next.44",
-    "@yeager-dev/queue-manager-rango-preset": "^0.22.1-next.80",
+    "@yeager-dev/queue-manager-rango-preset": "^0.22.1-next.81",
     "@yeager-dev/queue-manager-react": "^0.22.1-next.38",
-    "@yeager-dev/wallets-react": "^0.8.1-next.72",
+    "@yeager-dev/wallets-react": "^0.8.1-next.73",
     "@yeager-dev/wallets-shared": "^0.21.1-next.59",
     "bignumber.js": "^9.1.1",
     "ethers": "^5.7.2",
