@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/signer-starknet",
-  "version": "0.21.1-next.63",
+  "version": "0.21.1-next.66",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",

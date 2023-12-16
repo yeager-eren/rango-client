@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/signer-evm",
-  "version": "0.21.1-next.66",
+  "version": "0.21.1-next.69",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",

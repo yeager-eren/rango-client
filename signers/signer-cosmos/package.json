@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/signer-cosmos",
-  "version": "0.21.1-next.65",
+  "version": "0.21.1-next.68",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",

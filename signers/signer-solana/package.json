@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/signer-solana",
-  "version": "0.21.1-next.64",
+  "version": "0.21.1-next.67",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
