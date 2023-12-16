@@ -48,8 +48,10 @@ async function run() {
   await Promise.all(updateTasks);
 
   const pkgs = state.list();
+  const pkgStates = pkgs.map((pkg) => state.getState(pkg.name));
+  console.log({ pkgStates });
+  throwIfUnableToProceed(pkgStates);
 
-  throwIfUnableToProceed(pkgs.map((pkg) => state.getState(pkg.name)));
   console.log('::endgroup::');
 
   // 2. Build all packacges
