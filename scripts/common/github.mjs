@@ -134,7 +134,6 @@ export function checkEnvironments() {
     { name: 'check versions on npm', value: should('checkNpm') },
   ];
 
-  logAsSection('🔍 Checking environments...');
   console.log('Environments Variables:');
   console.table(envs);
   console.log('Features:');

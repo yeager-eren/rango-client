@@ -19,11 +19,31 @@ const root = join(printDirname(), '..', '..');
 export async function analyzeChangesEffects(changedPkgs) {
   const nxGraph = await exportNx();
   const graph = new Graph();
-  nxToGraph(nxGraph, graph);
+  const { nodesCount, edgesCount } = nxToGraph(nxGraph, graph);
   graph.onlyAffected(changedPkgs.map((pkg) => pkg.name));
   const sortedList = graph.sort();
   const sortedPackagesToPublish = await packageNamesToPackagesWithInfo([
     ...sortedList,
+  ]);
+
+  console.table([
+    {
+      name: 'Nodes',
+      value: nodesCount,
+    },
+    {
+      name: 'edges',
+      value: edgesCount,
+    },
+    {
+      name: 'Are we good?',
+      // Note: these two numbers should be equal.
+      value: nodesCount === edgesCount ? 'yes' : 'no',
+    },
+    {
+      name: 'order',
+      value: sortedPackagesToPublish.map((pkg) => pkg.name).join(','),
+    },
   ]);
 
   return sortedPackagesToPublish;

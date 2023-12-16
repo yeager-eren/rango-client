@@ -19,9 +19,12 @@ import {
 import { update } from './package.mjs';
 
 async function run() {
+  logAsSection('::group::🔍 Checking environments...');
   checkEnvironments();
+  console.log('::endgroup::');
 
   // 1. Detect affected packages and increase version
+  logAsSection('::group::🔍 Anlyzing dependencies...');
   const affectedPkgs = await getAffectedPackages();
   const libPkgs = affectedPkgs.filter((pkg) => !pkg.private);
   const clientPkgs = affectedPkgs.filter((pkg) => pkg.private);
@@ -40,6 +43,7 @@ async function run() {
   const pkgs = state.list();
 
   throwIfUnableToProceed(pkgs.map((pkg) => state.getState(pkg.name)));
+  console.log('::endgroup::');
 
   // 2. Build all packacges
   /**
@@ -50,29 +54,37 @@ async function run() {
    * but if we need, the potential solution is filtering parcel apps and run them secquentially.
    */
 
+  logAsSection(`::group::🔨 Start building...`);
   // TODO: uncomment next line.
   //   await build(pkgs);
+  console.log('::endgroup::');
 
   // 3. Publish
-  try {
-    await tryPublish(pkgs, {
-      onUpdateState: state.setState.bind(state),
-    });
-  } catch (e) {
-    console.error(e);
+  logAsSection(`::group::🚀 Start publishing...`);
+  if (pkgs.length > 0) {
+    try {
+      await tryPublish(pkgs, {
+        onUpdateState: state.setState.bind(state),
+      });
+    } catch (e) {
+      console.error(e);
 
-    /** @type {import('../common/typedefs.mjs').Package | undefined} */
-    const pkg = e.cause.pkg;
-    if (!pkg) {
-      console.error(
-        "🚨 The error hasn't thrown `pkg`. Here is more information to debug"
-      );
-      console.log(state.toJSON());
-    } else {
-      // Ignoring error since it's possible to file hasn't changed yet.
-      await addPkgFileChangesToStage(pkg).catch(console.warn);
+      /** @type {import('../common/typedefs.mjs').Package | undefined} */
+      const pkg = e.cause.pkg;
+      if (!pkg) {
+        console.error(
+          "🚨 The error hasn't thrown `pkg`. Here is more information to debug"
+        );
+        console.log(state.toJSON());
+      } else {
+        // Ignoring error since it's possible to file hasn't changed yet.
+        await addPkgFileChangesToStage(pkg).catch(console.warn);
+      }
     }
+  } else {
+    console.log('Skipped.');
   }
+  console.log('::endgroup::');
 
   // 4. Tag and Push
 
@@ -87,7 +99,7 @@ async function run() {
   });
 
   logAsSection(
-    '🏷️ Tagging and commit...',
+    '::group::🏷️ Tagging and commit...',
     `${listPkgsForTag.length} packages for tagging.`
   );
   if (listPkgsForTag.length > 0) {
@@ -105,17 +117,20 @@ async function run() {
     await publishCommitAndTags(listPkgsForTag);
     await pushToRemote();
   } else {
-    console.log('Skipping...');
+    console.log('Skipped.');
   }
 
+  console.log('::endgroup::');
+
   // 5. Report
-  console.log('Report:');
+  console.log('::group::📊 Report');
   console.table(
     pkgs.map((pkg) => ({
       name: pkg.name,
       ...state.getState(pkg.name),
     }))
   );
+  console.log('::endgroup::');
 }
 
 run().catch((e) => {

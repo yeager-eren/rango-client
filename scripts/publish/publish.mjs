@@ -18,7 +18,6 @@ import {
  * @param {import("../common/utils.mjs").Package[]} pkgs
  */
 export async function tryPublish(pkgs, { onUpdateState }) {
-  logAsSection(`🚀 Start publishing...`);
 
   const tasks = pkgs.map(
     (pkg) => () =>

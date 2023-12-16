@@ -8,7 +8,6 @@ import { NxBuildFailedError } from '../common/errors.mjs';
  *
  */
 export async function build(pkgs) {
-  logAsSection(`🔨 Start building...`, pkgs.map((pkg) => pkg.name).join(','));
   performance.mark(`start-publish-build`);
 
   const projects = pkgs.map((pkg) => pkg.name).join(',');
