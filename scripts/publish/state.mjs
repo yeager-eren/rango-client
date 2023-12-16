@@ -1,10 +1,5 @@
 import { update } from './package.mjs';
 
-/**
- *
- * NOTE: For publish, we only consider `private: false` packages (client will not be included)
- */
-
 export class State {
   /** @type {import('../common/typedefs.mjs').Package[]}  */
   pkgs = [];
@@ -39,28 +34,6 @@ export class State {
       };
     });
   }
-
-  // rollback(pkg, actions) {
-  //   const version = this.getState(pkg.name, 'version');
-  //   const gitTag = this.getState(pkg.name, 'gitTag');
-  //   const githubRelease = this.getState(pkg.name, 'githubRelease');
-  //   const npmVersion = this.getState(pkg.name, 'npmVersion');
-
-  //   if (!npmVersion) {
-  //     if (!actions.onNpm) {
-  //       console.warn('`onNpm` should be defined for rollback.');
-  //     }
-  //   } else if (!githubRelease) {
-  //   } else {
-  //     console.log('Unhandled state.', this.toJSON());
-  //   }
-  // }
-
-  // finalize() {
-  //   // git publish commit
-  //   // git tags
-  //   // git push
-  // }
 
   /**
    *

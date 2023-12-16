@@ -45,7 +45,7 @@ export async function exportNx() {
 }
 
 /**
- *
+ * NOTE: For publish, we only consider `private: false` packages (client will not be included)
  * @returns {Promise<import('./typedefs.mjs').Package[]>}
  */
 export async function getAffectedPackages() {
