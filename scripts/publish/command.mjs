@@ -7,7 +7,7 @@ import { checkEnvironments } from '../common/github.mjs';
 import { tryPublish } from './publish.mjs';
 import { getAffectedPackages } from '../common/repository.mjs';
 import { addPkgFileChangesToStage } from './utils.mjs';
-import { publishCommitAndTags } from '../common/git.mjs';
+import { publishCommitAndTags, pushToRemote } from '../common/git.mjs';
 
 async function run() {
   // 0. Check prerequisite
@@ -70,7 +70,7 @@ async function run() {
   });
 
   await publishCommitAndTags(listPkgsForTag);
-  await pushToRemote(branch);
+  await pushToRemote();
 
   // 4. Report
   console.log('Report:');
