@@ -1,15 +1,15 @@
 import {
   buildPackages,
-  generateChangelog,
   increaseVersionForMain,
   increaseVersionForNext,
   logAsSection,
-  makeGithubRelease,
   publishPackages,
 } from './utils.mjs';
 import { execa } from 'execa';
 import { performance } from 'node:perf_hooks';
 import { groupPackagesForDeploy } from '../deploy/utils.mjs';
+import { generateChangelog } from '../common/changelog.mjs';
+import { makeGithubRelease } from '../common/github.mjs';
 
 export async function publish(changedPkg, channel) {
   // TODO: If affected pkg, commit a fix: upgrade pkg
