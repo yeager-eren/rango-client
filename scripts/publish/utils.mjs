@@ -1,6 +1,8 @@
 import chalk from 'chalk';
+import { UnableToProceedPublishError } from '../common/errors.mjs';
 import { should } from '../common/features.mjs';
 import { addFileToStage } from '../common/git.mjs';
+import { detectChannel } from '../common/github.mjs';
 
 /**
  *
@@ -41,20 +43,20 @@ export function logAsSection(title, sub = '') {
 /**
  * Get state and check some conditions on the state to make sure we can publish.
  *
- * @param {import('./typedefs.mjs').PackageState[]} next
+ * @param {import('./typedefs.mjs').PackageState[]} pkgsState
  */
-export function throwIfUnableToProceed(next) {
+export function throwIfUnableToProceed(pkgsState) {
   const channel = detectChannel();
 
   if (channel === 'prod') {
     // TODO: it's better to check `npm` version should be less than `package.version`
-    const alreadyPublishedPackages = next.filter(
+    const alreadyPublishedPackages = pkgsState.filter(
       (pkgState) => pkgState.package.version === pkgState.npm
     );
-    const alreadyHasGithubReleasePackages = next.filter(
+    const alreadyHasGithubReleasePackages = pkgsState.filter(
       (pkgState) => !!pkgState.release
     );
-    const alreadyHasGitTagPackages = next.filter((pkgState) => !!pkgState.tag);
+    const alreadyHasGitTagPackages = pkgsState.filter((pkgState) => !!pkgState.tag);
 
     if (alreadyPublishedPackages.length) {
       const list = alreadyPublishedPackages.map((pkg) => pkg.npm).join(',');
