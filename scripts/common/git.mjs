@@ -174,13 +174,18 @@ export async function publishCommitAndTags(pkgs) {
     console.log({ err: output.stderr });
     console.log({ out: output.stdout });
 
-    await Promise.all(
+    const res = await Promise.all(
       tags.map((tag) =>
         execa('git', ['tag', '-a', tag, '-m', tag, commitId]).catch((error) => {
           throw new GitError(`git tag failed. \n ${error.stderr}`);
         })
       )
     );
+
+    console.log('------------------------------------------------');
+    console.log({ err: res.stderr });
+    console.log(res.stdout);
+    console.log('------------------------------------------------');
   }
 
   return tags;
