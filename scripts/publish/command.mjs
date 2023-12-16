@@ -67,6 +67,7 @@ async function run() {
 
   console.log('::endgroup::');
 
+  return;
   // 2. Build all packacges
   /**
    * IMPORTANT NOTE:
