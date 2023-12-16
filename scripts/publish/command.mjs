@@ -49,7 +49,6 @@ async function run() {
 
   const pkgs = state.list();
   const pkgStates = pkgs.map((pkg) => state.getState(pkg.name));
-  console.log({ pkgStates });
   throwIfUnableToProceed(pkgStates);
 
   console.log('::endgroup::');
