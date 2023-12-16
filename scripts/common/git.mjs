@@ -70,7 +70,7 @@ export async function gitTagsFor(packages) {
 /**
  *
  * @param {boolean} useTag - if true, we looking up for a git relase tag, if not, we use commit message.
- * @returns {string} commit hash
+ * @returns {Promise<string>} commit hash
  */
 export async function getLastReleasedHashId(useTag = false) {
   if (useTag) {
@@ -132,6 +132,8 @@ export async function getChangedPackagesFor(channel) {
   // Detect last release and what packages has changed since then.
   const useTagForDetectLastRelease = channel === 'prod';
   const baseCommit = await getLastReleasedHashId(useTagForDetectLastRelease);
+
+  console.log({ channel, useTagForDetectLastRelease, baseCommit });
   const changedPkgs = await changed(baseCommit);
 
   return changedPkgs;

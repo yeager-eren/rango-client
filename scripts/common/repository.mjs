@@ -76,8 +76,6 @@ export async function getAffectedPackages() {
   const channel = detectChannel();
   // the source code for these packages have been updated.
   const onlyChangedPackages = await getChangedPackagesFor(channel);
-
-  console.log({ onlyChangedPackages });
   // changes will affect other packages as well, this is the full list.
   const allAffectedPackages = await analyzeChangesEffects(onlyChangedPackages);
 
