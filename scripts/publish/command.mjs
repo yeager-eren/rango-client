@@ -94,9 +94,9 @@ async function run() {
   // 5. Report
   console.log('Report:');
   console.table(
-    next.map((pkgState) => ({
-      name: pkgState.package.name,
-      version: pkgState.package.version,
+    pkgs.map((pkg) => ({
+      name: pkg.name,
+      ...state.getState(pkg.name),
     }))
   );
 }
