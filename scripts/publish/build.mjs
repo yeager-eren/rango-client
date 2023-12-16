@@ -1,5 +1,5 @@
 import { execa } from 'execa';
-import { NxBuildFailedError } from '../common/errors.mjs';
+import { NxError } from '../common/errors.mjs';
 
 /**
  * Get a list of packages to run `build` on them.
@@ -21,7 +21,7 @@ export async function build(pkgs) {
   ])
     .then(({ stdout }) => stdout)
     .catch((err) => {
-      throw new NxBuildFailedError(err.stderr + err.stdout);
+      throw new NxError(err.stderr + err.stdout);
     });
 
   performance.mark(`end-publish-build`);
