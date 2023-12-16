@@ -36,13 +36,12 @@ async function run() {
     process.exit(0);
   }
 
+  console.log('current state is this:');
+  console.table(libPkgs);
+
   const state = new State(libPkgs);
   const updateTasks = libPkgs.map((pkg) => {
     return update(pkg).then((pkgState) => {
-      console.log(
-        `updating state for ${pkg.name} (${pkg.version}) to`,
-        pkgState
-      );
       state.setState(pkg.name, 'gitTag', pkgState.gitTag);
       state.setState(pkg.name, 'githubRelease', pkgState.githubRelease);
       state.setState(pkg.name, 'npmVersion', pkgState.npmVersion);

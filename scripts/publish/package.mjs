@@ -22,14 +22,6 @@ export async function update(pkg) {
       : await increaseVersionForNext(pkg);
 
   const tag = should('checkGitTags') ? await gitTagFor(updatedPkg) : null;
-  console.log({
-    name: pkg.name,
-    tag,
-    sh: should('checkGitTags'),
-    channel,
-    pkg,
-    updatedPkg,
-  });
 
   const release = should('checkGithubRelease')
     ? await githubReleaseFor(updatedPkg)

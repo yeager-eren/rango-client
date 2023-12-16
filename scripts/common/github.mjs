@@ -68,7 +68,7 @@ export async function makeGithubRelease(pkg) {
 export async function githubReleaseFor(pkg) {
   try {
     const release = await getGithubReleaseFor(pkg);
-    return release;
+    return release.tagName;
   } catch (err) {
     if (err instanceof GithubReleaseNotFoundError) {
       return null;
