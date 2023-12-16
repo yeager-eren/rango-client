@@ -18,6 +18,7 @@ import {
   pushToRemote,
 } from '../common/git.mjs';
 import { update } from './package.mjs';
+import { build } from './build.mjs';
 
 async function run() {
   logAsSection('::group::🔍 Checking environments...');
