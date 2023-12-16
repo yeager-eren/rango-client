@@ -65,7 +65,6 @@ async function run() {
     })
   );
 
-  throw new Error('Manual failed.');
   console.log('::endgroup::');
 
   // 2. Build all packacges
