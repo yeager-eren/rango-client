@@ -9,6 +9,7 @@ import { getAffectedPackages } from '../common/repository.mjs';
 import {
   addPkgFileChangesToStage,
   logAsSection,
+  sequentiallyRun,
   throwIfUnableToProceed,
 } from './utils.mjs';
 import {
@@ -108,9 +109,9 @@ async function run() {
      * But we updated their package json to use the latest version of published libs
      * So we should includes them in our commit.
      */
-    await Promise.all(
-      clientPkgs.map((pkg) =>
-        addFileToStage(`${pkg.location}`).catch(console.warn)
+    await sequentiallyRun(
+      clientPkgs.map(
+        (pkg) => () => addFileToStage(`${pkg.location}`).catch(console.warn)
       )
     );
 
