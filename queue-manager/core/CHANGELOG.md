@@ -1,3 +1,7 @@
+## [0.25.2](https://github.com/yeager-eren/rango-client/compare/queue-manager-core@0.25.1...queue-manager-core@0.25.2) (2023-12-16)
+
+
+
 ## [0.25.1](https://github.com/yeager-eren/rango-client/compare/queue-manager-core@0.25.0...queue-manager-core@0.25.1) (2023-12-16)
 
 

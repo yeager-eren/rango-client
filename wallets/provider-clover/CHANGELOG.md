@@ -1,3 +1,7 @@
+## [0.25.2](https://github.com/yeager-eren/rango-client/compare/provider-clover@0.25.1...provider-clover@0.25.2) (2023-12-16)
+
+
+
 ## [0.25.1](https://github.com/yeager-eren/rango-client/compare/provider-clover@0.25.0...provider-clover@0.25.1) (2023-12-16)
 
 

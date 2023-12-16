@@ -1,3 +1,7 @@
+## [0.20.2](https://github.com/yeager-eren/rango-client/compare/wallets-adapter@0.20.1...wallets-adapter@0.20.2) (2023-12-16)
+
+
+
 ## [0.20.1](https://github.com/yeager-eren/rango-client/compare/wallets-adapter@0.20.0...wallets-adapter@0.20.1) (2023-12-16)
 
 

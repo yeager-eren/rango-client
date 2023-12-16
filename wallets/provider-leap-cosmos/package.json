@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/provider-leap-cosmos",
-  "version": "0.24.1",
+  "version": "0.24.2",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
@@ -21,8 +21,8 @@
     "lint": "eslint \"**/*.{ts,tsx}\" --ignore-path ../../.eslintignore"
   },
   "dependencies": {
-    "@yeager-dev/signer-cosmos": "^0.24.1",
-    "@yeager-dev/wallets-shared": "^0.24.1",
+    "@yeager-dev/signer-cosmos": "^0.24.2",
+    "@yeager-dev/wallets-shared": "^0.24.2",
     "rango-types": "^0.1.46"
   },
   "publishConfig": {

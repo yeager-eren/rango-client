@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/signer-cosmos",
-  "version": "0.24.1",
+  "version": "0.24.2",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",

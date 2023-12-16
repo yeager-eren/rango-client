@@ -15,11 +15,11 @@
     "rango-sdk": "^0.1.35"
   },
   "dependencies": {
-    "@yeager-dev/provider-all": "^0.25.1",
-    "@yeager-dev/queue-manager-rango-preset": "^0.25.1",
-    "@yeager-dev/queue-manager-react": "^0.25.1",
-    "@yeager-dev/wallets-react": "^0.11.1",
-    "@yeager-dev/wallets-shared": "^0.24.1",
+    "@yeager-dev/provider-all": "^0.25.2",
+    "@yeager-dev/queue-manager-rango-preset": "^0.25.2",
+    "@yeager-dev/queue-manager-react": "^0.25.2",
+    "@yeager-dev/wallets-react": "^0.11.2",
+    "@yeager-dev/wallets-shared": "^0.24.2",
     "bignumber.js": "^9.1.1",
     "ethers": "^5.7.2",
     "rango-sdk-basic": "^0.1.34",

@@ -1,3 +1,7 @@
+## [0.24.2](https://github.com/yeager-eren/rango-client/compare/wallets-shared@0.24.1...wallets-shared@0.24.2) (2023-12-16)
+
+
+
 ## [0.24.1](https://github.com/yeager-eren/rango-client/compare/wallets-shared@0.24.0...wallets-shared@0.24.1) (2023-12-16)
 
 
