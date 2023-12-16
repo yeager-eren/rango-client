@@ -156,7 +156,7 @@ export async function publishCommitAndTags(pkgs) {
   const message = subject + list;
 
   // Making a publish commit
-  await execa('git', [
+  const output = await execa('git', [
     'commit',
     '-m',
     message,
@@ -169,6 +169,10 @@ export async function publishCommitAndTags(pkgs) {
   // Creating annotated tags based on packages
   if (!skipGitTagging) {
     const commitId = await getLastCommitId();
+
+    console.log({ commitId });
+    console.log({ err: output.stderr });
+    console.log({ out: output.stdout });
 
     await Promise.all(
       tags.map((tag) =>
