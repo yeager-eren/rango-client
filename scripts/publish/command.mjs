@@ -11,7 +11,11 @@ import {
   logAsSection,
   throwIfUnableToProceed,
 } from './utils.mjs';
-import { publishCommitAndTags, pushToRemote } from '../common/git.mjs';
+import {
+  addFileToStage,
+  publishCommitAndTags,
+  pushToRemote,
+} from '../common/git.mjs';
 import { update } from './package.mjs';
 
 async function run() {
@@ -19,9 +23,11 @@ async function run() {
 
   // 1. Detect affected packages and increase version
   const affectedPkgs = await getAffectedPackages();
-  const state = new State(affectedPkgs);
+  const libPkgs = affectedPkgs.filter((pkg) => !pkg.private);
+  const clientPkgs = affectedPkgs.filter((pkg) => pkg.private);
+  const state = new State(libPkgs);
 
-  const updateTasks = affectedPkgs.map((pkg) => {
+  const updateTasks = libPkgs.map((pkg) => {
     return update(pkg).then((pkgState) => {
       state.setState(pkg.name, 'gitTag', pkgState.gitTag);
       state.setState(pkg.name, 'githubRelease', pkgState.githubRelease);
@@ -85,6 +91,17 @@ async function run() {
     `${listPkgsForTag.length} packages for tagging.`
   );
   if (listPkgsForTag.length > 0) {
+    /**
+     * We don't need to tag and mention them while publishing, they have a separate github action.
+     * But we updated their package json to use the latest version of published libs
+     * So we should includes them in our commit.
+     */
+    await Promise.all(
+      clientPkgs.map((pkg) =>
+        addFileToStage(`${pkg.location}`).catch(console.warn)
+      )
+    );
+
     await publishCommitAndTags(listPkgsForTag);
     await pushToRemote();
   } else {

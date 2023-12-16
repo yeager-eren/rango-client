@@ -54,7 +54,6 @@ export async function getAffectedPackages() {
   const onlyChangedPackages = await getChangedPackagesFor(channel);
   // changes will affect other packages as well, this is the full list.
   const allAffectedPackages = await analyzeChangesEffects(onlyChangedPackages);
-  const targetPackages = allAffectedPackages.filter((pkg) => !pkg.private);
 
-  return targetPackages;
+  return allAffectedPackages;
 }
