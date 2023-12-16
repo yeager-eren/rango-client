@@ -39,6 +39,10 @@ async function run() {
   const state = new State(libPkgs);
   const updateTasks = libPkgs.map((pkg) => {
     return update(pkg).then((pkgState) => {
+      console.log(
+        `updating state for ${pkg.name} (${pkg.version}) to`,
+        pkgState
+      );
       state.setState(pkg.name, 'gitTag', pkgState.gitTag);
       state.setState(pkg.name, 'githubRelease', pkgState.githubRelease);
       state.setState(pkg.name, 'npmVersion', pkgState.npmVersion);
@@ -55,7 +59,7 @@ async function run() {
   console.table(
     pkgs.map((pkg) => {
       return {
-        name: pkg.version,
+        name: pkg.name,
         ...state.getState(pkg.name),
       };
     })
