@@ -168,9 +168,11 @@ export async function publishCommitAndTags(pkgs) {
 
   // Creating annotated tags based on packages
   if (!skipGitTagging) {
+    const commitId = await getLastCommitId();
+
     await Promise.all(
       tags.map((tag) =>
-        execa('git', ['tag', '-a', tag, '-m', tag]).catch((error) => {
+        execa('git', ['tag', '-a', tag, '-m', tag, commitId]).catch((error) => {
           throw new GitError(`git tag failed. \n ${error.stderr}`);
         })
       )
@@ -203,4 +205,16 @@ export async function pushToRemote(remote = 'origin') {
     });
 
   return output;
+}
+
+export async function getLastCommitId() {
+  const commitId = await execa('git', ['log', '--format=%H', '-n', 1])
+    .then(({ stdout }) => stdout)
+    .catch((e) => {
+      throw new GitError(
+        `Getting last commit using git log failed \n ${e.stderr}`
+      );
+    });
+
+  return commitId;
 }
