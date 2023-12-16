@@ -1,3 +1,7 @@
+## [0.7.4](https://github.com/yeager-eren/rango-client/compare/provider-mytonwallet@0.7.3...provider-mytonwallet@0.7.4) (2023-12-16)
+
+
+
 ## [0.7.3](https://github.com/yeager-eren/rango-client/compare/provider-mytonwallet@0.7.1...provider-mytonwallet@0.7.3) (2023-12-16)
 
 

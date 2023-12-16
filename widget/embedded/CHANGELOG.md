@@ -1,3 +1,12 @@
+## [0.18.2](https://github.com/yeager-eren/rango-client/compare/widget-embedded@0.18.1...widget-embedded@0.18.2) (2023-12-16)
+
+
+### Bug Fixes
+
+* something ([f9e53d0](https://github.com/yeager-eren/rango-client/commit/f9e53d061281f1d38e4970c3758efc8e7554ad8f))
+
+
+
 ## [0.18.1](https://github.com/yeager-eren/rango-client/compare/widget-embedded@0.17.3...widget-embedded@0.18.1) (2023-12-16)
 
 

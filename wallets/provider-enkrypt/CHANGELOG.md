@@ -1,3 +1,7 @@
+## [0.22.2](https://github.com/yeager-eren/rango-client/compare/provider-enkrypt@0.22.1...provider-enkrypt@0.22.2) (2023-12-16)
+
+
+
 ## [0.22.1](https://github.com/yeager-eren/rango-client/compare/provider-enkrypt@0.21.2...provider-enkrypt@0.22.1) (2023-12-16)
 
 
