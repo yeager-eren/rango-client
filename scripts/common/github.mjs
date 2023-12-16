@@ -1,5 +1,4 @@
 import { execa } from 'execa';
-import { logAsSection } from '../publish/utils.mjs';
 import { generateChangelog } from './changelog.mjs';
 import {
   GithubCreateReleaseFailedError,

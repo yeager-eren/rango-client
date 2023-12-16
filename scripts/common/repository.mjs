@@ -28,6 +28,10 @@ export async function analyzeChangesEffects(changedPkgs) {
 
   console.table([
     {
+      name: 'Affected pacakges',
+      value: sortedPackagesToPublish.length,
+    },
+    {
       name: 'Nodes',
       value: nodesCount,
     },
@@ -40,12 +44,12 @@ export async function analyzeChangesEffects(changedPkgs) {
       // Note: these two numbers should be equal.
       value: nodesCount === edgesCount ? 'yes' : 'no',
     },
-    {
-      name: 'order',
-      value: sortedPackagesToPublish.map((pkg) => pkg.name).join(','),
-    },
   ]);
 
+  console.log(
+    'Ordering:',
+    sortedPackagesToPublish.map((pkg) => pkg.name).join(',')
+  );
   return sortedPackagesToPublish;
 }
 
