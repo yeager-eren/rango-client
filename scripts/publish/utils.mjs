@@ -61,23 +61,25 @@ export function throwIfUnableToProceed(pkgsState) {
     );
 
     if (alreadyPublishedPackages.length) {
-      const list = alreadyPublishedPackages.map((pkg) => pkg.npm).join(',');
+      const list = alreadyPublishedPackages
+        .map((pkg) => pkg.npmVersion)
+        .join(',');
       throw new UnableToProceedPublishError(
-        `These packages have been published on NPM already. \n ${list}`
+        `These versions have been published on NPM already. \n ${list}`
       );
     } else if (alreadyHasGithubReleasePackages.length) {
       const list = alreadyHasGithubReleasePackages
-        .map((pkg) => pkg.npm)
+        .map((pkg) => pkg.githubRelease)
         .join(',');
       throw new UnableToProceedPublishError(
-        `These packages have been released on Github before. \n ${list}`
+        `These versions have been released on Github before. \n ${list}`
       );
     } else if (alreadyHasGitTagPackages.length) {
       const list = alreadyHasGithubReleasePackages
-        .map((pkg) => pkg.npm)
+        .map((pkg) => pkg.gitTag)
         .join(',');
       throw new UnableToProceedPublishError(
-        `These packages have git tags. \n ${list}`
+        `These tags already exist. \n ${list}`
       );
     }
   }

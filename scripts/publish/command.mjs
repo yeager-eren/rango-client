@@ -53,7 +53,6 @@ async function run() {
 
   const pkgs = state.list();
   const pkgStates = pkgs.map((pkg) => state.getState(pkg.name));
-  throwIfUnableToProceed(pkgStates);
 
   console.log('The next state is this:');
   console.table(
@@ -64,6 +63,8 @@ async function run() {
       };
     })
   );
+
+  throwIfUnableToProceed(pkgStates);
 
   console.log('::endgroup::');
 
