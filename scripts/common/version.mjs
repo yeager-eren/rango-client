@@ -92,7 +92,6 @@ export async function increaseVersionForProd(pkg) {
  */
 export async function recommendBump(pkg) {
   const tagName = packageNameWithoutScope(pkg.name);
-  console.log({ pkg, tagName });
   return new Promise((resolve, reject) => {
     conventionanRecommendBump(
       {
