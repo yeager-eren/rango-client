@@ -1,3 +1,7 @@
+# [0.24.0](https://github.com/yeager-eren/rango-client/compare/provider-exodus@0.23.0...provider-exodus@0.24.0) (2023-12-16)
+
+
+
 # [0.23.0](https://github.com/yeager-eren/rango-client/compare/provider-exodus@0.22.2...provider-exodus@0.23.0) (2023-12-16)
 
 

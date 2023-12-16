@@ -1,3 +1,7 @@
+# [0.24.0](https://github.com/yeager-eren/rango-client/compare/provider-leap-cosmos@0.23.0...provider-leap-cosmos@0.24.0) (2023-12-16)
+
+
+
 # [0.23.0](https://github.com/yeager-eren/rango-client/compare/provider-leap-cosmos@0.22.2...provider-leap-cosmos@0.23.0) (2023-12-16)
 
 

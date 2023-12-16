@@ -1,3 +1,7 @@
+# [0.25.0](https://github.com/yeager-eren/rango-client/compare/wallets-core@0.24.0...wallets-core@0.25.0) (2023-12-16)
+
+
+
 # [0.24.0](https://github.com/yeager-eren/rango-client/compare/wallets-core@0.23.2...wallets-core@0.24.0) (2023-12-16)
 
 
