@@ -6,7 +6,11 @@ import { State } from './state.mjs';
 import { checkEnvironments } from '../common/github.mjs';
 import { tryPublish } from './publish.mjs';
 import { getAffectedPackages } from '../common/repository.mjs';
-import { addPkgFileChangesToStage, throwIfUnableToProceed } from './utils.mjs';
+import {
+  addPkgFileChangesToStage,
+  logAsSection,
+  throwIfUnableToProceed,
+} from './utils.mjs';
 import { publishCommitAndTags, pushToRemote } from '../common/git.mjs';
 import { update } from './package.mjs';
 
@@ -76,8 +80,16 @@ async function run() {
     return isPublishedOnNpm;
   });
 
-  await publishCommitAndTags(listPkgsForTag);
-  await pushToRemote();
+  logAsSection(
+    '🏷️ Tagging and commit...',
+    `${listPkgsForTag.length} packages for tagging.`
+  );
+  if (listPkgsForTag.length > 0) {
+    await publishCommitAndTags(listPkgsForTag);
+    await pushToRemote();
+  } else {
+    console.log('Skipping...');
+  }
 
   // 5. Report
   console.log('Report:');
