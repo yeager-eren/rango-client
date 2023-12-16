@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/provider-clover",
-  "version": "0.23.2",
+  "version": "0.23.0",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
@@ -21,9 +21,9 @@
     "lint": "eslint \"**/*.{ts,tsx}\" --ignore-path ../../.eslintignore"
   },
   "dependencies": {
-    "@yeager-dev/signer-evm": "^0.22.2",
-    "@yeager-dev/signer-solana": "^0.22.2",
-    "@yeager-dev/wallets-shared": "^0.22.2",
+    "@yeager-dev/signer-evm": "^0.22.0",
+    "@yeager-dev/signer-solana": "^0.22.0",
+    "@yeager-dev/wallets-shared": "^0.22.0",
     "rango-types": "^0.1.46"
   },
   "publishConfig": {

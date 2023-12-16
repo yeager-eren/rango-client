@@ -22,8 +22,8 @@
   },
   "dependencies": {
     "@tonconnect/sdk": "^2.1.0",
-    "@yeager-dev/signer-ton": "^0.8.2",
-    "@yeager-dev/wallets-shared": "^0.22.2",
+    "@yeager-dev/signer-ton": "^0.8.0",
+    "@yeager-dev/wallets-shared": "^0.22.0",
     "rango-types": "^0.1.45"
   },
   "publishConfig": {
