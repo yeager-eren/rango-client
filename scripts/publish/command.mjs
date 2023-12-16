@@ -51,6 +51,16 @@ async function run() {
   const pkgStates = pkgs.map((pkg) => state.getState(pkg.name));
   throwIfUnableToProceed(pkgStates);
 
+  console.log('The next state is this:');
+  console.table(
+    pkgs.map((pkg) => {
+      return {
+        name: pkg.version,
+        ...state.getState(pkg.name),
+      };
+    })
+  );
+
   console.log('::endgroup::');
 
   // 2. Build all packacges

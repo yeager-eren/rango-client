@@ -116,7 +116,7 @@ export function checkEnvironments() {
   const envs = {
     NPM_TOKEN: !!process.env.NPM_TOKEN,
     REF: !!process.env.REF,
-    BASE_REF: !!process.env.BASE_REF,
+    BASE_REF: process.env.BASE_REF,
     GH_TOKEN: !!process.env.GH_TOKEN,
     VERCEL_ORG_ID: !!process.env.VERCEL_ORG_ID,
     VERCEL_TOKEN: !!process.env.VERCEL_TOKEN,
