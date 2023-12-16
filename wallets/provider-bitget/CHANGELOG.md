@@ -1,3 +1,7 @@
+## [0.18.1](https://github.com/yeager-eren/rango-client/compare/provider-bitget@0.19.0...provider-bitget@0.18.1) (2023-12-16)
+
+
+
 # [0.10.0](https://github.com/rango-exchange/rango-client/compare/provider-bitkeep@0.9.0...provider-bitkeep@0.10.0) (2023-08-03)
 
 

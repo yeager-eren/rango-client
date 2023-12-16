@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/provider-mytonwallet",
-  "version": "0.7.1-next.68",
+  "version": "0.7.1",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
@@ -22,8 +22,8 @@
   },
   "dependencies": {
     "@tonconnect/sdk": "^2.1.0",
-    "@yeager-dev/signer-ton": "^0.7.1-next.66",
-    "@yeager-dev/wallets-shared": "^0.21.1-next.71",
+    "@yeager-dev/signer-ton": "^0.7.1-next.67",
+    "@yeager-dev/wallets-shared": "^0.21.1-next.72",
     "rango-types": "^0.1.45"
   },
   "publishConfig": {
