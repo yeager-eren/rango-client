@@ -1,4 +1,5 @@
 import { execa } from 'execa';
+import { logAsSection } from '../publish/utils.mjs';
 import { generateChangelog } from './changelog.mjs';
 import {
   GithubCreateReleaseFailedError,
@@ -133,6 +134,7 @@ export function checkEnvironments() {
     { name: 'check versions on npm', value: should('checkNpm') },
   ];
 
+  logAsSection('🔍 Checking environments...');
   console.log('Environments Variables:');
   console.table(envs);
   console.log('Features:');

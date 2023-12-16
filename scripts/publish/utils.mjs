@@ -37,3 +37,44 @@ export function logAsSection(title, sub = '') {
   }
   console.log(message);
 }
+
+/**
+ * Get state and check some conditions on the state to make sure we can publish.
+ *
+ * @param {import('./typedefs.mjs').PackageState[]} next
+ */
+export function throwIfUnableToProceed(next) {
+  const channel = detectChannel();
+
+  if (channel === 'prod') {
+    // TODO: it's better to check `npm` version should be less than `package.version`
+    const alreadyPublishedPackages = next.filter(
+      (pkgState) => pkgState.package.version === pkgState.npm
+    );
+    const alreadyHasGithubReleasePackages = next.filter(
+      (pkgState) => !!pkgState.release
+    );
+    const alreadyHasGitTagPackages = next.filter((pkgState) => !!pkgState.tag);
+
+    if (alreadyPublishedPackages.length) {
+      const list = alreadyPublishedPackages.map((pkg) => pkg.npm).join(',');
+      throw new UnableToProceedPublishError(
+        `These packages have been published on NPM already. \n ${list}`
+      );
+    } else if (alreadyHasGithubReleasePackages.length) {
+      const list = alreadyHasGithubReleasePackages
+        .map((pkg) => pkg.npm)
+        .join(',');
+      throw new UnableToProceedPublishError(
+        `These packages have been released on Github before. \n ${list}`
+      );
+    } else if (alreadyHasGitTagPackages.length) {
+      const list = alreadyHasGithubReleasePackages
+        .map((pkg) => pkg.npm)
+        .join(',');
+      throw new UnableToProceedPublishError(
+        `These packages have git tags. \n ${list}`
+      );
+    }
+  }
+}

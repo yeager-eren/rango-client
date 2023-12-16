@@ -2,29 +2,36 @@
 'use strict';
 import process from 'node:process';
 
-import { State, state, throwIfUnableToProceed } from './state.mjs';
+import { State } from './state.mjs';
 import { checkEnvironments } from '../common/github.mjs';
 import { tryPublish } from './publish.mjs';
 import { getAffectedPackages } from '../common/repository.mjs';
-import { addPkgFileChangesToStage } from './utils.mjs';
+import { addPkgFileChangesToStage, throwIfUnableToProceed } from './utils.mjs';
 import { publishCommitAndTags, pushToRemote } from '../common/git.mjs';
+import { update } from './package.mjs';
 
 async function run() {
-  // 0. Check prerequisite
   checkEnvironments();
-  // checkGitWorkingDirectoryAndStage();
 
-  // TODO: rename and put value
+  // 1. Detect affected packages and increase version
   const affectedPkgs = await getAffectedPackages();
   const state = new State(affectedPkgs);
-  await state.update();
+
+  const updateTasks = affectedPkgs.map((pkg) => {
+    return update(pkg).then((pkgState) => {
+      state.setState(pkg.name, 'gitTag', pkgState.gitTag);
+      state.setState(pkg.name, 'githubRelease', pkgState.githubRelease);
+      state.setState(pkg.name, 'npmVersion', pkgState.npmVersion);
+      state.setState(pkg.name, 'version', pkgState.version);
+    });
+  });
+  await Promise.all(updateTasks);
+
   const pkgs = state.list();
 
-  // const { current, next } = await state();
-  // throwIfUnableToProceed(current, next);
-  // const pkgs = next.map((pkgState) => pkgState.package);
+  throwIfUnableToProceed(pkgs.map((pkg) => state.getState(pkg.name)));
 
-  // 1. Build all packacges
+  // 2. Build all packacges
   /**
    * IMPORTANT NOTE:
    * We are all the libs in parallel, parcel has a limitation on running `parcel` instances.
@@ -36,7 +43,7 @@ async function run() {
   // TODO: uncomment next line.
   //   await build(pkgs);
 
-  // 2. Publish
+  // 3. Publish
   try {
     await tryPublish(pkgs, {
       onUpdateState: state.setState.bind(state),
@@ -57,7 +64,7 @@ async function run() {
     }
   }
 
-  // 3. Tag and Push
+  // 4. Tag and Push
 
   /**
    * Our final list will includes only packages that published on NPM.
@@ -72,7 +79,7 @@ async function run() {
   await publishCommitAndTags(listPkgsForTag);
   await pushToRemote();
 
-  // 4. Report
+  // 5. Report
   console.log('Report:');
   console.table(
     next.map((pkgState) => ({
