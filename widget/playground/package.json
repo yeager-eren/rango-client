@@ -18,9 +18,9 @@
     "@types/stringify-object": "^4.0.2"
   },
   "dependencies": {
-    "@yeager-dev/ui": "^0.22.1-next.51",
+    "@yeager-dev/ui": "^0.22.1-next.81",
     "@yeager-dev/wallets-shared": "^0.21.1-next.59",
-    "@yeager-dev/widget-embedded": "^0.17.1-next.87",
+    "@yeager-dev/widget-embedded": "^0.17.1-next.117",
     "rango-sdk": "^0.1.35",
     "react": "^18.2.0",
     "react-color": "^2.19.3",
