@@ -1,3 +1,7 @@
+## [0.20.1](https://github.com/yeager-eren/rango-client/compare/widget-embedded@0.20.0...widget-embedded@0.20.1) (2023-12-16)
+
+
+
 # [0.20.0](https://github.com/yeager-eren/rango-client/compare/widget-embedded@0.19.0...widget-embedded@0.20.0) (2023-12-16)
 
 

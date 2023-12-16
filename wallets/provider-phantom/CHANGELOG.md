@@ -1,3 +1,7 @@
+## [0.24.1](https://github.com/yeager-eren/rango-client/compare/provider-phantom@0.24.0...provider-phantom@0.24.1) (2023-12-16)
+
+
+
 # [0.24.0](https://github.com/yeager-eren/rango-client/compare/provider-phantom@0.23.0...provider-phantom@0.24.0) (2023-12-16)
 
 

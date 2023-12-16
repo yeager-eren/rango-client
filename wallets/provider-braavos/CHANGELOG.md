@@ -1,3 +1,7 @@
+## [0.18.1](https://github.com/yeager-eren/rango-client/compare/provider-braavos@0.18.0...provider-braavos@0.18.1) (2023-12-16)
+
+
+
 # [0.18.0](https://github.com/yeager-eren/rango-client/compare/provider-braavos@0.17.0...provider-braavos@0.18.0) (2023-12-16)
 
 

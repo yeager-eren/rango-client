@@ -1,3 +1,7 @@
+## [0.24.1](https://github.com/yeager-eren/rango-client/compare/signer-terra@0.24.0...signer-terra@0.24.1) (2023-12-16)
+
+
+
 # [0.24.0](https://github.com/yeager-eren/rango-client/compare/signer-terra@0.23.0...signer-terra@0.24.0) (2023-12-16)
 
 
