@@ -51,12 +51,14 @@ export function throwIfUnableToProceed(pkgsState) {
   if (channel === 'prod') {
     // TODO: it's better to check `npm` version should be less than `package.version`
     const alreadyPublishedPackages = pkgsState.filter(
-      (pkgState) => pkgState.package.version === pkgState.npm
+      (pkgState) => pkgState.version === pkgState.npmVersion
     );
     const alreadyHasGithubReleasePackages = pkgsState.filter(
-      (pkgState) => !!pkgState.release
+      (pkgState) => !!pkgState.githubRelease
     );
-    const alreadyHasGitTagPackages = pkgsState.filter((pkgState) => !!pkgState.tag);
+    const alreadyHasGitTagPackages = pkgsState.filter(
+      (pkgState) => !!pkgState.gitTag
+    );
 
     if (alreadyPublishedPackages.length) {
       const list = alreadyPublishedPackages.map((pkg) => pkg.npm).join(',');
