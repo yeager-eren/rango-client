@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/provider-bitget",
-  "version": "0.21.4",
+  "version": "0.21.5",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
@@ -21,9 +21,9 @@
     "lint": "eslint \"**/*.{ts,tsx}\" --ignore-path ../../.eslintignore"
   },
   "dependencies": {
-    "@yeager-dev/signer-evm": "^0.24.4",
-    "@yeager-dev/signer-tron": "^0.24.4",
-    "@yeager-dev/wallets-shared": "^0.24.4",
+    "@yeager-dev/signer-evm": "^0.24.5",
+    "@yeager-dev/signer-tron": "^0.24.5",
+    "@yeager-dev/wallets-shared": "^0.24.5",
     "rango-types": "^0.1.46"
   },
   "publishConfig": {

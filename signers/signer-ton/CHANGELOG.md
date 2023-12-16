@@ -1,3 +1,7 @@
+## [0.10.5](https://github.com/yeager-eren/rango-client/compare/signer-ton@0.10.4...signer-ton@0.10.5) (2023-12-16)
+
+
+
 ## [0.10.4](https://github.com/yeager-eren/rango-client/compare/signer-ton@0.10.3...signer-ton@0.10.4) (2023-12-16)
 
 

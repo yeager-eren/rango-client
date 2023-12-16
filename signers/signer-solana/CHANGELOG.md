@@ -1,3 +1,7 @@
+## [0.24.5](https://github.com/yeager-eren/rango-client/compare/signer-solana@0.24.4...signer-solana@0.24.5) (2023-12-16)
+
+
+
 ## [0.24.4](https://github.com/yeager-eren/rango-client/compare/signer-solana@0.24.3...signer-solana@0.24.4) (2023-12-16)
 
 

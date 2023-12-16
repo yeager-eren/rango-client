@@ -1,3 +1,7 @@
+## [0.17.5](https://github.com/yeager-eren/rango-client/compare/provider-safe@0.17.4...provider-safe@0.17.5) (2023-12-16)
+
+
+
 ## [0.17.4](https://github.com/yeager-eren/rango-client/compare/provider-safe@0.17.3...provider-safe@0.17.4) (2023-12-16)
 
 
