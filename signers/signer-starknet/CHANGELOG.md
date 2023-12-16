@@ -1,3 +1,7 @@
+## [0.24.4](https://github.com/yeager-eren/rango-client/compare/signer-starknet@0.24.3...signer-starknet@0.24.4) (2023-12-16)
+
+
+
 ## [0.24.3](https://github.com/yeager-eren/rango-client/compare/signer-starknet@0.24.2...signer-starknet@0.24.3) (2023-12-16)
 
 

@@ -1,3 +1,7 @@
+## [0.24.4](https://github.com/yeager-eren/rango-client/compare/provider-xdefi@0.24.3...provider-xdefi@0.24.4) (2023-12-16)
+
+
+
 ## [0.24.3](https://github.com/yeager-eren/rango-client/compare/provider-xdefi@0.24.2...provider-xdefi@0.24.3) (2023-12-16)
 
 

@@ -1,3 +1,7 @@
+## [0.25.4](https://github.com/yeager-eren/rango-client/compare/provider-coin98@0.25.3...provider-coin98@0.25.4) (2023-12-16)
+
+
+
 ## [0.25.3](https://github.com/yeager-eren/rango-client/compare/provider-coin98@0.25.2...provider-coin98@0.25.3) (2023-12-16)
 
 

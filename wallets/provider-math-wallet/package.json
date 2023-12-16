@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/provider-math-wallet",
-  "version": "0.24.3",
+  "version": "0.24.4",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
@@ -21,9 +21,9 @@
     "lint": "eslint \"**/*.{ts,tsx}\" --ignore-path ../../.eslintignore"
   },
   "dependencies": {
-    "@yeager-dev/signer-evm": "^0.24.3",
-    "@yeager-dev/signer-solana": "^0.24.3",
-    "@yeager-dev/wallets-shared": "^0.24.3",
+    "@yeager-dev/signer-evm": "^0.24.4",
+    "@yeager-dev/signer-solana": "^0.24.4",
+    "@yeager-dev/wallets-shared": "^0.24.4",
     "rango-types": "^0.1.46"
   },
   "publishConfig": {
