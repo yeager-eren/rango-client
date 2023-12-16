@@ -21,11 +21,12 @@ const cwd = join(printDirname(), '..', '..');
  */
 export async function publishOnNpm(pkg) {
   const channel = detectChannel();
+  const distTag = channel === 'prod' ? 'latest' : channel;
   const output = await execa('yarn', [
     'publish',
     pkg.location,
     '--tag',
-    channel,
+    distTag,
   ])
     .then(({ stdout }) => stdout)
     .catch((error) => {
