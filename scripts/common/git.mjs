@@ -110,6 +110,7 @@ export async function changed(since) {
       }
 
       return execa('git', command).then(({ stdout: result }) => {
+        console.log({ command, result });
         return {
           ...pkg,
           changed: !!result,
