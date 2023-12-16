@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/ui",
-  "version": "0.22.1-next.82",
+  "version": "0.22.1-next.84",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",

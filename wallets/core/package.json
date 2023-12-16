@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/wallets-core",
-  "version": "0.22.1-next.70",
+  "version": "0.22.1-next.72",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
