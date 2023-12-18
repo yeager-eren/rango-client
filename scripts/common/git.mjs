@@ -227,9 +227,9 @@ export async function pushToRemote(remote = 'origin') {
   const output = await execa('git', [
     'push',
     remote,
-    // branch,
-    '--tags',
-    // '--follow-tags',
+    branch,
+    // '--tags',
+    '--follow-tags',
     '--no-verify',
     // '--atomic',
   ])
