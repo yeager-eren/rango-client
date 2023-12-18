@@ -1,3 +1,6 @@
+const pkgDelimiter = ',';
+const versionDelimiter = '__';
+
 /**
  *
  * @param {import("../common/typedefs.mjs").Package[]} pkgs

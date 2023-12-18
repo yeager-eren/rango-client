@@ -1,9 +1,6 @@
 import { publishTags, pushToRemote } from '../common/git.mjs';
 import { deserializePkgs } from './utils.mjs';
 
-const pkgDelimiter = ',';
-const versionDelimiter = '__';
-
 async function run() {
   const pkgsNameAndVersion = process.env.PKGS;
   if (!pkgsNameAndVersion) {
