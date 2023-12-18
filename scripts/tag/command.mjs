@@ -5,9 +5,9 @@ const versionDelimiter = '__';
 
 async function run() {
   // e.g.: @yeager-dev/widget-embedded__v1.0.0,@yeager-dev/widget-embedded__v1.0.0
-  const pkgsNameAndVersion = process.env.PGKS;
+  const pkgsNameAndVersion = process.env.PKGS;
   if (!pkgsNameAndVersion) {
-    throw new Error('There is no `PGKS` in enviroments.');
+    throw new Error('There is no `PKGS` in enviroments.');
   }
 
   const pkgs = pkgsNameAndVersion.split(pkgDelimiter).filter(Boolean);

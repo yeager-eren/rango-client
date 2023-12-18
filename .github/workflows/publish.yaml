@@ -47,17 +47,11 @@ jobs:
           REF: ${{ github.ref }}
           BASE_REF: ${{ github.event.pull_request.base.ref }}
           GH_TOKEN: ${{ github.token }}
+      - name: TESTSTAST
+        env:
+          PKGS: ${{ steps.publish.outputs.PKGS }}
+        run: echo "The value is $PKGS"
       - name: Git tag
         run: yarn run git-tag
         env:
           PKGS: ${{ steps.publish.outputs.PKGS }}
-      - name: Set color
-        id: color-selector
-        run: echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
-      - name: TESTSTAST
-        env:
-          YYY: ${{ steps.publish.outputs.YYY }}
-          XXX: ${{ steps.publish.outputs.XXX }}
-          PKGS: ${{ steps.publish.outputs.PKGS }}
-          SELECTED_COLOR: ${{ steps.color-selector.outputs.SELECTED_COLOR }}
-        run: echo "The value is $PKGS and $YYY and $XXX and $SELECTED_COLOR"
