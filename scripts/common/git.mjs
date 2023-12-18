@@ -174,7 +174,7 @@ export async function publishCommitAndTags(pkgs) {
     console.log({ err: output.stderr });
     console.log({ out: output.stdout });
 
-    const tempCommand = await execa('git log --oneline');
+    const tempCommand = await execa(['git', 'log', '--oneline']);
     console.log({
       tempLog: tempCommand.stdout,
     });
@@ -193,7 +193,8 @@ export async function publishCommitAndTags(pkgs) {
       })
     );
 
-    const tempCommand2 = await execa('git log --oneline');
+    const tempCommand2 = await execa(['git', 'log', '--oneline']);
+
     console.log({
       tempLog2: tempCommand2.stdout,
     });
