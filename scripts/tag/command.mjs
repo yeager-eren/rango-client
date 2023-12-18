@@ -1,4 +1,4 @@
-import { publishTags } from '../common/git.mjs';
+import { publishTags, pushToRemote } from '../common/git.mjs';
 
 const pkgDelimiter = ',';
 const versionDelimiter = '__';
@@ -23,6 +23,7 @@ async function run() {
   console.log({ input });
 
   await publishTags(input);
+  await pushToRemote();
 }
 
 run().catch((e) => {

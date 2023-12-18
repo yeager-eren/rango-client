@@ -206,12 +206,6 @@ export async function addFileToStage(path) {
 export async function pushToRemote(remote = 'origin') {
   const branch = detectChannel() === 'prod' ? 'main' : 'next';
 
-  const output1 = await execa('git', ['push', remote, branch, '--no-verify'])
-    .then(({ stdout }) => stdout)
-    .catch((error) => {
-      throw new GitError(`git push1 failed. \n ${error.stderr}`);
-    });
-
   const output = await execa('git', [
     'push',
     remote,
@@ -219,7 +213,7 @@ export async function pushToRemote(remote = 'origin') {
     // '--tags',
     '--follow-tags',
     '--no-verify',
-    // '--atomic',
+    '--atomic',
   ])
     .then(({ stdout }) => stdout)
     .catch((error) => {
