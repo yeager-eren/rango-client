@@ -28,7 +28,7 @@ async function run() {
 
   console.log({ GITHUB_OUTPUT: process.env['$GITHUB_OUTPUT'] });
   const { stdout } = await execa('echo', ['PKGS=pkg1,pkg2,pkg3']).pipeStdout(
-    `"$GITHUB_OUTPUT"`
+    `$GITHUB_OUTPUT`
   );
   console.log({ stdout });
   return;
