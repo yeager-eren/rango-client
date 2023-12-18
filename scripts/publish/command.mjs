@@ -27,7 +27,7 @@ async function run() {
   console.log('::endgroup::');
 
   const { stdout } = await execa('echo', ['pkg1,pkg2,pkg3']).pipeStderr(
-    '$GITHUB_OUTPUT'
+    execa('$GITHUB_OUTPUT')
   );
   console.log({ stdout });
   return;
