@@ -166,7 +166,7 @@ export async function publishCommitAndTags(pkgs) {
     throw new GitError(`git commit failed. \n ${error.stderr}`);
   });
 
-  await pushToRemote();
+  // await pushToRemote();
 
   // Creating annotated tags based on packages
   if (!skipGitTagging) {
