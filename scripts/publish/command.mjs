@@ -19,8 +19,6 @@ import {
 } from '../common/git.mjs';
 import { update } from './package.mjs';
 import { build } from './build.mjs';
-import { execa } from 'execa';
-import { EOL } from 'node:os';
 import { setOutput } from '@actions/core';
 import { serializePkgs } from '../tag/utils.mjs';
 
@@ -29,26 +27,11 @@ async function run() {
   checkEnvironments();
   console.log('::endgroup::');
 
-  // console.log({ GITHUB_OUTPUT: process.env['$GITHUB_OUTPUT'] });
-  // const { stdout } = await execa('echo', ['PKGS=pkg1,pkg2,pkg3']).pipeStdout(
-  //   `$GITHUB_OUTPUT`
-  // );
-  // console.log({ stdout });
-
-  // console.log(EOL);
-  // console.log('::set-output name=PKGS::pkg1,pkg2,pkg3');
-  // console.log(EOL);
-  // console.log('xxx=no');
-
   // 1. Detect affected packages and increase version
   logAsSection('::group::🔍 Anlyzing dependencies...');
   const affectedPkgs = await getAffectedPackages();
   const libPkgs = affectedPkgs.filter((pkg) => !pkg.private);
   const clientPkgs = affectedPkgs.filter((pkg) => pkg.private);
-
-  setOutput('PKGS', serializePkgs(affectedPkgs));
-
-  return;
 
   if (libPkgs.length === 0) {
     console.log('No library has changed. Skip.');
@@ -152,8 +135,9 @@ async function run() {
     );
 
     await publishCommitAndTags(listPkgsForTag);
-    const pushResult = await pushToRemote();
-    console.log({ pushResult });
+    await pushToRemote();
+
+    setOutput('PKGS', serializePkgs(listPkgsForTag));
   } else {
     console.log('Skipped.');
   }
