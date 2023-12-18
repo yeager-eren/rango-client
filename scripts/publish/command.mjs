@@ -28,16 +28,16 @@ async function run() {
   checkEnvironments();
   console.log('::endgroup::');
 
-  console.log({ GITHUB_OUTPUT: process.env['$GITHUB_OUTPUT'] });
-  const { stdout } = await execa('echo', ['PKGS=pkg1,pkg2,pkg3']).pipeStdout(
-    `$GITHUB_OUTPUT`
-  );
-  console.log({ stdout });
+  // console.log({ GITHUB_OUTPUT: process.env['$GITHUB_OUTPUT'] });
+  // const { stdout } = await execa('echo', ['PKGS=pkg1,pkg2,pkg3']).pipeStdout(
+  //   `$GITHUB_OUTPUT`
+  // );
+  // console.log({ stdout });
 
-  setOutput('YYY', 'yes?');
-  // console.log(EOL);
-  // console.log('::set-output YYY=yes::');
-  // console.log(EOL);
+  // setOutput('YYY', 'yes?');
+  console.log(EOL);
+  console.log('::set-output name=YYY::yes yes yes');
+  console.log(EOL);
   // console.log('xxx=no');
   return;
 
