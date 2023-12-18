@@ -52,6 +52,8 @@ jobs:
         run: echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
       - name: TESTSTAST
         env:
+          YYY: ${{ steps.publish.outputs.YYY }}
+          XXX: ${{ steps.publish.outputs.XXX }}
           PKGS: ${{ steps.publish.outputs.PKGS }}
           SELECTED_COLOR: ${{ steps.color-selector.outputs.SELECTED_COLOR }}
-        run: echo "The value is $PKGS and $SELECTED_COLOR"
+        run: echo "The value is $PKGS and $YYY and $XXX and $SELECTED_COLOR"

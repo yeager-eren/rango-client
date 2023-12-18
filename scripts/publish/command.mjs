@@ -31,6 +31,9 @@ async function run() {
     `$GITHUB_OUTPUT`
   );
   console.log({ stdout });
+
+  console.log('::yyy=yes');
+  console.log('xxx=no');
   return;
 
   // 1. Detect affected packages and increase version
