@@ -222,10 +222,10 @@ export async function pushToRemote(remote = 'origin') {
     'push',
     // '--follow-tags',
     '--all',
-    '--no-verify',
-    '--atomic',
     remote,
     branch,
+    '--no-verify',
+    // '--atomic',
   ])
     .then(({ stdout }) => stdout)
     .catch((error) => {
