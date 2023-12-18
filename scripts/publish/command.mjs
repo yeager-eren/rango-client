@@ -22,6 +22,7 @@ import { build } from './build.mjs';
 import { execa } from 'execa';
 import { EOL } from 'node:os';
 import { setOutput } from '@actions/core';
+import { serializePkgs } from '../tag/utils.mjs';
 
 async function run() {
   logAsSection('::group::🔍 Checking environments...');
@@ -34,18 +35,20 @@ async function run() {
   // );
   // console.log({ stdout });
 
-  setOutput('PKGS', '@yeager-dev/test_v1.0.0,@yeager-dev/test__v1.0.0');
   // console.log(EOL);
   // console.log('::set-output name=PKGS::pkg1,pkg2,pkg3');
   // console.log(EOL);
   // console.log('xxx=no');
-  return;
 
   // 1. Detect affected packages and increase version
   logAsSection('::group::🔍 Anlyzing dependencies...');
   const affectedPkgs = await getAffectedPackages();
   const libPkgs = affectedPkgs.filter((pkg) => !pkg.private);
   const clientPkgs = affectedPkgs.filter((pkg) => pkg.private);
+
+  setOutput('PKGS', serializePkgs(affectedPkgs));
+
+  return;
 
   if (libPkgs.length === 0) {
     console.log('No library has changed. Skip.');
