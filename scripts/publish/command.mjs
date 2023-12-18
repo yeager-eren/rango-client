@@ -134,7 +134,7 @@ async function run() {
 
     await publishCommitAndTags(listPkgsForTag);
     const pushResult = await pushToRemote();
-    console.log(pushResult);
+    console.log({ pushResult });
   } else {
     console.log('Skipped.');
   }
