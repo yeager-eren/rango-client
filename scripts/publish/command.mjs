@@ -19,11 +19,18 @@ import {
 } from '../common/git.mjs';
 import { update } from './package.mjs';
 import { build } from './build.mjs';
+import { execa } from 'execa';
 
 async function run() {
   logAsSection('::group::🔍 Checking environments...');
   checkEnvironments();
   console.log('::endgroup::');
+
+  const { stdout } = await execa('echo', ['pkg1,pkg2,pkg3']).pipeStderr(
+    '$GITHUB_OUTPUT'
+  );
+  console.log({ stdout });
+  return;
 
   // 1. Detect affected packages and increase version
   logAsSection('::group::🔍 Anlyzing dependencies...');

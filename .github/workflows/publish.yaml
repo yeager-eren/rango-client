@@ -40,23 +40,17 @@ jobs:
       - name: Install packages
         run: yarn install --frozen-lockfile
 
-      # - name: Build, Version & Publish packages
-      #   run: yarn run publish
-      #   env:
-      #     REF: ${{ github.ref }}
-      #     BASE_REF: ${{ github.event.pull_request.base.ref }}
-      #     GH_TOKEN: ${{ github.token }}
-
-      - name: Step 1 - Set Outputs
-        id: step1
-        run: |
-          # Your Node.js script for Step 1
-          # This example sets an output named 'myOutput'
-          echo "::set-output name=myOutput::Hello from Step 1"
+      - name: Build, Version & Publish packages
+        id: publish
+        run: yarn run publish
+        env:
+          REF: ${{ github.ref }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          GH_TOKEN: ${{ github.token }}
 
       - name: Step 2 - Use Outputs
         id: step2
         run: |
           # Your Node.js script for Step 2
           # Accessing the output from Step 1
-          echo "Output from Step 1: ${{ steps.step1.outputs.myOutput }}"
+          echo "Output from Step 1: ${{ steps.publish.outputs.tags }}"
