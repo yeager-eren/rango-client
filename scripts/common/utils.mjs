@@ -71,6 +71,11 @@ export function getEnvWithFallback(name) {
   return process.env[name] || 'NOT SET';
 }
 
+/**
+ *
+ * @param {import('./typedefs.mjs').Package} pkg
+ * @returns
+ */
 export function generateTagName(pkg) {
   return `${packageNameWithoutScope(pkg.name)}@${pkg.version}`;
 }

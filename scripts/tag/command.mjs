@@ -10,14 +10,19 @@ async function run() {
     throw new Error('There is no `PKGS` in enviroments.');
   }
 
-  const pkgs = pkgsNameAndVersion.split(pkgDelimiter).filter(Boolean);
-  const input = pkgs
+  // Turn `pkgsNameAndVersion` into `[ ['pkg_name', 'version'] ]`
+  const pkgs = pkgsNameAndVersion
+    .split(pkgDelimiter)
+    .filter(Boolean)
     .map((pkg) => pkg.split(versionDelimiter))
     .filter((result) => result.length === 2);
-
+  const input = pkgs.map((pkg) => ({
+    name: pkg[0],
+    version: pkg[1],
+  }));
   console.log({ input });
 
-  //   await publishTags();
+  await publishTags(input);
 }
 
 run().catch((e) => {
