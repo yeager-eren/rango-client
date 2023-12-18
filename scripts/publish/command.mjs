@@ -34,7 +34,7 @@ async function run() {
   console.log({ stdout });
 
   console.log(EOL);
-  console.log('::set-output YYY=yes');
+  console.log('::set-output YYY=yes::');
   console.log(EOL);
   console.log('xxx=no');
   return;
