@@ -34,10 +34,13 @@ async function run() {
   // );
   // console.log({ stdout });
 
-  // setOutput('YYY', 'yes?');
-  console.log(EOL);
-  console.log('::set-output name=PKGS::pkg1,pkg2,pkg3');
-  console.log(EOL);
+  setOutput(
+    'PKGS',
+    '@yeager-dev/widget-embedded__v1.0.0,@yeager-dev/wallets-core__v1.0.0'
+  );
+  // console.log(EOL);
+  // console.log('::set-output name=PKGS::pkg1,pkg2,pkg3');
+  // console.log(EOL);
   // console.log('xxx=no');
   return;
 

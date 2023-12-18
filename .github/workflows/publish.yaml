@@ -47,6 +47,10 @@ jobs:
           REF: ${{ github.ref }}
           BASE_REF: ${{ github.event.pull_request.base.ref }}
           GH_TOKEN: ${{ github.token }}
+      - name: Git tag
+        run: yarn run publish2
+        env:
+          PKGS: ${{ steps.publish.outputs.PKGS }}
       - name: Set color
         id: color-selector
         run: echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"

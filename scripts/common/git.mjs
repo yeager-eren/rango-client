@@ -156,7 +156,7 @@ export async function publishCommitAndTags(pkgs) {
   const message = subject + list;
 
   // Making a publish commit
-  const output = await execa('git', [
+  await execa('git', [
     'commit',
     '-m',
     message,
@@ -166,45 +166,33 @@ export async function publishCommitAndTags(pkgs) {
     throw new GitError(`git commit failed. \n ${error.stderr}`);
   });
 
-  // await pushToRemote();
-
   // Creating annotated tags based on packages
   if (!skipGitTagging) {
     const commitId = await getLastCommitId();
 
-    console.log({ commitId });
-    console.log({ err: output.stderr });
-    console.log({ out: output.stdout });
-
-    const tempCommand = await execa('git', ['log', '-n', 3]);
-    console.log({
-      tempLog: tempCommand.stdout,
-    });
-
-    const res = await Promise.all(
-      tags.map((tag) => {
-        console.log({
-          command: ['git', 'tag', '-a', tag, '-m', tag, commitId].join(' '),
-        });
-
-        return execa('git', ['tag', '-a', tag, '-m', tag, commitId]).catch(
-          (error) => {
-            throw new GitError(`git tag failed. \n ${error.stderr}`);
-          }
-        );
-      })
-    );
-
-    const tempCommand2 = await execa('git', ['log', '-n', 3]);
-
-    console.log({
-      tempLog2: tempCommand2.stdout,
-    });
-    console.log('------------------------------------------------');
-    console.log({ err: res.map((r) => r.stderr) });
-    console.log(res.map((r) => r.stdout));
-    console.log('------------------------------------------------');
+    // await Promise.all(
+    //   tags.map((tag) =>
+    //     execa('git', ['tag', '-a', tag, '-m', tag, commitId]).catch((error) => {
+    //       throw new GitError(`git tag failed. \n ${error.stderr}`);
+    //     })
+    //   )
+    // );
   }
+
+  return tags;
+}
+
+export async function publishTags(pkgs) {
+  const tags = pkgs.map(generateTagName);
+
+  // Creating annotated tags based on packages
+  await Promise.all(
+    tags.map((tag) =>
+      execa('git', ['tag', '-a', tag, '-m', tag]).catch((error) => {
+        throw new GitError(`git tag failed. \n ${error.stderr}`);
+      })
+    )
+  );
 
   return tags;
 }
