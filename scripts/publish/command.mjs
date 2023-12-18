@@ -32,7 +32,7 @@ async function run() {
   );
   console.log({ stdout });
 
-  console.log('::yyy=yes');
+  console.log('::set-output yyy=yes');
   console.log('xxx=no');
   return;
 
