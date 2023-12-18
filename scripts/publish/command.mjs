@@ -36,7 +36,7 @@ async function run() {
 
   // setOutput('YYY', 'yes?');
   console.log(EOL);
-  console.log('::set-output name=YYY::yes yes yes');
+  console.log('::set-output name=PKGS::pkg1,pkg2,pkg3');
   console.log(EOL);
   // console.log('xxx=no');
   return;
