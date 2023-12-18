@@ -26,6 +26,7 @@ async function run() {
   checkEnvironments();
   console.log('::endgroup::');
 
+  console.log({ GITHUB_OUTPUT: process.env['$GITHUB_OUTPUT'] });
   const { stdout } = await execa('echo', ['pkg1,pkg2,pkg3']).pipeStderr(
     execa(process.env['$GITHUB_OUTPUT'])
   );
