@@ -55,3 +55,6 @@ jobs:
         run: yarn run git-tag
         env:
           PKGS: ${{ steps.publish.outputs.PKGS }}
+          REF: ${{ github.ref }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          GH_TOKEN: ${{ github.token }}
