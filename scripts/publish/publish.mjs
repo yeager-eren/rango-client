@@ -18,7 +18,6 @@ import {
  * @param {import("../common/utils.mjs").Package[]} pkgs
  */
 export async function tryPublish(pkgs, { onUpdateState }) {
-
   const tasks = pkgs.map(
     (pkg) => () =>
       publishTask(pkg, { onUpdateState }).catch((e) => {
@@ -48,7 +47,7 @@ async function publishTask(pkg, { onUpdateState }) {
   if (should('generateChangelog')) {
     console.log(chalk.green('[2/4]'), `Making changelog and github release`);
     await generateChangelog(pkg, { saveToFile: true });
-    await makeGithubRelease(pkg);
+    // await makeGithubRelease(pkg);
     onUpdateState(pkg.name, 'githubRelease', pkg.version);
   } else {
     console.log(chalk.green('[2/4]'), `Skipping changelog and github release.`);
