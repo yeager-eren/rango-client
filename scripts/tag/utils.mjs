@@ -17,7 +17,7 @@ export function deserializePkgs(input) {
     .filter(Boolean)
     .map((pkg) => pkg.split(versionDelimiter))
     .filter((result) => result.length === 2);
-  const input = pkgs.map((pkg) => ({
+  return pkgs.map((pkg) => ({
     name: pkg[0],
     version: pkg[1],
   }));
