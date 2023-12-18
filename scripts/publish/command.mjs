@@ -20,6 +20,7 @@ import {
 import { update } from './package.mjs';
 import { build } from './build.mjs';
 import { execa } from 'execa';
+import { EOL } from 'node:os';
 
 async function run() {
   logAsSection('::group::🔍 Checking environments...');
@@ -32,7 +33,9 @@ async function run() {
   );
   console.log({ stdout });
 
+  console.log(EOL);
   console.log('::set-output yyy=yes');
+  console.log(EOL);
   console.log('xxx=no');
   return;
 
