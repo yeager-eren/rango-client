@@ -1,12 +1,10 @@
 import chalk from 'chalk';
 import { generateChangelog } from '../common/changelog.mjs';
 import { should } from '../common/features.mjs';
-import { makeGithubRelease } from '../common/github.mjs';
 import { publishOnNpm } from '../common/npm.mjs';
 import { upgradeDependents } from './upgrade.mjs';
 import {
   addPkgFileChangesToStage,
-  logAsSection,
   sequentiallyRun,
 } from './utils.mjs';
 

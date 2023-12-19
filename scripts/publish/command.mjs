@@ -3,7 +3,7 @@
 import process from 'node:process';
 
 import { State } from './state.mjs';
-import { checkEnvironments } from '../common/github.mjs';
+import { checkEnvironments, makeGithubRelease } from '../common/github.mjs';
 import { tryPublish } from './publish.mjs';
 import { getAffectedPackages } from '../common/repository.mjs';
 import {
@@ -145,7 +145,7 @@ async function run() {
       const tasks = listPkgsForTag.map((pkg) => {
         return makeGithubRelease(pkg)
           .then(() => {
-            onUpdateState(pkg.name, 'githubRelease', pkg.version);
+            state.setState(pkg.name, 'githubRelease', pkg.version);
           })
           .catch(console.warn);
       });
