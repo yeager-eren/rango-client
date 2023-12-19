@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@yeager-dev/wallets-core": "^0.25.4",
-    "@yeager-dev/wallets-shared": "^0.24.4",
+    "@yeager-dev/wallets-shared": "^0.24.5",
     "rango-types": "^0.1.46"
   },
   "publishConfig": {

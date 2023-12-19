@@ -26,7 +26,7 @@
     "@yeager-dev/provider-all": "^0.25.4",
     "@yeager-dev/ui": "^0.25.4",
     "@yeager-dev/wallets-react": "^0.11.4",
-    "@yeager-dev/wallets-shared": "^0.24.4",
+    "@yeager-dev/wallets-shared": "^0.24.5",
     "rango-types": "^0.1.46"
   },
   "publishConfig": {
