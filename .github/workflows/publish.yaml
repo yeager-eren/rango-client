@@ -41,20 +41,8 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build, Version & Publish packages
-        id: publish
         run: yarn run publish
         env:
-          REF: ${{ github.ref }}
-          BASE_REF: ${{ github.event.pull_request.base.ref }}
-          GH_TOKEN: ${{ github.token }}
-      - name: TESTSTAST
-        env:
-          PKGS: ${{ steps.publish.outputs.PKGS }}
-        run: echo "The value is $PKGS"
-      - name: Git tag
-        run: yarn run git-tag
-        env:
-          PKGS: ${{ steps.publish.outputs.PKGS }}
           REF: ${{ github.ref }}
           BASE_REF: ${{ github.event.pull_request.base.ref }}
           GH_TOKEN: ${{ github.token }}

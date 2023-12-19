@@ -19,8 +19,6 @@ import {
 } from '../common/git.mjs';
 import { update } from './package.mjs';
 import { build } from './build.mjs';
-import { setOutput } from '@actions/core';
-import { serializePkgs } from '../tag/utils.mjs';
 
 async function run() {
   logAsSection('::group::🔍 Checking environments...');
@@ -144,8 +142,6 @@ async function run() {
       skipGitTagging: DISABLE_GIT_TAGS,
     });
     await pushToRemote();
-
-    setOutput('PKGS', serializePkgs(listPkgsForTag));
   } else {
     console.log('Skipped.');
   }
