@@ -166,8 +166,10 @@ export async function publishCommitAndTags(pkgs, { skipGitTagging }) {
   });
 
   // Creating annotated tags based on packages
-  if (isTaggingSkipped) {
+  if (!isTaggingSkipped) {
     await publishTags(pkgs);
+  } else {
+    console.log('::warning::Tagging is skipped. ');
   }
 
   return tags;
