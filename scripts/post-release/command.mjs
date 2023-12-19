@@ -1,10 +1,4 @@
-import {
-  checkout,
-  merge,
-  publishTags,
-  pull,
-  pushToRemote,
-} from '../common/git.mjs';
+import { checkout, merge, publishTags, pull, push } from '../common/git.mjs';
 import { checkCommitAndGetPkgs } from './tag.mjs';
 
 async function run() {
@@ -15,13 +9,13 @@ async function run() {
   // Tag phase
   const pkgs = await checkCommitAndGetPkgs();
   await publishTags(pkgs);
-  await pushToRemote();
+  await push();
 
   // Merge phase
   await checkout('next');
   await pull();
   await merge('main');
-  await pushToRemote();
+  await push();
 }
 
 run().catch((e) => {

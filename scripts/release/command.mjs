@@ -1,4 +1,4 @@
-import { checkout, merge, pull } from '../common/git.mjs';
+import { checkout, merge, pull, push } from '../common/git.mjs';
 
 async function run() {
   // Checkout to `next`

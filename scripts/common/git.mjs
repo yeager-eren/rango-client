@@ -196,7 +196,7 @@ export async function addFileToStage(path) {
   });
 }
 
-export async function pushToRemote(remote = 'origin') {
+export async function push(remote = 'origin') {
   const output = await execa('git', [
     'push',
     remote,

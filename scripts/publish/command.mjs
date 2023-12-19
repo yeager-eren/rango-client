@@ -12,11 +12,7 @@ import {
   sequentiallyRun,
   throwIfUnableToProceed,
 } from './utils.mjs';
-import {
-  addFileToStage,
-  publishCommitAndTags,
-  pushToRemote,
-} from '../common/git.mjs';
+import { addFileToStage, publishCommitAndTags, push } from '../common/git.mjs';
 import { update } from './package.mjs';
 import { build } from './build.mjs';
 
@@ -141,7 +137,7 @@ async function run() {
     await publishCommitAndTags(listPkgsForTag, {
       skipGitTagging: DISABLE_GIT_TAGS,
     });
-    await pushToRemote();
+    await push();
   } else {
     console.log('Skipped.');
   }
