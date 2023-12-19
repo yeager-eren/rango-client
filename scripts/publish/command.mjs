@@ -15,6 +15,7 @@ import {
 import { addFileToStage, publishCommitAndTags, push } from '../common/git.mjs';
 import { update } from './package.mjs';
 import { build } from './build.mjs';
+import { should } from '../common/features.mjs';
 
 async function run() {
   logAsSection('::group::🔍 Checking environments...');
@@ -136,7 +137,29 @@ async function run() {
 
   console.log('::endgroup::');
 
-  // 5. Report
+  // 5. Making github release
+  // NOTE: If any error happens in this step we are don't bail out the process and will continue. A warning will be shown.
+  console.log('::group::🐙 Github release');
+  if (should('generateChangelog')) {
+    if (listPkgsForTag.length > 0) {
+      const tasks = listPkgsForTag.map((pkg) => {
+        return makeGithubRelease(pkg)
+          .then(() => {
+            onUpdateState(pkg.name, 'githubRelease', pkg.version);
+          })
+          .catch(console.warn);
+      });
+
+      await Promise.all(tasks);
+    } else {
+      console.log('Skipped.');
+    }
+  } else {
+    console.log('Skipped as it set on enviroments.');
+  }
+  console.log('::endgroup::');
+
+  // 6. Report
   console.log('::group::📊 Report');
   console.table(
     pkgs.map((pkg) => ({
