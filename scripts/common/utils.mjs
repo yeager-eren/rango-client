@@ -78,7 +78,7 @@ export function getEnvWithFallback(name) {
  * @returns
  */
 export function generateTagName(pkg) {
-  return `${packageNameWithoutScope(pkg.name)}@${pkg.version}`;
+  return `${packageNameWithoutScope(pkg.name)}@${pkg.version}--test`;
 }
 
 export function tagNameToPkgName(pkgNameWithoutScope) {
