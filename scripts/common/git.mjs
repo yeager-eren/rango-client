@@ -111,7 +111,6 @@ export async function changed(since) {
       }
 
       return execa('git', command).then(({ stdout: result }) => {
-        console.log({ command, result });
         return {
           ...pkg,
           changed: !!result,
@@ -135,7 +134,6 @@ export async function getChangedPackagesFor(channel) {
   const useTagForDetectLastRelease = channel === 'prod';
   const baseCommit = await getLastReleasedHashId(useTagForDetectLastRelease);
 
-  console.log({ channel, useTagForDetectLastRelease, baseCommit });
   const changedPkgs = await changed(baseCommit);
 
   return changedPkgs;
