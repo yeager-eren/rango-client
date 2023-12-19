@@ -146,8 +146,8 @@ export async function getChangedPackagesFor(channel) {
  * @param {string} options.subject - Commit subject
  *
  */
-export async function publishCommitAndTags(pkgs, { skipGitTagging }) {
-  const isTaggingSkipped = skipGitTagging || detectChannel() !== 'prod';
+export async function publishCommitAndTags(pkgs) {
+  const isTaggingSkipped = detectChannel() !== 'prod';
   const subject = `${PUBLISH_COMMIT_SUBJECT}\n\n`;
   const tags = pkgs.map(generateTagName);
 
@@ -168,9 +168,7 @@ export async function publishCommitAndTags(pkgs, { skipGitTagging }) {
   // Creating annotated tags based on packages
   if (!isTaggingSkipped) {
     await publishTags(pkgs);
-  } else {
-    console.log('::warning::Tagging is skipped. ');
-  }
+  } 
 
   return tags;
 }

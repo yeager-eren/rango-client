@@ -128,15 +128,7 @@ async function run() {
       )
     );
 
-    /**
-     * Git tag should be assigned to publish commit but it's assigning to the last commit of repo (means `publish commit`-1 ) on Github Runner.
-     * I tried different ways like pushing tag and commit in two separate phases or moved the tag to a separate step in Workflow, but it didn't work unfortunately.
-     * We are disabling this feature for now, and will do it manually after publish by running another script.
-     */
-    const DISABLE_GIT_TAGS = true;
-    await publishCommitAndTags(listPkgsForTag, {
-      skipGitTagging: DISABLE_GIT_TAGS,
-    });
+    await publishCommitAndTags(listPkgsForTag);
     await push();
   } else {
     console.log('Skipped.');
