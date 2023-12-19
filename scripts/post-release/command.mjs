@@ -6,10 +6,7 @@ async function run() {
   await checkout('main');
   await pull();
 
-  // Tag phase
-  const pkgs = await checkCommitAndGetPkgs();
-  await publishTags(pkgs);
-  await push();
+  await checkCommitAndGetPkgs();
 
   // Merge phase
   await checkout('next');

@@ -33,14 +33,13 @@ async function run() {
     process.exit(0);
   }
 
-  console.log('current state is this:');
+  console.log('Current state:');
   console.table(libPkgs);
 
   const state = new State(libPkgs);
   const updateTasks = libPkgs.map((pkg) => {
     return update(pkg).then((pkgState) => {
       state.setState(pkg.name, 'gitTag', pkgState.gitTag);
-      state.setState(pkg.name, 'githubRelease', pkgState.githubRelease);
       state.setState(pkg.name, 'npmVersion', pkgState.npmVersion);
       state.setState(pkg.name, 'version', pkgState.version);
     });
@@ -50,7 +49,7 @@ async function run() {
   const pkgs = state.list();
   const pkgStates = pkgs.map((pkg) => state.getState(pkg.name));
 
-  console.log('The next state is this:');
+  console.log('Next state:');
   console.table(
     pkgs.map((pkg) => {
       return {
@@ -118,6 +117,8 @@ async function run() {
     `${listPkgsForTag.length} packages for tagging.`
   );
   if (listPkgsForTag.length > 0) {
+    performance.mark(`start-publish-tagging`);
+
     /**
      * We don't need to tag and mention them while publishing, they have a separate github action.
      * But we updated their package json to use the latest version of published libs
@@ -131,6 +132,13 @@ async function run() {
 
     await publishCommitAndTags(listPkgsForTag);
     await push();
+    performance.mark(`end-publish-tagging`);
+    const duration_build = performance.measure(
+      `publish-tagging`,
+      `start-publish-tagging`,
+      `end-publish-tagging`
+    ).duration;
+    console.log(`Built. ${duration_build}ms`);
   } else {
     console.log('Skipped.');
   }
@@ -142,6 +150,8 @@ async function run() {
   console.log('::group::🐙 Github release');
   if (should('generateChangelog')) {
     if (listPkgsForTag.length > 0) {
+      performance.mark(`start-publish-gh-release`);
+
       const tasks = listPkgsForTag.map((pkg) => {
         return makeGithubRelease(pkg)
           .then(() => {
@@ -151,6 +161,14 @@ async function run() {
       });
 
       await Promise.all(tasks);
+
+      performance.mark(`end-publish-gh-release`);
+      const duration_build = performance.measure(
+        `publish-gh-release`,
+        `start-publish-gh-release`,
+        `end-publish-gh-release`
+      ).duration;
+      console.log(`Built. ${duration_build}ms`);
     } else {
       console.log('Skipped.');
     }
