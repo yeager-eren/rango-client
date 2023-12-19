@@ -138,7 +138,7 @@ async function run() {
       `start-publish-tagging`,
       `end-publish-tagging`
     ).duration;
-    console.log(`Built. ${duration_build}ms`);
+    console.log(`Tagged. ${duration_build}ms`);
   } else {
     console.log('Skipped.');
   }
@@ -168,7 +168,7 @@ async function run() {
         `start-publish-gh-release`,
         `end-publish-gh-release`
       ).duration;
-      console.log(`Built. ${duration_build}ms`);
+      console.log(`Finished. ${duration_build}ms`);
     } else {
       console.log('Skipped.');
     }
