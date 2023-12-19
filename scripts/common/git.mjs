@@ -1,4 +1,5 @@
 import { execa } from 'execa';
+import { PUBLISH_COMMIT_SUBJECT } from './constants.mjs';
 import { GitError } from './errors.mjs';
 import { detectChannel } from './github.mjs';
 import { generateTagName, workspacePackages } from './utils.mjs';
@@ -147,9 +148,9 @@ export async function getChangedPackagesFor(channel) {
  * @param {string} options.subject - Commit subject
  *
  */
-export async function publishCommitAndTags(pkgs) {
-  const skipGitTagging = detectChannel() !== 'prod';
-  const subject = 'chore(release): publish\n\n';
+export async function publishCommitAndTags(pkgs, { skipGitTagging }) {
+  const isTaggingSkipped = skipGitTagging || detectChannel() !== 'prod';
+  const subject = `${PUBLISH_COMMIT_SUBJECT}\n\n`;
   const tags = pkgs.map(generateTagName);
 
   const list = tags.map((tag) => `- ${tag}`).join('\n');
@@ -167,16 +168,8 @@ export async function publishCommitAndTags(pkgs) {
   });
 
   // Creating annotated tags based on packages
-  if (!skipGitTagging) {
-    const commitId = await getLastCommitId();
-
-    // await Promise.all(
-    //   tags.map((tag) =>
-    //     execa('git', ['tag', '-a', tag, '-m', tag, commitId]).catch((error) => {
-    //       throw new GitError(`git tag failed. \n ${error.stderr}`);
-    //     })
-    //   )
-    // );
+  if (!isTaggingSkipped) {
+    await publishTags(pkgs);
   }
 
   return tags;
@@ -204,13 +197,9 @@ export async function addFileToStage(path) {
 }
 
 export async function pushToRemote(remote = 'origin') {
-  const branch = detectChannel() === 'prod' ? 'main' : 'next';
-
   const output = await execa('git', [
     'push',
     remote,
-    branch,
-    // '--tags',
     '--follow-tags',
     '--no-verify',
     '--atomic',
@@ -223,8 +212,62 @@ export async function pushToRemote(remote = 'origin') {
   return output;
 }
 
+export async function pull(remote = 'origin') {
+  const output = await execa('git', ['pull', remote])
+    .then(({ stdout }) => stdout)
+    .catch((error) => {
+      throw new GitError(`git pull failed. \n ${error.stderr}`);
+    });
+
+  return output;
+}
+
+export async function checkout(branch) {
+  const output = await execa('git', ['checkout', branch])
+    .then(({ stdout }) => stdout)
+    .catch((error) => {
+      throw new GitError(`git checkout failed. \n ${error.stderr}`);
+    });
+
+  return output;
+}
+
+export async function merge(branch) {
+  const output = await execa('git', ['merge', branch])
+    .then(({ stdout }) => stdout)
+    .catch((error) => {
+      throw new GitError(`git merge failed. \n ${error.stderr}`);
+    });
+
+  return output;
+}
+
 export async function getLastCommitId() {
-  const commitId = await execa('git', ['log', '--format=%H', '-n', 1])
+  const commitId = await execa('git', ['log', '--format=%s', '-n', 1])
+    .then(({ stdout }) => stdout)
+    .catch((e) => {
+      throw new GitError(
+        `Getting last commit using git log failed \n ${e.stderr}`
+      );
+    });
+
+  return commitId;
+}
+
+export async function getLastCommitSubject() {
+  const commitId = await execa('git', ['log', '--format=%s', '-n', 1])
+    .then(({ stdout }) => stdout)
+    .catch((e) => {
+      throw new GitError(
+        `Getting last commit using git log failed \n ${e.stderr}`
+      );
+    });
+
+  return commitId;
+}
+
+export async function getLastCommitMessage() {
+  const commitId = await execa('git', ['log', '--format=%B', '-n', 1])
     .then(({ stdout }) => stdout)
     .catch((e) => {
       throw new GitError(

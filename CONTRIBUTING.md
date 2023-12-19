@@ -33,9 +33,9 @@ Here is the structure:
 
 ## Release workflow
 
-A release can be a lib or an app/client release. We are publishing our libs to `npm` and our apps to `vercel`.
+A release can be a lib or an app/client release. We are publishing our libs to `npm` and our apps (client) to `vercel`.
 
-If a package is app, you need to add the package name to `scripts/publish.config.mjs` and then after getting a `PROJECT_ID` from Vercel, you need to set it as enviroment variable as well.
+If a package is app, you need to add the package name to `scripts/deploy/config.mjs` and then after getting a `PROJECT_ID` from Vercel, you need to set it as enviroment variable as well.
 
 ### Prerelase
 
@@ -54,7 +54,7 @@ And also all the apps published by `prerelase` workflow will be published under 
 
 Release should be triggered manually and then it will automatically published. You only need to run this command on you local machine to release the production:
 
-`yarn run release`
+`yarn run prod-release`
 
 After release (Green pipleline), make sure you will merge `main` into `next` as well. 
 
