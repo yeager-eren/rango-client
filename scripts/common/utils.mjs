@@ -15,6 +15,7 @@ export function printDirname() {
 }
 
 /**
+ * Getting workspace members using Yarn.
  *
  * @returns {Promise<import('./typedefs.mjs').Package[]>}
  */
@@ -34,6 +35,11 @@ export async function workspacePackages() {
   return output;
 }
 
+/**
+ * Getting a package json and deserialize it to JS object.
+ * @param {string} location
+ * @returns {Object}
+ */
 export function packageJson(location) {
   const fullPath = join(root, location, 'package.json');
   const file = readFileSync(fullPath);
@@ -59,15 +65,21 @@ export async function packageNamesToPackagesWithInfo(names) {
   return packages;
 }
 
-/*
-  Convert:
-  @hello-wrold/a-b -> a-b
-*/
+/**
+ * Getting a package name (e.g. @hello-wrold/a-b) and get the name of pkg (e.g. a-b).
+ *
+ * @param {string} name
+ */
 export function packageNameWithoutScope(name) {
   return name.replace(/@.+\//, '');
 }
 
-// we are adding a fallback, to make sure predefiend VERCEL_PACKAGES always will be true.
+/**
+ * Note: we are adding a fallback, to make sure predefiend VERCEL_PACKAGES always will be true.
+ *
+ * @param {string} name enviroment variable name
+ * @returns {string}
+ */
 export function getEnvWithFallback(name) {
   return process.env[name] || 'NOT SET';
 }
@@ -81,6 +93,12 @@ export function generateTagName(pkg) {
   return `${packageNameWithoutScope(pkg.name)}@${pkg.version}`;
 }
 
+/**
+ * Opposite of `generateTagName`
+ *
+ * @param {string} pkgNameWithoutScope
+ * @returns
+ */
 export function tagNameToPkgName(pkgNameWithoutScope) {
   return `${NPM_ORG_NAME}/${pkgNameWithoutScope}`;
 }

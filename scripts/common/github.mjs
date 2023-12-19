@@ -11,8 +11,8 @@ import { generateTagName, getEnvWithFallback } from './utils.mjs';
 /**
  *
  * @param {import("./typedefs.mjs").Package} pkg
- *
  * @returns {Promise<import("./typedefs.mjs").Release>}
+ *
  */
 export async function getGithubReleaseFor(pkg) {
   const tag = generateTagName(pkg);
@@ -36,7 +36,7 @@ export async function getGithubReleaseFor(pkg) {
 }
 
 /**
- *
+ * Generate changelog for a package and making a release on Github.
  * @param {import('./typedefs.mjs').Package} pkg
  */
 export async function makeGithubRelease(pkg) {
@@ -63,8 +63,11 @@ export async function makeGithubRelease(pkg) {
 }
 
 /**
+ * Get a package and try to get a github release with same (tag) name.
+ * Returns null if any release not found.
  *
  * @param {import('./typedefs.mjs').Package} pkg
+ * @returns {Promise<string | null>}
  */
 export async function githubReleaseFor(pkg) {
   try {
@@ -77,40 +80,6 @@ export async function githubReleaseFor(pkg) {
 
     throw err;
   }
-}
-
-/**
- *  Get github releases for a list of packages
- * @deprecated
- *
- *  if any release found for a package, it returns a `null`, otherwise if any error happens, we should stop the process and throw error.
- *
- * @param {Array<import("./typedefs.mjs").Package>} packages
- * @returns {Promise<Array<import("./typedefs.mjs").PackageAndRelease>>}
- *
- */
-export async function githubReleasesFor(packages) {
-  const result = packages.map((pkg) => {
-    return getGithubReleaseFor(pkg)
-      .then((release) => {
-        return {
-          package: pkg,
-          release: release,
-        };
-      })
-      .catch((err) => {
-        if (err instanceof GithubReleaseNotFoundError) {
-          return {
-            package: pkg,
-            release: null,
-          };
-        }
-
-        throw err;
-      });
-  });
-
-  return await Promise.all(result);
 }
 
 export function checkEnvironments() {

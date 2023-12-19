@@ -1,5 +1,3 @@
-import { update } from './package.mjs';
-
 export class State {
   /** @type {import('../common/typedefs.mjs').Package[]}  */
   pkgs = [];

@@ -19,7 +19,7 @@ export async function addPkgFileChangesToStage(pkg) {
 }
 
 /**
- *
+ * Getting a list of (lazy) promises and run them one after another.
  * @param {Promise[]} promises
  * @returns {Promise<Array>}
  */

@@ -37,6 +37,7 @@ export async function publishOnNpm(pkg) {
 }
 
 /**
+ * Accept a package and send a request to npm registry for getting information.
  *
  * @param {import('./typedefs.mjs').Package} pkg
  * @returns {Promise<import('./typedefs.mjs').NpmVersions>}
@@ -80,9 +81,11 @@ export async function getNpmPackage(pkg) {
 }
 
 /**
+ * Getting version from NPM
+ * returns null if found anything.
  *
  * @param {import('./typedefs.mjs').Package} pkg
- * @returns {Promise<import('./typedefs.mjs').NpmVersions>}
+ * @returns {Promise<import('./typedefs.mjs').NpmVersions | null>}
  */
 export async function npmVersionFor(pkg) {
   try {
@@ -95,38 +98,6 @@ export async function npmVersionFor(pkg) {
 
     throw err;
   }
-}
-
-/**
- *  Get npm versions (by dist tags) for a list of packages
- * @deprecated
- *
- * @param {Array<import("./typedefs.mjs").Package>} packages
- * @returns {Promise<Array<import("./typedefs.mjs").PackageAndNpmVersions>>}
- *
- */
-export async function npmVersionsFor(packages) {
-  const result = packages.map((pkg) => {
-    return getNpmPackage(pkg)
-      .then((npmVersions) => {
-        return {
-          package: pkg,
-          npm: npmVersions,
-        };
-      })
-      .catch((err) => {
-        if (err instanceof NpmPackageNotFoundError) {
-          return {
-            package: pkg,
-            npm: null,
-          };
-        }
-
-        throw err;
-      });
-  });
-
-  return await Promise.all(result);
 }
 
 export async function packagePath(project) {
@@ -149,6 +120,25 @@ export async function readPackageJson(project) {
     update: (newContent) => {
       return fs.writeFile(pkgJsonPath, JSON.stringify(newContent, null, 2));
     },
+  };
+}
+
+async function requestNpmPackageInfo(name) {
+  const headers = new Headers();
+  // This is to use less bandwidth unless we really need to get the full response.
+  // See https://github.com/npm/npm-registry-client#request
+  headers.append(
+    'Accept',
+    'application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*'
+  );
+  const res = await fetch(`https://registry.npmjs.org/${escapeName(name)}`, {
+    headers,
+  });
+  const body = await res.json();
+
+  return {
+    status: res.status,
+    body,
   };
 }
 
@@ -219,37 +209,6 @@ export async function packageVersionOnNPM(project, dist) {
   return {
     npm_version,
     local_version,
-  };
-}
-
-export async function overrideNPMVersionOnLocal(project, dist) {
-  const versions = await packageVersionOnNPM(project, dist);
-
-  if (versions.npm_version !== versions.local_version) {
-    console.log(`::warning::Mismatch version on local and npm for ${project}`);
-    console.log(`${JSON.stringify(versions)}`);
-  }
-
-  return versions;
-}
-
-/** @deprecated */
-async function requestNpmPackageInfo(name) {
-  const headers = new Headers();
-  // This is to use less bandwidth unless we really need to get the full response.
-  // See https://github.com/npm/npm-registry-client#request
-  headers.append(
-    'Accept',
-    'application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*'
-  );
-  const res = await fetch(`https://registry.npmjs.org/${escapeName(name)}`, {
-    headers,
-  });
-  const body = await res.json();
-
-  return {
-    status: res.status,
-    body,
   };
 }
 
