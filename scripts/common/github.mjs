@@ -52,6 +52,7 @@ export async function makeGithubRelease(pkg) {
     'main',
     '--notes',
     notes,
+    '--verify-tag',
   ])
     .then(({ stdout }) => stdout)
     .catch((err) => {
