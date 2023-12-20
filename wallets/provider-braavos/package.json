@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/provider-braavos",
-  "version": "0.18.5",
+  "version": "0.19.0",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
@@ -21,8 +21,8 @@
     "lint": "eslint \"**/*.{ts,tsx}\" --ignore-path ../../.eslintignore"
   },
   "dependencies": {
-    "@yeager-dev/signer-starknet": "^0.24.5",
-    "@yeager-dev/wallets-shared": "^0.24.5",
+    "@yeager-dev/signer-starknet": "^0.25.0",
+    "@yeager-dev/wallets-shared": "^0.25.0",
     "rango-types": "^0.1.45"
   },
   "publishConfig": {

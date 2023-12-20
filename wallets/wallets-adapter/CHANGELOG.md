@@ -1,3 +1,23 @@
+# 0.21.0 (2023-12-20)
+
+
+### Bug Fixes
+
+* update rango-types and fix notification bugs ([993f185](https://github.com/yeager-eren/rango-client/commit/993f185e0b8c5e5e15a2c65ba2d85d1f9c8daa90))
+
+
+### Features
+
+* implemnting Wallet & Tooltip ([b7d28f9](https://github.com/yeager-eren/rango-client/commit/b7d28f9fb2f8b3648f9e88b812002a33768570de))
+* update confirm swap and confirm wallets components ([08c0f62](https://github.com/yeager-eren/rango-client/commit/08c0f622d0e691868848084d46a8df110bc9fc37))
+
+
+### Reverts
+
+* Revert "support for rango-types cjs format" ([ed4e050](https://github.com/yeager-eren/rango-client/commit/ed4e050bfc0dcde7aeffa6b0d73b02080a5721eb))
+
+
+
 ## [0.20.4](https://github.com/yeager-eren/rango-client/compare/wallets-adapter@0.20.3...wallets-adapter@0.20.4) (2023-12-16)
 
 

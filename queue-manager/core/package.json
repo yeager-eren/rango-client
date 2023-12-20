@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/queue-manager-core",
-  "version": "0.25.5",
+  "version": "0.26.0",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",

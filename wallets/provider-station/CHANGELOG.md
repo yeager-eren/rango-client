@@ -1,3 +1,19 @@
+# 0.25.0 (2023-12-20)
+
+
+### Bug Fixes
+
+* fix HMR for widget and playground ([8524820](https://github.com/yeager-eren/rango-client/commit/8524820f10cf0b8921f3db0c4f620ff98daa4103))
+* refactor station wallet ([580a2af](https://github.com/yeager-eren/rango-client/commit/580a2af692f63a85921d69152464143551b3f748))
+* update station wallet dependecies ([c00aa6f](https://github.com/yeager-eren/rango-client/commit/c00aa6f2529957952e6f314ddf67385f4fd3cdc0))
+
+
+### Reverts
+
+* Revert "support for rango-types cjs format" ([ed4e050](https://github.com/yeager-eren/rango-client/commit/ed4e050bfc0dcde7aeffa6b0d73b02080a5721eb))
+
+
+
 ## [0.24.4](https://github.com/yeager-eren/rango-client/compare/provider-station@0.24.3...provider-station@0.24.4) (2023-12-16)
 
 

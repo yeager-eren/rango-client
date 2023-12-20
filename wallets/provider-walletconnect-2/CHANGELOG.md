@@ -1,3 +1,24 @@
+# 0.18.0 (2023-12-20)
+
+
+### Bug Fixes
+
+* add zIndex for web3modal ([8041964](https://github.com/yeager-eren/rango-client/commit/804196430ac1f4e94d130d935947944af556e410))
+* build error in alpha ([e2ef0e9](https://github.com/yeager-eren/rango-client/commit/e2ef0e919a84a818938089614e4bd97fd34c0d9c))
+* clean evm transaction in wallet-connect signer ([f10175c](https://github.com/yeager-eren/rango-client/commit/f10175cdf03dfd70cd05570aa09b7d1f5634d109))
+* fix HMR for widget and playground ([8524820](https://github.com/yeager-eren/rango-client/commit/8524820f10cf0b8921f3db0c4f620ff98daa4103))
+* handle switch network flow for wallet-connect ([8c4a17b](https://github.com/yeager-eren/rango-client/commit/8c4a17b47b2919820a4e0726f6d1c48b8994abe3))
+* if there is no cosmos chain passed to wc2, it will be removed from optional namespaces ([548c9ee](https://github.com/yeager-eren/rango-client/commit/548c9ee9f072b259fdd56b52f794c3d8d267baf9))
+
+
+### Features
+
+* add project id as a external value ([0c80404](https://github.com/yeager-eren/rango-client/commit/0c80404a8cacb6c5b0338dea1e416b0b11db254b))
+* Get Wallet Connect project id from config ([9fb30b4](https://github.com/yeager-eren/rango-client/commit/9fb30b4b1a83e2005bbf42553298f24b1e278e1c))
+* Support for WalletConnect 2 ([faedef0](https://github.com/yeager-eren/rango-client/commit/faedef0b5e6fc3c5ef881cbbe4ec05334cc1c910))
+
+
+
 ## [0.17.4](https://github.com/yeager-eren/rango-client/compare/provider-walletconnect-2@0.17.3...provider-walletconnect-2@0.17.4) (2023-12-16)
 
 

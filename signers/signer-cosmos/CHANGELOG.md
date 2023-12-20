@@ -1,3 +1,18 @@
+# 0.25.0 (2023-12-20)
+
+
+### Bug Fixes
+
+* fix HMR for widget and playground ([8524820](https://github.com/yeager-eren/rango-client/commit/8524820f10cf0b8921f3db0c4f620ff98daa4103))
+* update rango-types and fix notification bugs ([993f185](https://github.com/yeager-eren/rango-client/commit/993f185e0b8c5e5e15a2c65ba2d85d1f9c8daa90))
+
+
+### Features
+
+* Support for WalletConnect 2 ([faedef0](https://github.com/yeager-eren/rango-client/commit/faedef0b5e6fc3c5ef881cbbe4ec05334cc1c910))
+
+
+
 ## [0.24.5](https://github.com/yeager-eren/rango-client/compare/signer-cosmos@0.24.4...signer-cosmos@0.24.5) (2023-12-16)
 
 

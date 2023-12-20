@@ -1,3 +1,32 @@
+# 0.26.0 (2023-12-20)
+
+
+### Bug Fixes
+
+* add suggest and connect to wallet for  experimental chain ([0002e69](https://github.com/yeager-eren/rango-client/commit/0002e69da90c58a00cbd50ca8ad601a12ed0e77a))
+* fix bug of duplicate modals for wallet connect ([efb5482](https://github.com/yeager-eren/rango-client/commit/efb54827fd51e6c6c8f42c6abf33c3d7610755e8))
+* fix can switch network for wallet connect ([e3cdeac](https://github.com/yeager-eren/rango-client/commit/e3cdeacd836e254ea2d5384aab4b624a3e7259eb))
+* fix cosmostation experimental chain issue ([5503b2e](https://github.com/yeager-eren/rango-client/commit/5503b2eaceedb1aa64c575829f25576c1f373c0e))
+* fix HMR for widget and playground ([8524820](https://github.com/yeager-eren/rango-client/commit/8524820f10cf0b8921f3db0c4f620ff98daa4103))
+* handle safe wallet in widget ([52fcca4](https://github.com/yeager-eren/rango-client/commit/52fcca49315f7e2edb4655ae7b9cd0792c2800d7))
+* handle switch network flow for wallet-connect ([8c4a17b](https://github.com/yeager-eren/rango-client/commit/8c4a17b47b2919820a4e0726f6d1c48b8994abe3))
+* update rango-types and fix notification bugs ([993f185](https://github.com/yeager-eren/rango-client/commit/993f185e0b8c5e5e15a2c65ba2d85d1f9c8daa90))
+
+
+### Features
+
+* add project id as a external value ([0c80404](https://github.com/yeager-eren/rango-client/commit/0c80404a8cacb6c5b0338dea1e416b0b11db254b))
+* implement wallets auto-connect functionality ([f47d32b](https://github.com/yeager-eren/rango-client/commit/f47d32bb8bbb38a72b961e5eb2ee7e2b985f9f7d))
+* Support for WalletConnect 2 ([faedef0](https://github.com/yeager-eren/rango-client/commit/faedef0b5e6fc3c5ef881cbbe4ec05334cc1c910))
+* support safe wallet ([d04cbcd](https://github.com/yeager-eren/rango-client/commit/d04cbcd2a612755563512d9dff6f2312088d8b4d))
+
+
+### Reverts
+
+* Revert "support for rango-types cjs format" ([ed4e050](https://github.com/yeager-eren/rango-client/commit/ed4e050bfc0dcde7aeffa6b0d73b02080a5721eb))
+
+
+
 ## [0.25.4](https://github.com/yeager-eren/rango-client/compare/wallets-core@0.25.3...wallets-core@0.25.4) (2023-12-16)
 
 
