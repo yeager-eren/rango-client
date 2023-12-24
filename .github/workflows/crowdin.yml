@@ -7,11 +7,6 @@ on:
         description: 'to trigger the workflow manually'
         required: false
   workflow_call:
-    inputs:
-      branch:
-        description: 'to trigger the workflow manually'
-        required: false
-        type: string
     secrets:
       CROWDIN_PROJECT_ID:
         description: 'You need a crowdin project id to be set.'
