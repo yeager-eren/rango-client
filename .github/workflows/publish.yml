@@ -5,11 +5,11 @@ on:
       - main
     tags:
       - '!*'
-  pull_request_target:
-    types:
-      - closed
-    branches:
-      - 'next'
+  # pull_request_target:
+  #   types:
+  #     - closed
+  #   branches:
+  #     - 'next'
 
 jobs:
   localization:
@@ -21,26 +21,25 @@ jobs:
       PAT: ${{ secrets.PAT }} 
 
   publish:
-    if_merged:
-      if: github.event.pull_request.merged == true
-      runs-on: ubuntu-latest
-      needs:
-        - localization
-      steps:
-        - uses: actions/checkout@v4
-          with:
-            fetch-depth: 0
-            token: ${{ secrets.PAT }}
-        - run: git pull
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    needs:
+      - localization
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PAT }}
+      - run: git pull
 
-        - name: Prepare
-          uses: ./.github/actions/prepare
-          with:
-            NPM_TOKEN: ${{ secrets.NPM_TOKEN }} 
+      - name: Prepare
+        uses: ./.github/actions/prepare
+        with:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }} 
 
-        - name: Build, Version & Publish packages
-          run: yarn run publish
-          env:
-            REF: ${{ github.ref }}
-            BASE_REF: ${{ github.event.pull_request.base.ref }}
-            GH_TOKEN: ${{ github.token }}
+      - name: Build, Version & Publish packages
+        run: yarn run publish
+        env:
+          REF: ${{ github.ref }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          GH_TOKEN: ${{ github.token }}
