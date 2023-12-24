@@ -5,11 +5,11 @@ on:
       - main
     tags:
       - '!*'
-  # pull_request_target:
-  #   types:
-  #     - closed
-  #   branches:
-  #     - 'next'
+  pull_request_target:
+    types:
+      - closed
+    branches:
+      - 'next'
 
 jobs:
   localization:
