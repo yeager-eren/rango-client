@@ -1,6 +1,11 @@
-name: crowdin
+name: Crowdin
 
 on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'to trigger the workflow manually'
+        required: false
   workflow_call:
     inputs:
       branch:
