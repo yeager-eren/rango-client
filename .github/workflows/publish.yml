@@ -21,7 +21,8 @@ jobs:
       PAT: ${{ secrets.PAT }} 
 
   publish:
-    if: github.event.pull_request.merged == true
+    # on push or merged pr.
+    if: ${{ (github.event_name == 'pull_request' && github.event.pull_request.merged == true) || github.event_name == 'pull_request') && github.event_name == 'push' }} 
     runs-on: ubuntu-latest
     needs:
       - localization
