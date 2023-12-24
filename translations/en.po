@@ -14,14 +14,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-explicit-id
+#: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:38
+msgid "Try using different keywords test3"
+msgstr "Try using different keywords test3"
+
+#. js-lingui-explicit-id
 #: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:37
 msgid "No results found test"
 msgstr "No results found test"
-
-#. js-lingui-explicit-id
-#: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:38
-msgid "Try using different keywords test2"
-msgstr "Try using different keywords test2"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:66

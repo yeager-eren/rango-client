@@ -8,7 +8,7 @@ msgstr ""
 "Language: es\n"
 "Project-Id-Version: test-rango\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-24 18:56\n"
+"PO-Revision-Date: 2023-12-24 19:51\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -19,13 +19,13 @@ msgstr ""
 "X-Crowdin-File-ID: 6\n"
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:37
-msgid "No results found test"
+#: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:38
+msgid "Try using different keywords test3"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:38
-msgid "Try using different keywords test2"
+#: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:37
+msgid "No results found test"
 msgstr ""
 
 #. js-lingui-explicit-id
