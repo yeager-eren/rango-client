@@ -21,7 +21,7 @@ on:
         required: true
 
 jobs:
-  crowdin-action:
+  crowdin:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
