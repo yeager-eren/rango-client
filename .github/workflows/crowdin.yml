@@ -6,6 +6,7 @@ on:
       branch:
         description: 'to trigger the workflow manually'
         required: false
+        type: string
   workflow_call:
     secrets:
       CROWDIN_PROJECT_ID:
