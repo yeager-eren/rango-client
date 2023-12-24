@@ -15,6 +15,9 @@ on:
       CROWDIN_PERSONAL_TOKEN:
         description: 'You need a crowdin token to be set.'
         required: true
+      PAT:
+        description: 'Add a PAT to secrets.'
+        required: true
 
 jobs:
   crowdin:
@@ -23,6 +26,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0      
+          token: ${{ secrets.PAT }}
           
       - name: Prepare
         uses: ./.github/actions/prepare
