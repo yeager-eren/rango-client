@@ -1,6 +1,6 @@
 import type { PropTypes, TokenType } from './TokensPanel.types';
 
-import { ChainsIcon, Divider, Typography } from '@rango-dev/ui';
+import { ChainsIcon, Divider, Typography } from '@yeager-dev/ui';
 import React, { useState } from 'react';
 
 import { tokensAreEqual } from '../../utils/common';

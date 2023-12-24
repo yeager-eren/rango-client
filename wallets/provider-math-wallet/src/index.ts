@@ -11,7 +11,7 @@ import {
   WalletInfo,
   CanEagerConnect,
   canEagerlyConnectToEvm,
-} from '@rango-dev/wallets-shared';
+} from '@yeager-dev/wallets-shared';
 import {
   getNonEvmAccounts,
   mathWallet as mathWallet_instance,

@@ -1,4 +1,4 @@
-import { WidgetConfig } from '@rango-dev/widget-embedded';
+import { WidgetConfig } from '@yeager-dev/widget-embedded';
 import { commonStyles } from './styles';
 
 // Actual app that will be loaded inside the iframe.

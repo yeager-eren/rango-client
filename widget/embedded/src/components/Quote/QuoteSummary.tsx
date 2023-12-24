@@ -1,6 +1,6 @@
-import type { PriceImpactWarningLevel, Step } from '@rango-dev/ui';
+import type { PriceImpactWarningLevel, Step } from '@yeager-dev/ui';
 
-import { TokenAmount } from '@rango-dev/ui';
+import { TokenAmount } from '@yeager-dev/ui';
 import React from 'react';
 
 import { Container, separatorStyles } from './QuoteSummary.styles';

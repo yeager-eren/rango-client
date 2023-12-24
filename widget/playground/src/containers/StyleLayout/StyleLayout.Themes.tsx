@@ -1,6 +1,6 @@
 import type { Mode } from '../../store/config';
 
-import { ColorsIcon, Divider, Typography } from '@rango-dev/ui';
+import { ColorsIcon, Divider, Typography } from '@yeager-dev/ui';
 import React, { useState } from 'react';
 
 import { TABS } from '../../constants';
