@@ -48,7 +48,7 @@ jobs:
           commit_message: "chore(translation): update translations"
  
           localization_branch_name: l10n_crowdin_translations
-          create_pull_request: false
+          create_pull_request: true
           pull_request_title: '🤖chore(translation): update translations'
           pull_request_body: 'New Crowdin pull request with translations'
           pull_request_base_branch_name: 'next'        
@@ -58,7 +58,7 @@ jobs:
 
       - name: Enable auto-merge for the PR
         if: steps.crowdin-download.outputs.pull_request_url
-        run: gh pr --repo $GITHUB_REPOSITORY merge ${{ steps.crowdin-download.outputs.pull_request_url }} --auto --merge
+        run: gh pr --repo $GITHUB_REPOSITORY merge ${{ steps.crowdin-download.outputs.pull_request_url }} --admin --merge
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
