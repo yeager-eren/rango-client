@@ -1,3 +1,19 @@
+# 0.35.0 (2023-12-27)
+
+
+### Bug Fixes
+
+* fix HMR for widget and playground ([8524820](https://github.com/yeager-eren/rango-client/commit/8524820f10cf0b8921f3db0c4f620ff98daa4103))
+* seems npm needs a bit time to update the cdn and return the correct version ([09168ac](https://github.com/yeager-eren/rango-client/commit/09168acdc3ca400abd2016eebc0c62103edae3a2))
+
+
+### Features
+
+* add delete action to queue manager ([9590554](https://github.com/yeager-eren/rango-client/commit/95905549394f906fcbc4839a52b92dae2d408500))
+* Support for WalletConnect 2 ([faedef0](https://github.com/yeager-eren/rango-client/commit/faedef0b5e6fc3c5ef881cbbe4ec05334cc1c910))
+
+
+
 # [0.25.0](https://github.com/rango-exchange/rango-client/compare/queue-manager-core@0.23.0...queue-manager-core@0.25.0) (2023-12-24)
 
 

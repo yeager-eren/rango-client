@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/wallets-adapter",
-  "version": "0.21.0",
+  "version": "0.22.0",
   "license": "MIT",
   "type": "module",
   "module": "./dist/index.js",
@@ -23,10 +23,10 @@
     "react": ">=16"
   },
   "dependencies": {
-    "@yeager-dev/provider-all": "^0.26.0",
-    "@yeager-dev/ui": "^0.26.0",
-    "@yeager-dev/wallets-react": "^0.12.0",
-    "@yeager-dev/wallets-shared": "^0.25.0",
+    "@yeager-dev/provider-all": "^0.27.0",
+    "@yeager-dev/ui": "^0.27.0",
+    "@yeager-dev/wallets-react": "^0.13.0",
+    "@yeager-dev/wallets-shared": "^0.26.0",
     "rango-types": "^0.1.57"
   },
   "publishConfig": {

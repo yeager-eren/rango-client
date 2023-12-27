@@ -1,3 +1,18 @@
+# 0.26.0 (2023-12-27)
+
+
+### Bug Fixes
+
+* fix HMR for widget and playground ([8524820](https://github.com/yeager-eren/rango-client/commit/8524820f10cf0b8921f3db0c4f620ff98daa4103))
+* update rango-types and fix notification bugs ([993f185](https://github.com/yeager-eren/rango-client/commit/993f185e0b8c5e5e15a2c65ba2d85d1f9c8daa90))
+
+
+### Reverts
+
+* Revert "support for rango-types cjs format" ([ed4e050](https://github.com/yeager-eren/rango-client/commit/ed4e050bfc0dcde7aeffa6b0d73b02080a5721eb))
+
+
+
 # [0.25.0](https://github.com/rango-exchange/rango-client/compare/provider-math-wallet@0.23.0...provider-math-wallet@0.25.0) (2023-12-24)
 
 

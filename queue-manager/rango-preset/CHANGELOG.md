@@ -1,3 +1,37 @@
+# 0.27.0 (2023-12-27)
+
+
+### Bug Fixes
+
+* a bug in updateHash ([516855d](https://github.com/yeager-eren/rango-client/commit/516855dee5fa3544dbfa849e4cc2da480cbe958e))
+* add initial state with props in app store and fix bug of passing liquidity sources via config ([5d50d0f](https://github.com/yeager-eren/rango-client/commit/5d50d0fa18c0519a9464bb205684ecdaf881d936))
+* add wallets-core to rango-preset package dependencies ([0a8920a](https://github.com/yeager-eren/rango-client/commit/0a8920a11db4a8d213e01ee770289242bf1defc8))
+* avoid getting transaction receipt multiple times ([3ef2875](https://github.com/yeager-eren/rango-client/commit/3ef2875bfad470cf2780ae5f82c4841e7eeb60ff))
+* better parsing of evm rpc errors ([f23031a](https://github.com/yeager-eren/rango-client/commit/f23031ae14e6e841ee488591bd1bf58cfa7ca15b))
+* checking starknet and tron approval ([ff857fe](https://github.com/yeager-eren/rango-client/commit/ff857fe5f5bd172486ca0e740451742c9e4ed2b3))
+* display transaction url after refreshing ([c976bff](https://github.com/yeager-eren/rango-client/commit/c976bffd3827ee20de5dd0f21be6d430432fff28))
+* fix bug of duplicate modals for wallet connect ([efb5482](https://github.com/yeager-eren/rango-client/commit/efb54827fd51e6c6c8f42c6abf33c3d7610755e8))
+* fix emitting failed event in swap execution ([cedc535](https://github.com/yeager-eren/rango-client/commit/cedc53523dc8ddc5f339b4da6afa822058bd760d))
+* fix flow bug when check status failed ([3a886e6](https://github.com/yeager-eren/rango-client/commit/3a886e68cf45c8bf500823fae96070acbbd3942a))
+* fix HMR for widget and playground ([8524820](https://github.com/yeager-eren/rango-client/commit/8524820f10cf0b8921f3db0c4f620ff98daa4103))
+* fix retry logic in failed swaps ([2efcef1](https://github.com/yeager-eren/rango-client/commit/2efcef1779a33aa0ea65d4f17f3d443c218e2be1))
+* fix signer wait change network issues ([e453db6](https://github.com/yeager-eren/rango-client/commit/e453db6ccf7736e36e5ada0c29502be32254fe9c))
+* getChainId & networkMatched on wallet connect v1 ([9ec8cfb](https://github.com/yeager-eren/rango-client/commit/9ec8cfbd3f9be9befcfb632485afa1ee436e92a2))
+* handle replaced transactions ([1c8598d](https://github.com/yeager-eren/rango-client/commit/1c8598d2755afc9e439ee80c0951d83c6aed9f2a))
+* throw error on sdk's create transaction ([47e2947](https://github.com/yeager-eren/rango-client/commit/47e29470c0e972b92a5c15db07aba83c2cec29f4))
+* update rango-types and fix notification bugs ([993f185](https://github.com/yeager-eren/rango-client/commit/993f185e0b8c5e5e15a2c65ba2d85d1f9c8daa90))
+
+
+### Features
+
+* add state of wallets' details to useWidget ([2a59055](https://github.com/yeager-eren/rango-client/commit/2a590551cc0a3d663fd9901e125890ff1386c0aa))
+* add Ton Transaction and integrate MyTonWallet ([73af7d5](https://github.com/yeager-eren/rango-client/commit/73af7d5f58b11886dc55e5f7e70f196355d3e6f3))
+* add widget events and refactor swap execution events ([0d76806](https://github.com/yeager-eren/rango-client/commit/0d7680693dd77439de38cd0b20f263f6ae8cceb0))
+* Get Wallet Connect project id from config ([9fb30b4](https://github.com/yeager-eren/rango-client/commit/9fb30b4b1a83e2005bbf42553298f24b1e278e1c))
+* support safe wallet ([d04cbcd](https://github.com/yeager-eren/rango-client/commit/d04cbcd2a612755563512d9dff6f2312088d8b4d))
+
+
+
 # [0.25.0](https://github.com/rango-exchange/rango-client/compare/queue-manager-rango-preset@0.24.0...queue-manager-rango-preset@0.25.0) (2023-12-24)
 
 

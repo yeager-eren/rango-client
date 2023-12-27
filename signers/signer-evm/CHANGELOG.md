@@ -1,3 +1,22 @@
+# 0.26.0 (2023-12-27)
+
+
+### Bug Fixes
+
+* better parsing of evm rpc errors ([f23031a](https://github.com/yeager-eren/rango-client/commit/f23031ae14e6e841ee488591bd1bf58cfa7ca15b))
+* fix HMR for widget and playground ([8524820](https://github.com/yeager-eren/rango-client/commit/8524820f10cf0b8921f3db0c4f620ff98daa4103))
+* fix signer wait change network issues ([e453db6](https://github.com/yeager-eren/rango-client/commit/e453db6ccf7736e36e5ada0c29502be32254fe9c))
+* show tenderly error on call exception ([c218f49](https://github.com/yeager-eren/rango-client/commit/c218f49f3330706d9262b0cf3ec8e293e91e3729))
+* update rango-types and fix notification bugs ([993f185](https://github.com/yeager-eren/rango-client/commit/993f185e0b8c5e5e15a2c65ba2d85d1f9c8daa90))
+
+
+### Features
+
+* Support for WalletConnect 2 ([faedef0](https://github.com/yeager-eren/rango-client/commit/faedef0b5e6fc3c5ef881cbbe4ec05334cc1c910))
+* support safe wallet ([d04cbcd](https://github.com/yeager-eren/rango-client/commit/d04cbcd2a612755563512d9dff6f2312088d8b4d))
+
+
+
 # [0.25.0](https://github.com/rango-exchange/rango-client/compare/signer-evm@0.23.0...signer-evm@0.25.0) (2023-12-24)
 
 
