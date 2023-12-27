@@ -63,7 +63,7 @@ export function BlockchainList(props: PropTypes) {
   return (
     <Container>
       <Typography variant="label" size="large">
-        {i18n.t('Select your Blockchain')}
+        {i18n.t('Select your Blockchain from list')}
       </Typography>
       <Divider size={4} />
       {fetchStatus === 'loading' && <LoadingBlockchainList />}
