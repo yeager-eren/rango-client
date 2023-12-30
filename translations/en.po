@@ -15,8 +15,8 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:37
-msgid "No results found test"
-msgstr "No results found test"
+msgid "No results found test 21"
+msgstr "No results found test 21"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:38
