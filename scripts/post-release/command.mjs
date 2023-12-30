@@ -1,4 +1,4 @@
-import { checkout, del, merge, pull, push } from '../common/git.mjs';
+import { checkout, createAndSwitch, del, pull, push } from '../common/git.mjs';
 import { checkCommitAndGetPkgs } from './tag.mjs';
 
 async function run() {
@@ -13,11 +13,16 @@ async function run() {
   await checkout('main');
   await pull();
 
-  await checkCommitAndGetPkgs();
+  // await checkCommitAndGetPkgs();
 
   // Making sure we are deleting the branch then create a new one.
+  // Note: it will fails silently since if a branch doesn't exist it goes through error.
   await del(tempBranch);
   await createAndSwitch(tempBranch);
+  await push({
+    setupRemote: true,
+    branch: tempBranch,
+  });
 }
 
 run().catch((e) => {

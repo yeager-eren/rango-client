@@ -194,14 +194,24 @@ export async function addFileToStage(path) {
   });
 }
 
-export async function push(remote = 'origin') {
-  const output = await execa('git', [
-    'push',
-    remote,
-    '--follow-tags',
-    '--no-verify',
-    '--atomic',
-  ])
+export async function push(options) {
+  const { steupRemote, branch, remote = 'origin' } = options;
+
+  const pushOptions = [];
+
+  if (steupRemote) {
+    if (!branch) {
+      throw new CustomScriptError(
+        `You should also pass branch name as parameter to push. \n ${error.stderr}`
+      );
+    }
+
+    pushOptions = ['--set-upstream', remote, branch];
+  } else {
+    pushOptions = [remote, '--follow-tags', '--no-verify', '--atomic'];
+  }
+
+  const output = await execa('git', ['push', ...pushOptions])
     .then(({ stdout }) => stdout)
     .catch((error) => {
       throw new GitError(`git push failed. \n ${error.stderr}`);
