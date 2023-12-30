@@ -197,8 +197,7 @@ export async function addFileToStage(path) {
 export async function push(options) {
   const { steupRemote, branch, remote = 'origin' } = options;
 
-  const pushOptions = [];
-
+  let pushOptions = [];
   if (steupRemote) {
     if (!branch) {
       throw new CustomScriptError(
