@@ -195,10 +195,10 @@ export async function addFileToStage(path) {
 }
 
 export async function push(options) {
-  const { steupRemote, branch, remote = 'origin' } = options;
+  const { setupRemote, branch, remote = 'origin' } = options;
 
   let pushOptions = [];
-  if (steupRemote) {
+  if (setupRemote) {
     if (!branch) {
       throw new CustomScriptError(
         `You should also pass branch name as parameter to push. \n ${error.stderr}`
