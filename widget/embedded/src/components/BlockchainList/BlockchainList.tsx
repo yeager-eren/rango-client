@@ -34,7 +34,7 @@ export function BlockchainList(props: PropTypes) {
         <>
           <Divider size={32} />
           <NotFound
-            title={i18n.t('No results found test')}
+            title={i18n.t('No results found test 21')}
             description={i18n.t('Try using different keywords test3')}
           />
         </>
