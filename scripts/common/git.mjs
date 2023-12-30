@@ -240,6 +240,39 @@ export async function merge(branch) {
   return output;
 }
 
+export async function createAndSwitch(branch) {
+  const output = await execa('git', ['checkout', '-b', branch])
+    .then(({ stdout }) => stdout)
+    .catch((error) => {
+      throw new GitError(`git checkout -b failed. \n ${error.stderr}`);
+    });
+
+  return output;
+}
+
+export async function del(branch) {
+  const remote = 'origin';
+  const deleteRemoteBranch = execa('git', ['push', '-d', remote, branch])
+    .then(({ stdout }) => stdout)
+    .catch((error) => {
+      throw new GitError(`git push -d failed. \n ${error.stderr}`);
+    });
+  const deleteLocalBranch = execa('git', ['branch', '-d', branch])
+    .then(({ stdout }) => stdout)
+    .catch((error) => {
+      throw new GitError(`git branch failed. \n ${error.stderr}`);
+    });
+
+  const output = await Promise.allSettled([
+    deleteRemoteBranch,
+    deleteLocalBranch,
+  ]).then((values) =>
+    values.map((item) => `[${item.status}]:\n${item.value}`).join('\n\n')
+  );
+
+  return output;
+}
+
 export async function getLastCommitId() {
   const commitId = await execa('git', ['log', '--format=%s', '-n', 1])
     .then(({ stdout }) => stdout)
