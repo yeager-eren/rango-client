@@ -45,6 +45,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
       - name: Creating PR on next 
+        if: ${{ github.ref == 'refs/heads/main' }}
         run: yarn run post-release-prod
         env:
           REF: ${{ github.ref }}

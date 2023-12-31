@@ -111,8 +111,6 @@ export async function createPullRequest(pr) {
     baseBranch,
     '--head',
     branch,
-    // '--body',
-    // 'hello',
     '--body-file',
     templatePath,
   ];
