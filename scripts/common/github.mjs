@@ -117,7 +117,9 @@ export async function createPullRequest(pr) {
   const output = await execa('gh', ['pr', 'create', ...ghCreateParams])
     .then(({ stdout }) => stdout)
     .catch((err) => {
-      throw new GithubCommandError('gh pr command failed. \n', err.stdout);
+      throw new GithubCommandError(
+        `gh pr command failed. \n ${err.stdout} \n ${err.stdout}`
+      );
     });
 
   return output;
