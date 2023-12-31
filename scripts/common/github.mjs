@@ -106,7 +106,7 @@ export async function createPullRequest(pr) {
 
   const ghCreateParams = [
     '--title',
-    title,
+    `"${title}"`,
     '--base',
     baseBranch,
     '--head',
