@@ -20,11 +20,11 @@ async function run() {
   // Note: it will fails silently since if a branch doesn't exist it goes through error.
   // await del(tempBranch);
   // await createAndSwitch(tempBranch);
-  await push({
-    setupRemote: true,
-    branch: tempBranch,
-    // branch: tempBranch,
-  });
+  // await push({
+  //   setupRemote: true,
+  //   branch: tempBranch,
+  //   // branch: tempBranch,
+  // });
 
   await createPullRequest({
     title: '🤖 Post Release',
