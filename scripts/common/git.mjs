@@ -195,7 +195,7 @@ export async function addFileToStage(path) {
 }
 
 export async function push(options) {
-  const { setupRemote, branch, remote = 'origin' } = options;
+  const { setupRemote, branch, remote = 'origin' } = options || {};
 
   let pushOptions = [];
   if (setupRemote) {
