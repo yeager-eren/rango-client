@@ -10,7 +10,11 @@ async function run() {
   await checkout('main');
   await pull();
 
-  await checkCommitAndGetPkgs();
+  // It shouldn't fail the whole gh action.
+  await checkCommitAndGetPkgs().catch((e) => {
+    console.log(e);
+    process.exit(0);
+  });
 
   // Making sure we are deleting the branch then create a new one.
   // Note: it will fails silently since if a branch doesn't exist it goes through error.
