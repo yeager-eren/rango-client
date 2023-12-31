@@ -25,7 +25,7 @@ async function run() {
     title: '🤖 Post Release',
     branch: tempBranch,
     baseBranch: targetBranch,
-    templatePath: './.github/PUBLISH_TEMPLATE.md',
+    templatePath: '.github/PUBLISH_TEMPLATE.md',
   });
 }
 

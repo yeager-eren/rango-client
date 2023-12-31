@@ -113,7 +113,7 @@ export async function createPullRequest(pr) {
     branch,
     // '--body',
     // 'hello',
-    '--template',
+    '--body-file',
     templatePath,
   ];
   const output = await execa('gh', ['pr', 'create', ...ghCreateParams])
