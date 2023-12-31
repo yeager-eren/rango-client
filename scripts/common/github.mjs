@@ -118,7 +118,7 @@ export async function createPullRequest(pr) {
     .then(({ stdout }) => stdout)
     .catch((err) => {
       throw new GithubCommandError(
-        `gh pr command failed. \n ${err.stdout} \n ${err.stdout}`
+        `gh pr command failed. \n ${err.stdout} \n ${err.stdout} \n ${err}`
       );
     });
 
