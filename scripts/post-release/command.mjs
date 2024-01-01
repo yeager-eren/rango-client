@@ -1,6 +1,5 @@
 import { checkout, pull } from '../common/git.mjs';
 import { createPullRequest } from '../common/github.mjs';
-import { checkCommitAndGetPkgs } from './tag.mjs';
 
 async function run() {
   const tempBranch = 'main';
@@ -9,12 +8,6 @@ async function run() {
   // Make sure we are on main and having latest changes
   await checkout('main');
   await pull();
-
-  // It shouldn't fail the whole gh action.
-  await checkCommitAndGetPkgs().catch((e) => {
-    console.log(e);
-    process.exit(0);
-  });
 
   await createPullRequest({
     title: '🤖 Post Release',
