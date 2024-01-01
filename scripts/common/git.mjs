@@ -153,15 +153,10 @@ export async function publishCommitAndTags(pkgs) {
 
   const list = tags.map((tag) => `- ${tag}`).join('\n');
   const message = subject + list;
+  const body = `Affected packages: ${tags.join(',')}\n[skip ci]`;
 
   // Making a publish commit
-  await execa('git', [
-    'commit',
-    '-m',
-    message,
-    '-m',
-    `Affected packages: ${tags.join(',')}`,
-  ]).catch((error) => {
+  await execa('git', ['commit', '-m', message, '-m', body]).catch((error) => {
     throw new GitError(`git commit failed. \n ${error.stderr}`);
   });
 
