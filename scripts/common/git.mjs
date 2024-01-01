@@ -147,13 +147,19 @@ export async function getChangedPackagesFor(channel) {
  *
  */
 export async function publishCommitAndTags(pkgs) {
-  const isTaggingSkipped = detectChannel() !== 'prod';
+  const channel = detectChannel();
+  const isTaggingSkipped = channel !== 'prod';
   const subject = `${PUBLISH_COMMIT_SUBJECT}\n\n`;
   const tags = pkgs.map(generateTagName);
 
   const list = tags.map((tag) => `- ${tag}`).join('\n');
   const message = subject + list;
-  const body = `Affected packages: ${tags.join(',')}\n[skip ci]`;
+  let body = `Affected packages: ${tags.join(',')}`;
+
+  // TODO: write a comment on this.
+  if (channel === 'prod') {
+    body += '\n[skip ci]';
+  }
 
   // Making a publish commit
   await execa('git', ['commit', '-m', message, '-m', body]).catch((error) => {
