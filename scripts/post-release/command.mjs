@@ -1,18 +1,27 @@
-import { checkout, merge, pull, push } from '../common/git.mjs';
+import { checkout, pull } from '../common/git.mjs';
+import { createPullRequest } from '../common/github.mjs';
 import { checkCommitAndGetPkgs } from './tag.mjs';
 
 async function run() {
+  const tempBranch = 'main';
+  const targetBranch = 'next';
+
   // Make sure we are on main and having latest changes
   await checkout('main');
   await pull();
 
-  await checkCommitAndGetPkgs();
+  // It shouldn't fail the whole gh action.
+  await checkCommitAndGetPkgs().catch((e) => {
+    console.log(e);
+    process.exit(0);
+  });
 
-  // Merge phase
-  await checkout('next');
-  await pull();
-  await merge('main');
-  await push();
+  await createPullRequest({
+    title: '🤖 Post Release',
+    branch: tempBranch,
+    baseBranch: targetBranch,
+    templatePath: '.github/PUBLISH_TEMPLATE.md',
+  });
 }
 
 run().catch((e) => {

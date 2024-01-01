@@ -1,3 +1,28 @@
+## [0.22.7](https://github.com/yeager-eren/rango-client/compare/widget-embedded@0.22.6...widget-embedded@0.22.7) (2023-12-31)
+
+
+
+## [0.22.6](https://github.com/yeager-eren/rango-client/compare/widget-embedded@0.22.5...widget-embedded@0.22.6) (2023-12-31)
+
+
+
+## [0.22.5](https://github.com/yeager-eren/rango-client/compare/widget-embedded@0.22.4...widget-embedded@0.22.5) (2023-12-31)
+
+
+
+## [0.22.4](https://github.com/yeager-eren/rango-client/compare/widget-embedded@0.22.2...widget-embedded@0.22.4) (2023-12-31)
+
+
+
+## [0.22.2](https://github.com/yeager-eren/rango-client/compare/widget-embedded@0.22.1...widget-embedded@0.22.2) (2023-12-30)
+
+
+### Bug Fixes
+
+* test ([a66729e](https://github.com/yeager-eren/rango-client/commit/a66729e5973995823b2c4c7dd71bc7373927cdd9))
+
+
+
 ## [0.22.1](https://github.com/yeager-eren/rango-client/compare/widget-embedded@0.22.0...widget-embedded@0.22.1) (2023-12-30)
 
 

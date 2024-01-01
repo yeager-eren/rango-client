@@ -194,14 +194,23 @@ export async function addFileToStage(path) {
   });
 }
 
-export async function push(remote = 'origin') {
-  const output = await execa('git', [
-    'push',
-    remote,
-    '--follow-tags',
-    '--no-verify',
-    '--atomic',
-  ])
+export async function push(options) {
+  const { setupRemote, branch, remote = 'origin' } = options || {};
+
+  let pushOptions = [];
+  if (setupRemote) {
+    if (!branch) {
+      throw new CustomScriptError(
+        `You should also pass branch name as parameter to push. \n ${error.stderr}`
+      );
+    }
+
+    pushOptions = ['--set-upstream', remote, branch];
+  } else {
+    pushOptions = [remote, '--follow-tags', '--no-verify', '--atomic'];
+  }
+
+  const output = await execa('git', ['push', ...pushOptions])
     .then(({ stdout }) => stdout)
     .catch((error) => {
       throw new GitError(`git push failed. \n ${error.stderr}`);
@@ -236,6 +245,39 @@ export async function merge(branch) {
     .catch((error) => {
       throw new GitError(`git merge failed. \n ${error.stderr}`);
     });
+
+  return output;
+}
+
+export async function createAndSwitch(branch) {
+  const output = await execa('git', ['checkout', '-b', branch])
+    .then(({ stdout }) => stdout)
+    .catch((error) => {
+      throw new GitError(`git checkout -b failed. \n ${error.stderr}`);
+    });
+
+  return output;
+}
+
+export async function del(branch) {
+  const remote = 'origin';
+  const deleteRemoteBranch = execa('git', ['push', '-d', remote, branch])
+    .then(({ stdout }) => stdout)
+    .catch((error) => {
+      throw new GitError(`git push -d failed. \n ${error.stderr}`);
+    });
+  const deleteLocalBranch = execa('git', ['branch', '-d', branch])
+    .then(({ stdout }) => stdout)
+    .catch((error) => {
+      throw new GitError(`git branch failed. \n ${error.stderr}`);
+    });
+
+  const output = await Promise.allSettled([
+    deleteRemoteBranch,
+    deleteLocalBranch,
+  ]).then((values) =>
+    values.map((item) => `[${item.status}]:\n${item.value}`).join('\n\n')
+  );
 
   return output;
 }

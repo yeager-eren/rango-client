@@ -3,6 +3,7 @@ import { getLastCommitMessage, getLastCommitSubject } from '../common/git.mjs';
 import { tagNameToPkgName } from '../common/utils.mjs';
 
 /**
+ * Checking last commit to be a release commit/tag.
  *
  * @returns {Promise<pkg[]>}
  * @typedef {Object} pkg
@@ -14,7 +15,9 @@ export async function checkCommitAndGetPkgs() {
   const lastCommitMessage = await getLastCommitMessage();
 
   if (lastCommitSubject !== PUBLISH_COMMIT_SUBJECT) {
-    throw new Error('Can not proceed');
+    throw new Error(
+      'Can not proceed since the last commit should be release commit.'
+    );
   }
 
   const lines = lastCommitMessage.split('\n');
@@ -23,7 +26,7 @@ export async function checkCommitAndGetPkgs() {
   );
 
   if (!affectedPackagesList) {
-    throw new Error("Commit message isn't valid");
+    throw new Error("Commit message isn't valid.");
   }
 
   const [, affectedPackages] = affectedPackagesList.split(
