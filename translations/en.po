@@ -15,8 +15,8 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:38
-msgid "Try using different keywords test6"
-msgstr "Try using different keywords test6"
+msgid "Try using different keywords test7"
+msgstr "Try using different keywords test7"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:37
