@@ -644,7 +644,7 @@ msgstr "Confirm USD Price Unknown"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/constants/messages.ts:6
-#: widget/embedded/src/pages/Home.tsx:155
+#: widget/embedded/src/pages/Home.tsx:161
 msgid "Swap"
 msgstr "Swap"
 
@@ -729,12 +729,12 @@ msgid "Search Transaction"
 msgstr "Search Transaction"
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/Home.tsx:172
+#: widget/embedded/src/pages/Home.tsx:178
 msgid "From"
 msgstr "From"
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/Home.tsx:215
+#: widget/embedded/src/pages/Home.tsx:221
 msgid "To"
 msgstr "To"
 
