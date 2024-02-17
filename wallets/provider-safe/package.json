@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/provider-safe",
-  "version": "0.19.0",
+  "version": "0.19.1-next.0",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
@@ -22,10 +22,10 @@
   },
   "dependencies": {
     "@ethersproject/abstract-provider": "^5.7.0",
-    "@yeager-dev/signer-evm": "^0.26.0",
-    "@yeager-dev/wallets-shared": "^0.26.1-next.0",
     "@safe-global/safe-apps-provider": "^0.17.0",
     "@safe-global/safe-apps-sdk": "^7.11.0",
+    "@yeager-dev/signer-evm": "^0.26.1-next.0",
+    "@yeager-dev/wallets-shared": "^0.26.1-next.1",
     "rango-types": "^0.1.59"
   },
   "publishConfig": {
