@@ -1,8 +1,8 @@
 import type { SignerFactory } from 'rango-types';
 
-import { DefaultEvmSigner } from '@rango-dev/signer-evm';
-import { DefaultSolanaSigner } from '@rango-dev/signer-solana';
-import { getNetworkInstance, Networks } from '@rango-dev/wallets-shared';
+import { DefaultEvmSigner } from '@yeager-dev/signer-evm';
+import { DefaultSolanaSigner } from '@yeager-dev/signer-solana';
+import { getNetworkInstance, Networks } from '@yeager-dev/wallets-shared';
 import { DefaultSignerFactory, TransactionType as TxType } from 'rango-types';
 
 import { MathWalletCosmosSigner } from './signers/cosmosSigner';

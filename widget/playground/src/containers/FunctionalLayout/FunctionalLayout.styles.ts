@@ -1,4 +1,4 @@
-import { css, styled } from '@rango-dev/ui';
+import { css, styled } from '@yeager-dev/ui';
 
 export const amountStyles = css({
   fontSize: '$12',

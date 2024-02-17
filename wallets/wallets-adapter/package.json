@@ -1,5 +1,5 @@
 {
-  "name": "@rango-dev/wallets-adapter",
+  "name": "@yeager-dev/wallets-adapter",
   "version": "0.22.2-next.5",
   "license": "MIT",
   "type": "module",
@@ -23,10 +23,10 @@
     "react": ">=16"
   },
   "dependencies": {
-    "@rango-dev/provider-all": "^0.27.1-next.1",
-    "@rango-dev/ui": "^0.28.2-next.5",
-    "@rango-dev/wallets-react": "^0.13.1-next.1",
-    "@rango-dev/wallets-shared": "^0.27.1-next.1",
+    "@yeager-dev/provider-all": "^0.27.1-next.1",
+    "@yeager-dev/ui": "^0.28.2-next.5",
+    "@yeager-dev/wallets-react": "^0.13.1-next.1",
+    "@yeager-dev/wallets-shared": "^0.27.1-next.1",
     "rango-types": "^0.1.59"
   },
   "publishConfig": {

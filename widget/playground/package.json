@@ -1,5 +1,5 @@
 {
-  "name": "@rango-dev/widget-playground",
+  "name": "@yeager-dev/widget-playground",
   "version": "0.13.1-next.34",
   "license": "MIT",
   "private": true,
@@ -18,11 +18,11 @@
     "@types/stringify-object": "^4.0.2"
   },
   "dependencies": {
-    "@rango-dev/provider-all": "^0.27.1-next.1",
-    "@rango-dev/ui": "^0.28.2-next.5",
-    "@rango-dev/wallets-react": "^0.13.1-next.1",
-    "@rango-dev/wallets-shared": "^0.27.1-next.1",
-    "@rango-dev/widget-embedded": "^0.22.4-next.6",
+    "@yeager-dev/provider-all": "^0.27.1-next.1",
+    "@yeager-dev/ui": "^0.28.2-next.5",
+    "@yeager-dev/wallets-react": "^0.13.1-next.1",
+    "@yeager-dev/wallets-shared": "^0.27.1-next.1",
+    "@yeager-dev/widget-embedded": "^0.22.4-next.6",
     "rango-sdk": "^0.1.45",
     "react": "^18.2.0",
     "react-color": "^2.19.3",

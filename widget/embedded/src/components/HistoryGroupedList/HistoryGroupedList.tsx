@@ -7,7 +7,7 @@ import {
   Skeleton,
   SwapListItem,
   Typography,
-} from '@rango-dev/ui';
+} from '@yeager-dev/ui';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import {

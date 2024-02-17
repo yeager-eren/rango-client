@@ -1,5 +1,5 @@
-import { ToastProvider } from '@rango-dev/ui';
-import { Widget, WidgetProvider } from '@rango-dev/widget-embedded';
+import { ToastProvider } from '@yeager-dev/ui';
+import { Widget, WidgetProvider } from '@yeager-dev/widget-embedded';
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 

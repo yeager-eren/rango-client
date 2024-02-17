@@ -3,7 +3,7 @@ import {
   type RouteEvent,
   type Step,
   type StepEvent,
-} from '@rango-dev/queue-manager-rango-preset';
+} from '@yeager-dev/queue-manager-rango-preset';
 
 type NotificationRoute = {
   from: {

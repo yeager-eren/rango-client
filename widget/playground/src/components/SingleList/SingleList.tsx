@@ -9,7 +9,7 @@ import {
   RadioRoot,
   Typography,
   VirtualizedList,
-} from '@rango-dev/ui';
+} from '@yeager-dev/ui';
 import React, { useEffect, useState } from 'react';
 
 import { SearchInput } from '../SearchInput';

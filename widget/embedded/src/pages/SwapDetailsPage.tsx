@@ -1,7 +1,7 @@
 import { i18n } from '@lingui/core';
-import { cancelSwap } from '@rango-dev/queue-manager-rango-preset';
-import { useManager } from '@rango-dev/queue-manager-react';
-import { Alert } from '@rango-dev/ui';
+import { cancelSwap } from '@yeager-dev/queue-manager-rango-preset';
+import { useManager } from '@yeager-dev/queue-manager-react';
+import { Alert } from '@yeager-dev/ui';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 

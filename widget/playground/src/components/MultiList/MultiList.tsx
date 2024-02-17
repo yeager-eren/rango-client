@@ -7,7 +7,7 @@ import {
   NotFound,
   SelectableCategoryList,
   Typography,
-} from '@rango-dev/ui';
+} from '@yeager-dev/ui';
 import React, { useState } from 'react';
 
 import { useMetaStore } from '../../store/meta';
