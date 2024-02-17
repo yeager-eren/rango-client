@@ -63,7 +63,7 @@ export function BlockchainsSection(props: PropTypes) {
                 }
               }}>
               <Typography variant="body" size="xsmall" color="secondary500">
-                {i18n.t('All')}
+                {i18n.t('All All All')}
               </Typography>
             </BlockchainsChip>
             {blockchainsList.list.map((item) => (
