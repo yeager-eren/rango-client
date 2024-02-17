@@ -1,5 +1,5 @@
 const projectId = process.env.CROWDIN_PROJECT_ID;
-const token =  process.env.CROWDIN_PERSONAL_TOKEN;
+const token = process.env.CROWDIN_PERSONAL_TOKEN;
 
 const BASE_URL = `https://api.crowdin.com/api/v2/projects/${projectId}`;
 const preTranslateURL = `${BASE_URL}/pre-translations`;
@@ -8,7 +8,7 @@ const MAXIMUM_REQUEST_RETRIES = 12;
 
 const requestData = {
   method: 'mt',
-  engineId: 410374,
+  engineId: 438272,
   autoApproveOption: 'all',
   duplicateTranslations: false,
   skipApprovedTranslations: true,
@@ -16,7 +16,7 @@ const requestData = {
   translateWithPerfectMatchOnly: false,
 };
 
-const getMachineTranslationEngineID = async () =>{
+const getMachineTranslationEngineID = async () => {
   try {
     const response = await fetch('https://api.crowdin.com/api/v2/mts', {
       headers: {
@@ -29,15 +29,14 @@ const getMachineTranslationEngineID = async () =>{
     }
 
     const responseData = await response.json();
-    const engineId = responseData.data[0].data.id ;
+    const engineId = responseData.data[0].data.id;
 
     return engineId;
-
   } catch (error) {
     console.error('Error:', error);
     throw error;
   }
-}
+};
 
 const getLanguageIds = async () => {
   try {
@@ -91,11 +90,18 @@ const sendPreTranslateRequest = async ({ sourceFileId, languageIds }) => {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ ...requestData, fileIds: [sourceFileId], languageIds }),
+      body: JSON.stringify({
+        ...requestData,
+        fileIds: [sourceFileId],
+        languageIds,
+      }),
     });
 
     if (!response.ok) {
-      throw new Error(`Failed to initiate pre-translation. Status: ${response.status}`);
+      console.log({ sourceFileId, languageIds });
+      throw new Error(
+        `Failed to initiate pre-translation. Status: ${response.status}`
+      );
     }
 
     const responseData = await response.json();
@@ -123,7 +129,9 @@ const checkPreTranslateStatus = async (preTranslationId) => {
       });
 
       if (!response.ok) {
-        throw new Error(`Failed to get pre-translation status. Status: ${response.status}`);
+        throw new Error(
+          `Failed to get pre-translation status. Status: ${response.status}`
+        );
       }
 
       const responseData = await response.json();
@@ -134,7 +142,9 @@ const checkPreTranslateStatus = async (preTranslationId) => {
         console.log('Pre-translation finished!');
         process.exit(0);
       } else {
-        console.log(`Pre-translation status: ${status}. Retrying in 10 seconds...`);
+        console.log(
+          `Pre-translation status: ${status}. Retrying in 10 seconds...`
+        );
         await delay(REQUEST_INTERVAL_TIMEOUT);
         attempt++;
       }
@@ -144,13 +154,21 @@ const checkPreTranslateStatus = async (preTranslationId) => {
     }
   }
 
-  throw new Error('Timeout: Pre-translation did not succeed within the specified time.');
+  throw new Error(
+    'Timeout: Pre-translation did not succeed within the specified time.'
+  );
 };
 
 (async () => {
   try {
-    const [sourceFileId, languageIds] = await Promise.all([getSourceFileId(), getLanguageIds()]);
-    const preTranslationId = await sendPreTranslateRequest({ sourceFileId, languageIds });
+    const [sourceFileId, languageIds] = await Promise.all([
+      getSourceFileId(),
+      getLanguageIds(),
+    ]);
+    const preTranslationId = await sendPreTranslateRequest({
+      sourceFileId,
+      languageIds,
+    });
     await checkPreTranslateStatus(preTranslationId);
   } catch (error) {
     console.error('Error:', error);
