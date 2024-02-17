@@ -15,7 +15,7 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@yeager-dev/widget-embedded": "^0.22.4-next.6",
+    "@yeager-dev/widget-embedded": "^0.22.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.0"
