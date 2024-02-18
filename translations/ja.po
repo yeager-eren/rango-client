@@ -6,17 +6,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: ja\n"
-"Project-Id-Version: rango\n"
+"Project-Id-Version: yeager-client\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-14 10:53\n"
+"PO-Revision-Date: 2024-02-18 06:47\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Crowdin-Project: rango\n"
-"X-Crowdin-Project-ID: 622238\n"
+"X-Crowdin-Project: yeager-client\n"
+"X-Crowdin-Project-ID: 648856\n"
 "X-Crowdin-Language: ja\n"
 "X-Crowdin-File: en.po\n"
-"X-Crowdin-File-ID: 30\n"
+"X-Crowdin-File-ID: 2\n"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/components/BlockchainsSection/BlockchainsSection.tsx:66
+msgid "All All All"
+msgstr "すべてすべて"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:37
@@ -40,11 +45,6 @@ msgstr "別のキーワードを使用してみてください"
 #: widget/embedded/src/pages/SelectBlockchainPage.tsx:40
 msgid "Select Blockchain"
 msgstr "ブロックチェーンを選択"
-
-#. js-lingui-explicit-id
-#: widget/embedded/src/components/BlockchainsSection/BlockchainsSection.tsx:66
-msgid "All"
-msgstr "すべて"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/BlockchainsSection/BlockchainsSection.tsx:100
@@ -635,7 +635,7 @@ msgstr "不明なUSD価格を確認"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/constants/messages.ts:6
-#: widget/embedded/src/pages/Home.tsx:154
+#: widget/embedded/src/pages/Home.tsx:160
 msgid "Swap"
 msgstr "入れ替え"
 
@@ -720,12 +720,12 @@ msgid "Search Transaction"
 msgstr "トランザクションを検索"
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/Home.tsx:171
+#: widget/embedded/src/pages/Home.tsx:177
 msgid "From"
 msgstr "差出人:"
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/Home.tsx:214
+#: widget/embedded/src/pages/Home.tsx:220
 msgid "To"
 msgstr "終了日"
 
@@ -826,7 +826,7 @@ msgstr "「Infinite承認」モードを有効にすると、DEX/Bridgesのス�
 #. js-lingui-explicit-id
 #: widget/embedded/src/pages/SettingsPage.tsx:221
 msgid "Currently, you're in campaign mode with restrictions on liquidity sources. Would you like to switch out of this mode and make use of all available liquidity sources?"
-msgstr ""
+msgstr "現在、流動性情報源に制限があるキャンペーンモードです。 このモードを切り替えて、利用可能なすべての流動性源を使用しますか？"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/pages/SwapDetailsPage.tsx:27
