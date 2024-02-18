@@ -6,17 +6,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: es\n"
-"Project-Id-Version: rango\n"
+"Project-Id-Version: yeager-client\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-14 10:53\n"
+"PO-Revision-Date: 2024-02-18 06:47\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Crowdin-Project: rango\n"
-"X-Crowdin-Project-ID: 622238\n"
+"X-Crowdin-Project: yeager-client\n"
+"X-Crowdin-Project-ID: 648856\n"
 "X-Crowdin-Language: es-ES\n"
 "X-Crowdin-File: en.po\n"
-"X-Crowdin-File-ID: 30\n"
+"X-Crowdin-File-ID: 2\n"
+
+#. js-lingui-explicit-id
+#: widget/embedded/src/components/BlockchainsSection/BlockchainsSection.tsx:66
+msgid "All All All"
+msgstr "Todos todos"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/BlockchainList/BlockchainList.tsx:37
@@ -40,11 +45,6 @@ msgstr "Intenta usar diferentes palabras clave"
 #: widget/embedded/src/pages/SelectBlockchainPage.tsx:40
 msgid "Select Blockchain"
 msgstr "Seleccionar Blockchain"
-
-#. js-lingui-explicit-id
-#: widget/embedded/src/components/BlockchainsSection/BlockchainsSection.tsx:66
-msgid "All"
-msgstr "Todos"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/components/BlockchainsSection/BlockchainsSection.tsx:100
@@ -635,7 +635,7 @@ msgstr "Confirmar el precio de USD desconocido"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/constants/messages.ts:6
-#: widget/embedded/src/pages/Home.tsx:154
+#: widget/embedded/src/pages/Home.tsx:160
 msgid "Swap"
 msgstr "Intercambiar"
 
@@ -720,12 +720,12 @@ msgid "Search Transaction"
 msgstr "Buscar transacción"
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/Home.tsx:171
+#: widget/embedded/src/pages/Home.tsx:177
 msgid "From"
 msgstr "De"
 
 #. js-lingui-explicit-id
-#: widget/embedded/src/pages/Home.tsx:214
+#: widget/embedded/src/pages/Home.tsx:220
 msgid "To"
 msgstr "A"
 
@@ -826,7 +826,7 @@ msgstr "Habilitar el modo 'Aprobación infinita' permite el acceso sin restricci
 #. js-lingui-explicit-id
 #: widget/embedded/src/pages/SettingsPage.tsx:221
 msgid "Currently, you're in campaign mode with restrictions on liquidity sources. Would you like to switch out of this mode and make use of all available liquidity sources?"
-msgstr ""
+msgstr "Actualmente estás en modo campaña con restricciones sobre las fuentes de liquidez. ¿Le gustaría desconectar de este modo y hacer uso de todas las fuentes de liquidez disponibles?"
 
 #. js-lingui-explicit-id
 #: widget/embedded/src/pages/SwapDetailsPage.tsx:27
