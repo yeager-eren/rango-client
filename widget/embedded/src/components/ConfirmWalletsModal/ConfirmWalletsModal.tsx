@@ -13,7 +13,7 @@ import {
   MessageBox,
   Typography,
   WalletIcon,
-} from '@rango-dev/ui';
+} from '@yeager-dev/ui';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -270,7 +270,7 @@ export function ConfirmWalletsModal(props: PropTypes) {
         ),
       })}
       {...(showMoreWalletFor && {
-        containerStyle: { padding: '$0' },
+        styles: { container: { padding: '$0' } },
         header: (
           <ShowMoreHeader>
             <NavigateBack

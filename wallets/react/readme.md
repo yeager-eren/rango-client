@@ -1,1 +1,3 @@
-# @rango-dev/wallets-react
+# @yeager-dev/wallets-react
+
+React package for handling web3 wallets supported by Rango

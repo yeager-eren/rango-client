@@ -1,6 +1,6 @@
 import type { CustomColorsTypes } from './StyleLayout.types';
 import type { Mode } from '../../store/config';
-import type { WidgetColorsKeys } from '@rango-dev/widget-embedded';
+import type { WidgetColorsKeys } from '@yeager-dev/widget-embedded';
 
 import {
   ChevronDownIcon,
@@ -9,7 +9,7 @@ import {
   CustomColorsIcon,
   Divider,
   Typography,
-} from '@rango-dev/ui';
+} from '@yeager-dev/ui';
 import React, { useEffect, useState } from 'react';
 
 import { ColorPicker } from '../../components/ColorPicker';
@@ -107,9 +107,14 @@ export function CustomColorsSection(props: CustomColorsTypes) {
     }
   }, [theme?.colors]);
 
+  const isCustomColorDisabled =
+    (tab === 'auto' && theme?.singleTheme) || // The system tab and a single theme is selected
+    (tab === 'light' && !!selectedPreset?.dark?.primary) || // The light tab and a system or dark theme is selected
+    (tab === 'dark' && !!selectedPreset?.light?.primary); // The dark tab and a system or light theme is selected
+
   return (
     <Collapsible
-      open={isOpenCustomColors}
+      open={isOpenCustomColors && !isCustomColorDisabled}
       onOpenChange={() =>
         toggleCustomColors((prev) => ({
           tab,
@@ -120,6 +125,8 @@ export function CustomColorsSection(props: CustomColorsTypes) {
         <CustomColors
           variant="default"
           fullWidth
+          disabled={isCustomColorDisabled}
+          isDisabled={isCustomColorDisabled}
           suffix={
             isOpenCustomColors ? (
               <ChevronUpIcon size={10} color="gray" />

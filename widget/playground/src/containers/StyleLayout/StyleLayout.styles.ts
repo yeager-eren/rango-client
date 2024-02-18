@@ -1,4 +1,4 @@
-import { Button, Collapsible, darkTheme, styled } from '@rango-dev/ui';
+import { Button, Collapsible, darkTheme, styled } from '@yeager-dev/ui';
 
 export const GeneralContainer = styled('div', {
   backgroundColor: '$background',
@@ -135,12 +135,26 @@ export const CustomColors = styled(Button, {
   display: 'flex',
   justifyContent: 'space-between',
   backgroundColor: 'transparent',
-  '&:hover': {
-    '.title': {
-      color: '$secondary500',
-    },
-    '& svg': {
-      color: '$secondary500',
+  variants: {
+    isDisabled: {
+      false: {
+        '&:hover': {
+          '.title': {
+            color: '$secondary500',
+          },
+          '& svg': {
+            color: '$secondary500',
+          },
+        },
+      },
+      true: {
+        '.title': {
+          color: '$neutral600',
+        },
+        '& svg': {
+          color: '$neutral600',
+        },
+      },
     },
   },
 });

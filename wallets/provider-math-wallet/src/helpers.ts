@@ -1,21 +1,31 @@
-import {
+import type {
   Network,
-  Networks,
   ProviderConnectResult,
-} from '@rango-dev/wallets-shared';
+} from '@yeager-dev/wallets-shared';
+
+import { Networks } from '@yeager-dev/wallets-shared';
 
 type Provider = Map<Network, any>;
 
 export function mathWallet() {
   const instances = new Map();
-  const { solana, ethereum } = window;
+  const { solana, ethereum, offlineSigner } = window;
 
-  if (!!solana && solana.isMathWallet) instances.set(Networks.SOLANA, solana);
+  if (!!solana && solana.isMathWallet) {
+    instances.set(Networks.SOLANA, solana);
+  }
 
-  if (ethereum && ethereum.isMathWallet)
+  if (ethereum && ethereum.isMathWallet) {
     instances.set(Networks.ETHEREUM, ethereum);
+  }
 
-  if (instances.size === 0) return null;
+  if (offlineSigner && offlineSigner.getAccounts) {
+    instances.set(Networks.COSMOS, offlineSigner);
+  }
+
+  if (instances.size === 0) {
+    return null;
+  }
 
   return instances;
 }
@@ -37,6 +47,19 @@ export async function getNonEvmAccounts(
       accounts: [solanaAccounts],
       chainId: Networks.SOLANA,
     });
+  }
+
+  // Getting Cosmos accounts
+  const cosmosInstance = instances.get(Networks.COSMOS);
+  if (cosmosInstance) {
+    const [firstAccount] = await cosmosInstance.getAccounts();
+
+    if (firstAccount) {
+      results.push({
+        accounts: [firstAccount.address],
+        chainId: Networks.COSMOS,
+      });
+    }
   }
 
   return results;

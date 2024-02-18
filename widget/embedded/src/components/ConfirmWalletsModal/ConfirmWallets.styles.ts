@@ -5,7 +5,7 @@ import {
   IconButton,
   styled,
   TextField,
-} from '@rango-dev/ui';
+} from '@yeager-dev/ui';
 
 export const Title = styled('div', {
   display: 'flex',

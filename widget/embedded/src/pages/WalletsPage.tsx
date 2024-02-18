@@ -1,7 +1,7 @@
-import type { WalletType } from '@rango-dev/wallets-shared';
+import type { WalletType } from '@yeager-dev/wallets-shared';
 
 import { i18n } from '@lingui/core';
-import { styled, Typography, Wallet, WalletState } from '@rango-dev/ui';
+import { styled, Typography, Wallet, WalletState } from '@yeager-dev/ui';
 import React, { useState } from 'react';
 
 import { Layout, PageContainer } from '../components/Layout';
@@ -35,23 +35,29 @@ export function WalletsPage() {
   let modalTimerId: ReturnType<typeof setTimeout> | null = null;
   const isActiveTab = useUiStore.use.isActiveTab();
 
-  const { list, handleClick, error } = useWalletList({
-    config,
-    onBeforeConnect: (type) => {
-      modalTimerId = setTimeout(() => {
-        setOpenModal(true);
-        setSelectedWalletType(type);
-      }, TIME_TO_IGNORE_MODAL);
-    },
-    onConnect: () => {
-      if (modalTimerId) {
-        clearTimeout(modalTimerId);
-      }
-      setTimeout(() => {
-        setOpenModal(false);
-      }, TIME_TO_CLOSE_MODAL);
-    },
-  });
+  const { list, handleClick, error, disconnectConnectingWallets } =
+    useWalletList({
+      config,
+      onBeforeConnect: (type) => {
+        modalTimerId = setTimeout(() => {
+          setOpenModal(true);
+          setSelectedWalletType(type);
+        }, TIME_TO_IGNORE_MODAL);
+      },
+      onConnect: () => {
+        if (modalTimerId) {
+          clearTimeout(modalTimerId);
+        }
+        setTimeout(() => {
+          setOpenModal(false);
+        }, TIME_TO_CLOSE_MODAL);
+      },
+    });
+
+  const handleCloseWalletModal = () => {
+    disconnectConnectingWallets();
+    setOpenModal(false);
+  };
 
   const selectedWallet = list.find(
     (wallet) => wallet.type === selectedWalletType
@@ -87,7 +93,7 @@ export function WalletsPage() {
           })}
           <WalletModal
             open={!!openModal}
-            onClose={() => setOpenModal(false)}
+            onClose={handleCloseWalletModal}
             image={selectedWalletImage}
             state={selectedWalletState}
             error={error}

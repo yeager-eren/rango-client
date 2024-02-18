@@ -1,4 +1,6 @@
-# @rango-dev/ui
+# @yeager-dev/ui
+
+Rango UI design system components
 
 ### Icons
 

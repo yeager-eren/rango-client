@@ -2,8 +2,8 @@ import type { PropTypes } from './Layout.types';
 import type { PendingSwap } from 'rango-types';
 import type { PropsWithChildren } from 'react';
 
-import { useManager } from '@rango-dev/queue-manager-react';
-import { BottomLogo, Divider, Header } from '@rango-dev/ui';
+import { useManager } from '@yeager-dev/queue-manager-react';
+import { BottomLogo, Divider, Header } from '@yeager-dev/ui';
 import React, { useEffect, useRef } from 'react';
 
 import { WIDGET_UI_ID } from '../../constants';

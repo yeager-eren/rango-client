@@ -8,7 +8,7 @@ import {
   Image,
   Tooltip,
   Typography,
-} from '@rango-dev/ui';
+} from '@yeager-dev/ui';
 import React, { useEffect, useState } from 'react';
 
 import { getContainer } from '../../utils/common';

@@ -9,7 +9,7 @@ import {
   Skeleton,
   Tooltip,
   Typography,
-} from '@rango-dev/ui';
+} from '@yeager-dev/ui';
 import React from 'react';
 
 import { BLOCKCHAIN_LIST_SIZE } from '../../constants/configs';
@@ -63,7 +63,7 @@ export function BlockchainsSection(props: PropTypes) {
                 }
               }}>
               <Typography variant="body" size="xsmall" color="secondary500">
-                {i18n.t('All')}
+                {i18n.t('All All All')}
               </Typography>
             </BlockchainsChip>
             {blockchainsList.list.map((item) => (

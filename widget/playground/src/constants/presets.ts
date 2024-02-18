@@ -2,7 +2,9 @@ import type { Mode } from '../store/config';
 import type {
   WidgetColors,
   WidgetColorsKeys,
-} from '@rango-dev/widget-embedded';
+} from '@yeager-dev/widget-embedded';
+
+const DEFAULT_PRESET_ID = 1;
 
 export const TABS: { id: Mode; title: string }[] = [
   {
@@ -279,20 +281,8 @@ export const WIDGET_COLORS: { key: WidgetColorsKeys; label: string }[] = [
   },
 ];
 export const DEFAULT_COLORS = {
-  dark: {
-    primary: undefined,
-    secondary: undefined,
-    neutral: undefined,
-    background: undefined,
-    foreground: undefined,
-    info: undefined,
-  },
-  light: {
-    primary: undefined,
-    secondary: undefined,
-    neutral: undefined,
-    background: undefined,
-    foreground: undefined,
-    info: undefined,
-  },
+  dark: PRESETS.find((preset) => preset.id === DEFAULT_PRESET_ID)
+    ?.dark as WidgetColors,
+  light: PRESETS.find((preset) => preset.id === DEFAULT_PRESET_ID)
+    ?.light as WidgetColors,
 };

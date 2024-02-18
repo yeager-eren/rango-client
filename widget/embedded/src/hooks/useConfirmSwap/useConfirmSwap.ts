@@ -2,7 +2,7 @@ import type { ConfirmSwap, Params } from './useConfirmSwap.types';
 import type { PendingSwapSettings } from '../../types';
 import type { BestRouteResponse } from 'rango-sdk';
 
-import { calculatePendingSwap } from '@rango-dev/queue-manager-rango-preset';
+import { calculatePendingSwap } from '@yeager-dev/queue-manager-rango-preset';
 import { useEffect } from 'react';
 
 import { useAppStore } from '../../store/AppStore';
@@ -35,8 +35,8 @@ export function useConfirmSwap(): ConfirmSwap {
     affiliatePercent,
     affiliateRef,
     affiliateWallets,
-    disabledLiquiditySources,
   } = useAppStore();
+  const disabledLiquiditySources = useAppStore().getDisabledLiquiditySources();
   const { connectedWallets } = useWalletsStore();
   const blockchains = useAppStore().blockchains();
   const tokens = useAppStore().tokens();

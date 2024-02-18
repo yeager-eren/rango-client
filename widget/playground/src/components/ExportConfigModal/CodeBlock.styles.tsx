@@ -1,4 +1,4 @@
-import { Button, keyframes, styled } from '@rango-dev/ui';
+import { Button, keyframes, styled } from '@yeager-dev/ui';
 
 export const CopyCodeBlock = styled('div', {
   position: 'absolute',

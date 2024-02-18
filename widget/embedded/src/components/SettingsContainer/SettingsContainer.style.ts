@@ -1,4 +1,4 @@
-import { styled } from '@rango-dev/ui';
+import { styled } from '@yeager-dev/ui';
 
 export const LiquiditySourceList = styled('ul', {
   padding: '$15 $5 0',
@@ -6,6 +6,13 @@ export const LiquiditySourceList = styled('ul', {
   listStyle: 'none',
   height: '100%',
   overflowY: 'auto',
+  variants: {
+    disabled: {
+      true: {
+        pointerEvents: 'none',
+      },
+    },
+  },
 });
 
 export const LiquiditySourceSuffix = styled('div', {
