@@ -6,7 +6,7 @@ import {
   Image,
   styled,
   Typography,
-} from '@rango-dev/ui';
+} from '@yeager-dev/ui';
 
 import { CollapsibleContent } from '../CustomCollapsible/CustomCollapsible.styles';
 

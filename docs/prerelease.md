@@ -76,7 +76,7 @@ https://github.com/rango-exchange/widget-examples
 Update `widget-embedded` version to latest ***next*** version using this command:
 
 ```shell
-yarn add @rango-dev/widget-embedded@next
+yarn add @yeager-dev/widget-embedded@next
 ```
 
 Note: don’t commit your changes to the repo, We will doing it after  release the production successfully which means we only commit `production` version to the repo. More details is on `Post Release` document.
@@ -129,4 +129,4 @@ Ensure you send a highlight note on Telegram [like this](https://t.me/c/17972298
 
 **NOTE 2:**
 
-Ensure you update widget-examples using `yarn add @rango-dev/widget-embedded@latest`. Then open a new PR on the repo to ensure all examples are on the latest version.
+Ensure you update widget-examples using `yarn add @yeager-dev/widget-embedded@latest`. Then open a new PR on the repo to ensure all examples are on the latest version.

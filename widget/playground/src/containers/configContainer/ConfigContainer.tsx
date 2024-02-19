@@ -9,7 +9,7 @@ import {
   Switch,
   Typography,
   WidthIcon,
-} from '@rango-dev/ui';
+} from '@yeager-dev/ui';
 import React, { useState } from 'react';
 
 import { SideNavigation } from '../../components/SideNavigation';

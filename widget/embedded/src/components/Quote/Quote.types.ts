@@ -1,5 +1,5 @@
 import type { QuoteError, QuoteWarning, SelectedQuote } from '../../types';
-import type { Step } from '@rango-dev/ui';
+import type { Step } from '@yeager-dev/ui';
 import type { ReactNode } from 'react';
 
 export type QuoteProps = {

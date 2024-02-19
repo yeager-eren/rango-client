@@ -1,13 +1,13 @@
 import type { Notification } from '../../types/notification';
 
 import { i18n } from '@lingui/core';
-import { EventSeverity } from '@rango-dev/queue-manager-rango-preset';
+import { EventSeverity } from '@yeager-dev/queue-manager-rango-preset';
 import {
   ChainToken,
   ChevronRightIcon,
   ListItemButton,
   Typography,
-} from '@rango-dev/ui';
+} from '@yeager-dev/ui';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 

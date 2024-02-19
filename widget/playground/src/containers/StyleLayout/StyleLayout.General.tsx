@@ -6,8 +6,8 @@ import {
   FontIcon,
   LanguageIcon,
   Typography,
-} from '@rango-dev/ui';
-import { useWidget } from '@rango-dev/widget-embedded';
+} from '@yeager-dev/ui';
+import { useWidget } from '@yeager-dev/widget-embedded';
 import React, { useCallback, useState } from 'react';
 
 import { ItemPicker } from '../../components/ItemPicker';

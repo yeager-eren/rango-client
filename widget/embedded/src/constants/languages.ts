@@ -1,6 +1,6 @@
-import type { FlagPropTypes, Language } from '@rango-dev/ui';
+import type { FlagPropTypes, Language } from '@yeager-dev/ui';
 
-import { English, French, Japanese, Portuguese, Spanish } from '@rango-dev/ui';
+import { English, French, Japanese, Portuguese, Spanish } from '@yeager-dev/ui';
 
 export type LanguageItem = {
   title: string;

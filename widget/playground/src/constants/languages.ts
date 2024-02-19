@@ -1,4 +1,4 @@
-import { English, French, Japanese, Portuguese, Spanish } from '@rango-dev/ui';
+import { English, French, Japanese, Portuguese, Spanish } from '@yeager-dev/ui';
 
 export const LANGUAGES = [
   { name: 'English', value: 'en', Icon: English },

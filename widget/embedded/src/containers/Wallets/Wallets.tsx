@@ -4,11 +4,11 @@ import type {
   WidgetContextInterface,
 } from './Wallets.types';
 import type { ProvidersOptions } from '../../utils/providers';
-import type { EventHandler } from '@rango-dev/wallets-react';
+import type { EventHandler } from '@yeager-dev/wallets-react';
 import type { PropsWithChildren } from 'react';
 
-import { Events, Provider } from '@rango-dev/wallets-react';
-import { type Network } from '@rango-dev/wallets-shared';
+import { Events, Provider } from '@yeager-dev/wallets-react';
+import { type Network } from '@yeager-dev/wallets-shared';
 import { isEvmBlockchain } from 'rango-sdk';
 import React, { createContext, useEffect, useRef } from 'react';
 

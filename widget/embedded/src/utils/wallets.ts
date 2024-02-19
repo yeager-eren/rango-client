@@ -6,7 +6,7 @@ import type {
   TokensBalance,
   Wallet,
 } from '../types';
-import type { WalletInfo as ModalWalletInfo } from '@rango-dev/ui';
+import type { WalletInfo as ModalWalletInfo } from '@yeager-dev/ui';
 import type {
   Asset,
   Network,
@@ -14,18 +14,18 @@ import type {
   WalletState,
   WalletType,
   WalletTypes,
-} from '@rango-dev/wallets-shared';
+} from '@yeager-dev/wallets-shared';
 import type { BlockchainMeta, Token, WalletDetail } from 'rango-sdk';
 
-import { WalletState as WalletStatus } from '@rango-dev/ui';
-import { readAccountAddress } from '@rango-dev/wallets-react';
+import { WalletState as WalletStatus } from '@yeager-dev/ui';
+import { readAccountAddress } from '@yeager-dev/wallets-react';
 import {
   detectInstallLink,
   getCosmosExperimentalChainInfo,
   isEvmAddress,
   KEPLR_COMPATIBLE_WALLETS,
   Networks,
-} from '@rango-dev/wallets-shared';
+} from '@yeager-dev/wallets-shared';
 import BigNumber from 'bignumber.js';
 import { isCosmosBlockchain } from 'rango-types';
 

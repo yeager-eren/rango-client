@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import type { QuoteWarning, SelectedQuote, Wallet } from '../types';
-import type { PriceImpactWarningLevel, Step } from '@rango-dev/ui';
+import type { PriceImpactWarningLevel, Step } from '@yeager-dev/ui';
 import type {
   SimulationAssetAndAmount,
   SimulationValidationStatus,
-} from '@rango-dev/ui/dist/widget/ui/src/types/swaps';
+} from '@yeager-dev/ui/dist/widget/ui/src/types/swaps';
 import type {
   Asset,
   BlockchainMeta,
@@ -17,7 +17,7 @@ import type {
 } from 'rango-sdk';
 import type { PendingSwap } from 'rango-types';
 
-import { getLastSuccessfulStep } from '@rango-dev/queue-manager-rango-preset';
+import { getLastSuccessfulStep } from '@yeager-dev/queue-manager-rango-preset';
 import BigNumber from 'bignumber.js';
 
 import { HIGH_PRIORITY_TAGS } from '../constants/quote';

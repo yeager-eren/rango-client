@@ -10,7 +10,7 @@ import {
   QuoteCost,
   Tooltip,
   Typography,
-} from '@rango-dev/ui';
+} from '@yeager-dev/ui';
 import BigNumber from 'bignumber.js';
 import React, { useState } from 'react';
 
