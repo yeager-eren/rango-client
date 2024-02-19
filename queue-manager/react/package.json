@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/queue-manager-react",
-  "version": "0.27.1-next.0",
+  "version": "0.27.1-next.1",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
@@ -21,8 +21,8 @@
     "lint": "eslint \"**/*.{ts,tsx}\" --ignore-path ../../.eslintignore"
   },
   "peerDependencies": {
-    "@yeager-dev/queue-manager-core": "*",
     "@types/react": "^17.0.0 || ^18.0.0",
+    "@yeager-dev/queue-manager-core": "*",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
   },
