@@ -15,7 +15,7 @@
     "rango-sdk": "^0.1.45"
   },
   "dependencies": {
-    "@yeager-dev/provider-all": "^0.27.1-next.1",
+    "@yeager-dev/provider-all": "^0.27.1-next.2",
     "@yeager-dev/queue-manager-rango-preset": "^0.27.1-next.1",
     "@yeager-dev/queue-manager-react": "^0.27.1-next.1",
     "@yeager-dev/wallets-react": "^0.13.1-next.1",

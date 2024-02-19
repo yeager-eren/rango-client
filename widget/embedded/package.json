@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/widget-embedded",
-  "version": "0.22.12-next.2",
+  "version": "0.22.12-next.3",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
@@ -21,7 +21,7 @@
   "dependencies": {
     "@lingui/core": "4.2.1",
     "@lingui/react": "4.2.1",
-    "@yeager-dev/provider-all": "^0.27.1-next.1",
+    "@yeager-dev/provider-all": "^0.27.1-next.2",
     "@yeager-dev/queue-manager-core": "^0.35.1-next.1",
     "@yeager-dev/queue-manager-rango-preset": "^0.27.1-next.1",
     "@yeager-dev/queue-manager-react": "^0.27.1-next.1",

@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/provider-all",
-  "version": "0.27.1-next.1",
+  "version": "0.27.1-next.2",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
@@ -36,7 +36,7 @@
     "@yeager-dev/provider-halo": "^0.26.1-next.1",
     "@yeager-dev/provider-keplr": "^0.26.1-next.1",
     "@yeager-dev/provider-leap-cosmos": "^0.26.1-next.1",
-    "@yeager-dev/provider-math-wallet": "^0.26.1-next.1",
+    "@yeager-dev/provider-math-wallet": "^0.26.1-next.2",
     "@yeager-dev/provider-metamask": "^0.26.1-next.1",
     "@yeager-dev/provider-okx": "^0.26.1-next.1",
     "@yeager-dev/provider-phantom": "^0.26.1-next.1",
