@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/ui",
-  "version": "0.28.2-next.10",
+  "version": "0.27.1-next.0",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
@@ -63,7 +63,7 @@
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-switch": "^1.0.1",
     "@radix-ui/react-tooltip": "^1.0.2",
-    "@yeager-dev/wallets-shared": "^0.27.1-next.2",
+    "@yeager-dev/wallets-shared": "^0.26.1-next.1",
     "@stitches/react": "^1.2.8",
     "rango-sdk": "^0.1.45",
     "rango-types": "^0.1.59",
