@@ -26,7 +26,6 @@ runs:
         echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
         yarn config set _auth $NPM_TOKEN
         yarn config set _authToken $NPM_TOKEN
-        npx npm whoami
       env:
         NPM_TOKEN: ${{ inputs.NPM_TOKEN }}
       shell: 'bash'
