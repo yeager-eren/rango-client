@@ -13,6 +13,7 @@ runs:
       with:
         node-version: '20'
         cache: 'yarn'
+        registry-url: 'https://registry.npmjs.org'
 
     - name: Git
       run: |

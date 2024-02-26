@@ -25,3 +25,4 @@ jobs:
         env:
           REF: ${{ github.ref }}
           GH_TOKEN: ${{ github.token }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
