@@ -24,6 +24,7 @@ runs:
       if: ${{ inputs.NPM_TOKEN != 0 }}
       run: |
         echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
+        yarn config set _auth $NPM_TOKEN
         npx npm whoami
       env:
         NPM_TOKEN: ${{ inputs.NPM_TOKEN }}
