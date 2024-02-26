@@ -7320,59 +7320,6 @@
     js-yaml "^3.10.0"
     tslib "^2.4.0"
 
-"@yeager-dev/signer-cosmos@^0.26.1-next.1":
-  version "0.26.1-next.1"
-  resolved "https://registry.yarnpkg.com/@yeager-dev/signer-cosmos/-/signer-cosmos-0.26.1-next.1.tgz#03db9aa9fcc392cc2e99729f3a66af6ced7a672d"
-  integrity sha512-60ffowa+Qwv7ESOlSOdz6R1aXPH3W83M2QVq2cB7eGjx3XmC3u/87Sz3q7wmbGftLGJdxVD9s59W9/nyzAG9WQ==
-  dependencies:
-    "@cosmjs/launchpad" "^0.27.1"
-    "@cosmjs/stargate" "^0.31.0"
-    "@keplr-wallet/cosmos" "^0.9.12"
-    cosmjs-types "^0.5.2"
-    long "^5.2.1"
-    rango-types "^0.1.59"
-
-"@yeager-dev/signer-evm@^0.26.1-next.1":
-  version "0.26.1-next.1"
-  resolved "https://registry.yarnpkg.com/@yeager-dev/signer-evm/-/signer-evm-0.26.1-next.1.tgz#ecdf9800a20b0e7dfd6e16b66491a77962698d3b"
-  integrity sha512-y6j/iZB1dJ+OVesPP2WYe8X/zx5cKttld+H+iqfevN6GhMbuSOMPZTW/Vb1XICZeFFyosF9RAS0eNt9Mv3DKIg==
-  dependencies:
-    "@ethersproject/abstract-provider" "^5.7.0"
-    eth-rpc-errors "^4.0.3"
-    ethers "^5.7.2"
-    rango-types "^0.1.59"
-
-"@yeager-dev/signer-solana@^0.26.1-next.1":
-  version "0.26.1-next.1"
-  resolved "https://registry.yarnpkg.com/@yeager-dev/signer-solana/-/signer-solana-0.26.1-next.1.tgz#50d120bef0a1af664153fb5104be7b043b78e2f7"
-  integrity sha512-db/MDMLOtH9frXy4ANMM+DCmXjQmkIkO2pdVKHV0rjJh2PcjUp+SDs4UIywc/C+xq4v91vE2CQtymbG9paxK/A==
-  dependencies:
-    "@solana/web3.js" "^1.67.2"
-    rango-types "^0.1.59"
-
-"@yeager-dev/signer-terra@^0.26.1-next.1":
-  version "0.26.1-next.1"
-  resolved "https://registry.yarnpkg.com/@yeager-dev/signer-terra/-/signer-terra-0.26.1-next.1.tgz#065789644f6ddf46749d572e39d2ddd45cf39e29"
-  integrity sha512-Y+czlX053b3XPVHYygwtwx5WQK5tuz5azPmbDKMINxgMQSvL1Lj3Mzr46Od16sgKDTEUNVK66mqhGfzzaN7/mg==
-  dependencies:
-    "@terra-money/terra.js" "^3.1.7"
-    rango-types "^0.1.59"
-
-"@yeager-dev/signer-ton@^0.12.1-next.1":
-  version "0.12.1-next.1"
-  resolved "https://registry.yarnpkg.com/@yeager-dev/signer-ton/-/signer-ton-0.12.1-next.1.tgz#e5bc5d57dcdaf310cb2b5968041e0615c575902c"
-  integrity sha512-s4JGlhhgatwTEM+tX3GDwTJycvS6SsOYpBqIVZl6tkvkAMZkexcXTVb/+Uf44wr1LeKK3uk+tUvFowQppjE4pQ==
-  dependencies:
-    rango-types "^0.1.59"
-
-"@yeager-dev/wallets-shared@^0.26.1-next.2":
-  version "0.26.1-next.2"
-  resolved "https://registry.yarnpkg.com/@yeager-dev/wallets-shared/-/wallets-shared-0.26.1-next.2.tgz#99d2a709765004ffda2068d195dd30ed943fd5be"
-  integrity sha512-GbCzpfX/tkJDxth8pbHMnrA0Jwv7wFcVamrj8EZD/RDNN5lLwSPfwlbGIoFASeD05yLttHqNvN/hs0WvSEmQJw==
-  dependencies:
-    ethers "^5.7.2"
-    rango-types "^0.1.59"
-
 "@zkochan/js-yaml@0.0.6":
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/@zkochan/js-yaml/-/js-yaml-0.0.6.tgz#975f0b306e705e28b8068a07737fa46d3fc04826"

@@ -14,7 +14,7 @@
     "src"
   ],
   "dependencies": {
-    "@yeager-dev/logging-types": "0.1.0"
+    "@yeager-dev/logging-types": "^0.1.0"
   },
   "scripts": {
     "build": "node ../../scripts/build/command.mjs --path logging/subscriber",
