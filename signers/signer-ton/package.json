@@ -1,6 +1,6 @@
 {
   "name": "@yeager-dev/signer-ton",
-  "version": "0.12.1-next.2",
+  "version": "0.12.1-next.3",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
