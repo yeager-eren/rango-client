@@ -24,8 +24,8 @@
     "react": ">=16"
   },
   "dependencies": {
-    "@yeager-dev/signer-terra": "^0.26.1-next.1",
-    "@yeager-dev/wallets-shared": "^0.28.1-next.0",
+    "@yeager-dev/signer-terra": "^0.26.1-next.2",
+    "@yeager-dev/wallets-shared": "^0.28.1-next.1",
     "@terra-money/wallet-controller": "^3.11.2",
     "rango-types": "^0.1.59"
   },
