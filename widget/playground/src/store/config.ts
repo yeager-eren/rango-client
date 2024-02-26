@@ -1,12 +1,13 @@
 import type { Type } from '../types';
-import type { WalletType } from '@yeager-dev/wallets-shared';
 import type {
   ProviderInterface,
   Tokens,
   WidgetColors,
   WidgetColorsKeys,
   WidgetConfig,
-} from '@yeager-dev/widget-embedded';
+  WidgetVariant,
+} from '@rango-dev/widget-embedded';
+import type { WalletType } from '@yeager-dev/wallets-shared';
 import type { Asset } from 'rango-sdk';
 
 import { create } from 'zustand';
@@ -71,6 +72,7 @@ interface ConfigState {
   onSelectTheme: (colors: { light: WidgetColors; dark: WidgetColors }) => void;
   onChangeLanguage: (value: string) => void;
   resetConfig: () => void;
+  onChangeVariant: (variant?: WidgetVariant) => void;
 }
 
 export const initialConfig: WidgetConfig = {
@@ -78,6 +80,7 @@ export const initialConfig: WidgetConfig = {
   walletConnectProjectId: getConfig('WC_PROJECT_ID'),
   amount: undefined,
   externalWallets: false,
+  variant: 'default',
   from: {
     blockchain: undefined,
     token: undefined,
@@ -118,6 +121,10 @@ export const useConfigStore = createSelectors(
         onChangeApiKey: (apiKey) =>
           set((state) => {
             state.config.apiKey = apiKey;
+          }),
+        onChangeVariant: (variant) =>
+          set((state) => {
+            state.config.variant = variant;
           }),
         onChangeBlockChains: (chains, type) =>
           set((state) => {

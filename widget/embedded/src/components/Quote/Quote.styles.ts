@@ -123,7 +123,7 @@ export const SummaryContainer = styled('div', {
       listItem: true,
       selected: true,
       css: {
-        border: '1px solid $secondary',
+        outline: '1px solid $secondary',
       },
     },
     {
@@ -365,13 +365,6 @@ export const MoreStep = styled('div', {
   },
 });
 
-export const Tag = styled('div', {
-  backgroundColor: '$neutral400',
-  borderRadius: '$xs',
-  padding: '$2 $5',
-  fontSize: '$10',
-  fontWeight: 400,
-});
 export const TagContainer = styled('div', {
   display: 'flex',
 });

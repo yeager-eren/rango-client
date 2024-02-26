@@ -7,6 +7,7 @@ import {
   Alert,
   Divider,
   InfoIcon,
+  QuoteTag,
   StepDetails,
   TokenAmount,
   Tooltip,
@@ -15,7 +16,10 @@ import {
 import BigNumber from 'bignumber.js';
 import React, { useRef, useState } from 'react';
 
+import { GAS_FEE_MAX } from '../../constants/quote';
 import {
+  GAS_FEE_MAX_DECIMALS,
+  GAS_FEE_MIN_DECIMALS,
   PERCENTAGE_CHANGE_MAX_DECIMALS,
   PERCENTAGE_CHANGE_MIN_DECIMALS,
   TOKEN_AMOUNT_MAX_DECIMALS,
@@ -34,13 +38,18 @@ import {
   getBlockchainShortNameFor,
   getSwapperDisplayName,
 } from '../../utils/meta';
-import { formatTooltipNumbers, numberToString } from '../../utils/numbers';
+import {
+  formatTooltipNumbers,
+  numberToString,
+  secondsToString,
+  totalArrivalTime,
+} from '../../utils/numbers';
 import {
   getPriceImpact,
   getPriceImpactLevel,
-  getRouteTagColor,
   sortTags,
 } from '../../utils/quote';
+import { getTotalFeeInUsd } from '../../utils/swap';
 
 import {
   AllRoutesButton,
@@ -56,12 +65,11 @@ import {
   SummaryContainer,
   summaryHeaderStyles,
   summaryStyles,
-  Tag,
   TagContainer,
 } from './Quote.styles';
 import { QuoteCostDetails } from './QuoteCostDetails';
 import { QuoteSummary } from './QuoteSummary';
-import { QuoteTrigger } from './QuoteTrigger ';
+import { QuoteTrigger } from './QuoteTrigger';
 
 export function Quote(props: QuoteProps) {
   const {
@@ -73,9 +81,11 @@ export function Quote(props: QuoteProps) {
     type,
     selected = false,
     tagHidden = true,
+    showModalFee = true,
     onClickAllRoutes,
   } = props;
   const blockchains = useAppStore().blockchains();
+  const tokens = useAppStore().tokens();
   const swappers = useAppStore().swappers();
   const [expanded, setExpanded] = useState(props.expanded);
   const quoteRef = useRef<HTMLButtonElement | null>(null);
@@ -280,6 +290,13 @@ export function Quote(props: QuoteProps) {
   const container = getContainer();
   const sortedQuoteTags = sortTags(props.quote.tags || []);
   const showAllRoutesButton = !!onClickAllRoutes;
+  const totalTime = secondsToString(totalArrivalTime(quote?.swaps));
+  const totalFee = getTotalFeeInUsd(quote?.swaps ?? [], tokens);
+  const fee = numberToString(
+    totalFee,
+    GAS_FEE_MIN_DECIMALS,
+    GAS_FEE_MAX_DECIMALS
+  );
 
   return (
     <>
@@ -295,11 +312,7 @@ export function Quote(props: QuoteProps) {
                   const key = `${tag.value}_${index}`;
                   return (
                     <>
-                      <Tag
-                        style={{ color: getRouteTagColor(tag.value) }}
-                        key={key}>
-                        {tag.label}
-                      </Tag>
+                      <QuoteTag label={tag.label} key={key} value={tag.value} />
                       <Divider size={4} direction="horizontal" />
                     </>
                   );
@@ -310,7 +323,14 @@ export function Quote(props: QuoteProps) {
             </>
           ) : null}
           <div id="portal-root" className={summaryHeaderStyles()}>
-            <QuoteCostDetails steps={numberOfSteps} quote={quote} />
+            <QuoteCostDetails
+              quote={quote}
+              time={totalTime}
+              fee={fee}
+              feeWarning={totalFee.gte(new BigNumber(GAS_FEE_MAX))}
+              showModalFee={showModalFee}
+              steps={numberOfSteps}
+            />
 
             {showAllRoutesButton && (
               <AllRoutesButton
