@@ -22,11 +22,10 @@ jobs:
 
       - name: Prepare
         uses: ./.github/actions/prepare
-        with:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Release Production
         run: yarn run release-prod
         env:
           REF: ${{ github.ref }}
           GH_TOKEN: ${{ github.token }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
