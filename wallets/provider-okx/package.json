@@ -1,5 +1,5 @@
 {
-  "name": "@rango-dev/provider-okx",
+  "name": "@yeager-dev/provider-okx",
   "version": "0.28.0",
   "license": "MIT",
   "type": "module",
@@ -21,9 +21,9 @@
     "lint": "eslint \"**/*.{ts,tsx}\" --ignore-path ../../.eslintignore"
   },
   "dependencies": {
-    "@rango-dev/signer-evm": "^0.26.0",
-    "@rango-dev/signer-solana": "^0.26.0",
-    "@rango-dev/wallets-shared": "^0.28.0",
+    "@yeager-dev/signer-evm": "^0.26.0",
+    "@yeager-dev/signer-solana": "^0.26.0",
+    "@yeager-dev/wallets-shared": "^0.28.0",
     "rango-types": "^0.1.59"
   },
   "publishConfig": {

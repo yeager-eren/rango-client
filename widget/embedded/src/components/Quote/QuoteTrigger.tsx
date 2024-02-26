@@ -8,7 +8,7 @@ import {
   Image,
   Tooltip,
   Typography,
-} from '@rango-dev/ui';
+} from '@yeager-dev/ui';
 import React from 'react';
 
 import useMobileDetect from '../../hooks/useMobileDetect';

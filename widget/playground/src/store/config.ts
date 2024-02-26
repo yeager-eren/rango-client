@@ -6,7 +6,7 @@ import type {
   WidgetColorsKeys,
   WidgetConfig,
   WidgetVariant,
-} from '@rango-dev/widget-embedded';
+} from '@yeager-dev/widget-embedded';
 import type { WalletType } from '@yeager-dev/wallets-shared';
 import type { Asset } from 'rango-sdk';
 

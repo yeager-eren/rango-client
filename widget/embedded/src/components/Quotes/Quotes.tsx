@@ -2,7 +2,7 @@ import type { PropTypes } from './Quotes.types';
 import type { MultiRouteSimulationResult } from 'rango-sdk';
 
 import { i18n } from '@lingui/core';
-import { Divider, Typography } from '@rango-dev/ui';
+import { Divider, Typography } from '@yeager-dev/ui';
 import React from 'react';
 
 import { QuoteInfo } from '../../containers/QuoteInfo';

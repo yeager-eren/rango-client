@@ -36,9 +36,9 @@ import type {
   StepStatus,
 } from 'rango-types';
 
-import { warn } from '@rango-dev/logging-core';
-import { Status } from '@rango-dev/queue-manager-core';
-import { readAccountAddress } from '@rango-dev/wallets-core';
+import { warn } from '@yeager-dev/logging-core';
+import { Status } from '@yeager-dev/queue-manager-core';
+import { readAccountAddress } from '@yeager-dev/wallets-core';
 import {
   getBlockChainNameFromId,
   getEvmProvider,

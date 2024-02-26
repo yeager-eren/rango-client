@@ -11,7 +11,7 @@ import {
   QuoteCost,
   Tooltip,
   Typography,
-} from '@rango-dev/ui';
+} from '@yeager-dev/ui';
 import React, { useState } from 'react';
 
 import { NAME_OF_FEES } from '../../constants/quote';

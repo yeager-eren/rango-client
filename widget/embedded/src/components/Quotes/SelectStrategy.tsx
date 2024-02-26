@@ -1,6 +1,6 @@
 import type { PreferenceType } from 'rango-sdk';
 
-import { Select } from '@rango-dev/ui';
+import { Select } from '@yeager-dev/ui';
 import React from 'react';
 
 import { ROUTE_STRATEGY } from '../../constants/quote';

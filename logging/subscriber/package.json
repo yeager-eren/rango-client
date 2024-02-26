@@ -1,5 +1,5 @@
 {
-  "name": "@rango-dev/logging-subscriber",
+  "name": "@yeager-dev/logging-subscriber",
   "version": "0.1.0",
   "license": "MIT",
   "type": "module",
@@ -14,7 +14,7 @@
     "src"
   ],
   "dependencies": {
-    "@rango-dev/logging-types": "^0.1.0"
+    "@yeager-dev/logging-types": "^0.1.0"
   },
   "scripts": {
     "build": "node ../../scripts/build/command.mjs --path logging/subscriber",

@@ -1,4 +1,4 @@
-import type { WidgetVariant } from '@rango-dev/widget-embedded';
+import type { WidgetVariant } from '@yeager-dev/widget-embedded';
 import type { ChangeEvent } from 'react';
 
 import {

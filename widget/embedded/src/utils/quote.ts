@@ -5,7 +5,7 @@ import type {
   SimulationAssetAndAmount,
   SimulationValidationStatus,
   Step,
-} from '@rango-dev/ui';
+} from '@yeager-dev/ui';
 import type {
   Asset,
   BlockchainMeta,

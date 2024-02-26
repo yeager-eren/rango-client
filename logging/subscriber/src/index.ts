@@ -1,2 +1,2 @@
 export { init } from './subscriber';
-export { Level } from '@rango-dev/logging-types';
+export { Level } from '@yeager-dev/logging-types';

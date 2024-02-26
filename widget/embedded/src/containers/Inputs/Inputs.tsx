@@ -1,7 +1,7 @@
 import type { PropTypes } from './Inputs.types';
 
 import { i18n } from '@lingui/core';
-import { SwapInput } from '@rango-dev/ui';
+import { SwapInput } from '@yeager-dev/ui';
 import React from 'react';
 
 import { SwitchFromAndToButton } from '../../components/SwitchFromAndTo';

@@ -1,5 +1,5 @@
 import { i18n } from '@lingui/core';
-import { Button, Divider, styled, WarningIcon } from '@rango-dev/ui';
+import { Button, Divider, styled, WarningIcon } from '@yeager-dev/ui';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
